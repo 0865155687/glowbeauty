@@ -1,0 +1,4058 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
+:root {
+    --gb-admin-line: #efcfbf;
+    --gb-admin-text: #35180f;
+    --gb-admin-muted: #8a6758;
+    --gb-admin-green: #2fb36d;
+    --gb-admin-red: #e45b5b
+}
+
+body.gb-admin-body {
+    min-height: 100vh !important;
+    margin: 0 !important;
+    background: linear-gradient(135deg, #2d140c 0 248px, #fff8f4 248px, #fff5ef 100%) !important;
+    color: var(--gb-admin-text) !important;
+    font-family: "Be Vietnam Pro", "Inter", "Segoe UI", Arial, sans-serif !important;}
+
+.gb-admin-sidebar {
+    position: fixed !important;
+    inset: 0 auto 0 0 !important;
+    width: 285px !important;
+    padding: 26px 22px !important;
+    background: linear-gradient(180deg, rgba(45, 20, 12, .98), rgba(119, 58, 31, .98)) !important;
+    border-right: 1px solid rgba(255, 255, 255, .14) !important;
+    box-shadow: 18px 0 45px rgba(49, 22, 13, .25) !important;
+    overflow-y: auto !important;
+    z-index: 50 !important
+}
+
+.gb-admin-brand {
+    display: flex !important;
+    align-items: center !important;
+    gap: 14px !important;
+    margin-bottom: 20px !important;
+    padding: 12px 10px 18px !important;
+    border-bottom: 1px solid rgba(255, 255, 255, .14) !important
+}
+
+.gb-admin-brand img {
+    width: 58px !important;
+    height: 58px !important;
+    border-radius: 50% !important;
+    background: #fff !important;
+    object-fit: cover !important;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, .18) !important
+}
+
+.gb-admin-brand strong {
+    display: block !important;
+    color: #fff !important;
+    font-size: 26px !important;
+    line-height: 1 !important
+}
+
+.gb-admin-brand span {
+    display: block !important;
+    color: #ffd4bd !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    margin-top: 4px !important
+}
+
+.gb-admin-mini-title {
+    color: #f5c8ae !important;
+    letter-spacing: 2.5px !important;
+    text-transform: uppercase !important;
+    font-weight: 600 !important;
+    font-size: 11px !important;
+    margin: 12px 10px 14px !important
+}
+
+.gb-admin-nav {
+    display: grid !important;
+    gap: 12px !important
+}
+
+.gb-admin-nav a {
+    display: grid !important;
+    grid-template-columns: 48px 1fr !important;
+    align-items: center !important;
+    min-height: 58px !important;
+    padding: 8px 12px !important;
+    color: #fff !important;
+    text-decoration: none !important;
+    border: 1px solid rgba(255, 255, 255, .13) !important;
+    background: rgba(255, 255, 255, .08) !important;
+    border-radius: 18px !important;
+    font-weight: 600 !important;
+    font-size: 16px !important;
+    transition: .22s ease !important
+}
+
+.gb-admin-nav a:hover,
+.gb-admin-nav a.active {
+    transform: translateX(4px) !important;
+    background: linear-gradient(135deg, #fff8f4, #ffd8c2) !important;
+    color: #4a1e10 !important;
+    border-color: #fff !important;
+    box-shadow: 0 16px 34px rgba(0, 0, 0, .20) !important
+}
+
+.gb-admin-nav .nav-ico {
+    width: 38px !important;
+    height: 38px !important;
+    border-radius: 14px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: rgba(255, 255, 255, .14) !important;
+    font-size: 20px !important
+}
+
+.gb-admin-nav a.active .nav-ico,
+.gb-admin-nav a:hover .nav-ico {
+    background: rgba(184, 88, 39, .18) !important
+}
+
+.gb-admin-nav .gb-admin-logout {
+    margin-top: 10px !important;
+    background: linear-gradient(135deg, #9d3b28, #e56f53) !important;
+    border-color: rgba(255, 255, 255, .25) !important;
+    color: #fff !important
+}
+
+.gb-admin-nav .gb-admin-logout .nav-ico {
+    background: rgba(255, 255, 255, .22) !important
+}
+
+.gb-admin-nav .gb-admin-logout:hover {
+    background: linear-gradient(135deg, #ffefea, #ffd7cb) !important;
+    color: #8b2516 !important
+}
+
+.gb-admin-main {
+    margin-left: 285px !important;
+    min-height: 100vh !important;
+    padding: 34px 42px 56px !important;
+    background: radial-gradient(circle at 95% 2%, rgba(225, 168, 116, .23), transparent 22%), linear-gradient(180deg, #fffaf7, #fff5ef) !important
+}
+
+.gb-admin-main .admin-title,
+.gb-admin-main .admin-hero-v35,
+.gb-admin-main .admin-hero-v36,
+.gb-admin-main .admin-search-box,
+.gb-admin-main .admin-panel-v35,
+.gb-admin-main .order-panel,
+.gb-admin-main .revenue-summary-box-v35,
+.gb-admin-main .admin-form {
+    background: rgba(255, 255, 255, .94) !important;
+    border: 1px solid var(--gb-admin-line) !important;
+    border-radius: 24px !important;
+    box-shadow: 0 18px 42px rgba(105, 54, 28, .08) !important
+}
+
+.gb-admin-main .admin-title,
+.gb-admin-main .admin-hero-v35,
+.gb-admin-main .admin-hero-v36 {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 20px !important;
+    padding: 28px 32px !important;
+    margin-bottom: 24px !important;
+    position: relative !important;
+    overflow: hidden !important
+}
+
+.gb-admin-main .admin-title::after,
+.gb-admin-main .admin-hero-v35::after,
+.gb-admin-main .admin-hero-v36::after {
+    content: "";
+    position: absolute;
+    right: -50px;
+    top: -70px;
+    width: 210px;
+    height: 210px;
+    border-radius: 50%;
+    background: rgba(215, 157, 93, .18) !important
+}
+
+.gb-admin-main h1 {
+    font-size: 38px !important;
+    line-height: 1.15 !important;
+    color: var(--gb-admin-text) !important;
+    margin: 0 !important
+}
+
+.gb-admin-main .admin-sub,
+.gb-admin-main .admin-title p,
+.gb-admin-main .admin-hero-v35 p,
+.gb-admin-main .admin-hero-v36 p {
+    color: var(--gb-admin-muted) !important;
+    font-size: 16px !important;
+    margin: 10px 0 0 !important
+}
+
+.gb-admin-main .admin-kicker-v35 {
+    color: #bd6533 !important;
+    letter-spacing: 4px !important;
+    text-transform: uppercase !important;
+    font-weight: 600 !important;
+    font-size: 12px !important
+}
+
+.gb-admin-main .btn,
+.gb-admin-main .admin-back,
+.gb-admin-main .admin-secondary-v34,
+.gb-admin-main .order-detail-btn,
+.gb-admin-main .admin-export-v36 {
+
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    min-height: 46px !important;
+
+    padding: 0 22px !important;
+
+    border-radius: 999px !important;
+
+    background: #fffaf7 !important;
+
+    color: #8d5d45 !important;
+
+    border: 1px solid #efdccf !important;
+
+    box-shadow: none !important;
+
+    font-weight: 600 !important;
+
+}
+
+.gb-admin-main .btn:hover,
+.gb-admin-main .order-detail-btn:hover {
+
+    background: #fdf1ea !important;
+
+    transform: translateY(-2px) !important;
+
+}
+
+.gb-admin-main .actions a,
+.gb-admin-main .actions .edit {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 40px !important;
+    padding: 0 16px !important;
+    border-radius: 13px !important;
+    margin: 4px !important;
+    background: #fff8f4 !important;
+    color: #9b4a22 !important;
+    border: 1px solid #e7c4b2 !important;
+    text-decoration: none !important;
+    font-weight: 600 !important
+}
+
+.gb-admin-main .actions .delete,
+.gb-admin-main .actions a.danger,
+.gb-admin-main .delete-soft-v36 {
+    background: #fff2f2 !important;
+    color: #d43a3a !important;
+    border: 1px solid #f0b7b7 !important
+}
+
+.gb-admin-main .admin-search-box {
+    display: grid !important;
+    grid-template-columns: 1fr minmax(280px, 520px) !important;
+    gap: 22px !important;
+    align-items: center !important;
+    padding: 22px 26px !important;
+    margin-bottom: 22px !important
+}
+
+.gb-admin-main .admin-search-box label {
+    display: block !important;
+    font-size: 24px !important;
+    color: var(--gb-admin-text) !important;
+    font-weight: 600 !important;
+    margin-bottom: 6px !important
+}
+
+.gb-admin-main .admin-search-box p {
+    margin: 0 !important;
+    color: var(--gb-admin-muted) !important
+}
+
+.gb-admin-main .admin-search-box input,
+.gb-admin-main input[type="search"] {
+    width: 100% !important;
+    min-height: 54px !important;
+    border: 1px solid #dfbca9 !important;
+    border-radius: 16px !important;
+    padding: 0 18px !important;
+    font-size: 16px !important;
+    background: #fff !important;
+    outline: none !important
+}
+
+.gb-admin-main input:focus,
+.gb-admin-main select:focus,
+.gb-admin-main textarea:focus {
+    border-color: #ca7942 !important;
+    box-shadow: 0 0 0 4px rgba(202, 121, 66, .12) !important
+}
+
+.gb-admin-main .admin-table {
+    width: 100% !important;
+    border-collapse: separate !important;
+    border-spacing: 0 !important;
+    background: #fff !important;
+    border: 1px solid var(--gb-admin-line) !important;
+    border-radius: 22px !important;
+    overflow: hidden !important;
+    box-shadow: 0 18px 42px rgba(105, 54, 28, .08) !important
+}
+
+.gb-admin-main .admin-table th {
+    background: #fff0e6 !important;
+    color: #6b321c !important;
+    font-weight: 600 !important;
+    text-align: left !important;
+    padding: 16px 18px !important;
+    border-bottom: 1px solid var(--gb-admin-line) !important
+}
+
+.gb-admin-main .admin-table td {
+    padding: 16px 18px !important;
+    border-bottom: 1px solid #f1d8c9 !important;
+    color: #3b2118 !important;
+    vertical-align: middle !important
+}
+
+.gb-admin-main .admin-table tr:last-child td {
+    border-bottom: 0 !important
+}
+
+.gb-admin-main .admin-table tr:hover td {
+    background: #fffaf7 !important
+}
+
+.gb-admin-main .product-admin img {
+    width: 72px !important;
+    height: 72px !important;
+    border-radius: 14px !important;
+    object-fit: cover !important;
+    border: 1px solid #efd2c1 !important;
+    background: #fff4ef !important
+}
+
+.gb-admin-main .product-admin small {
+    display: block !important;
+    margin-top: 6px !important;
+    color: #9a786a !important;
+    line-height: 1.45 !important
+}
+
+.gb-admin-main .admin-form {
+    padding: 28px !important
+}
+
+.gb-admin-main .form-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 20px !important
+}
+
+.gb-admin-main .form-grid .full {
+    grid-column: 1/-1 !important
+}
+
+.gb-admin-main .admin-form label {
+    display: block !important;
+    margin-bottom: 8px !important;
+    color: #5a2b18 !important;
+    font-weight: 600 !important
+}
+
+.gb-admin-main .admin-form input,
+.gb-admin-main .admin-form select,
+.gb-admin-main .admin-form textarea {
+    width: 100% !important;
+    min-height: 50px !important;
+    border: 1px solid #dfbca9 !important;
+    border-radius: 14px !important;
+    background: #fff !important;
+    padding: 12px 15px !important;
+    font-size: 15px !important;
+    outline: none !important
+}
+
+.gb-admin-main .admin-form textarea {
+    min-height: 120px !important;
+    resize: vertical !important
+}
+
+.gb-admin-main .admin-form .helper {
+    margin-top: 7px !important;
+    color: #9a786a !important;
+    font-size: 13px !important
+}
+
+.gb-admin-main .stat-grid-v35 {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 18px !important;
+    margin-bottom: 24px !important
+}
+
+.gb-admin-main .stat-card-v35 {
+    background: #fff !important;
+    border: 1px solid var(--gb-admin-line) !important;
+    border-radius: 22px !important;
+    padding: 22px !important;
+    text-decoration: none !important;
+    color: var(--gb-admin-text) !important;
+    box-shadow: 0 18px 42px rgba(105, 54, 28, .08) !important;
+    transition: .2s !important
+}
+
+.gb-admin-main .stat-card-v35:hover {
+    transform: translateY(-3px) !important
+}
+
+.gb-admin-main .stat-card-v35 i {
+    width: 52px !important;
+    height: 52px !important;
+    border-radius: 18px !important;
+    background: #fff0e6 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 25px !important;
+    margin-bottom: 12px !important
+}
+
+.gb-admin-main .stat-card-v35 span {
+    display: block !important;
+    color: #8a6758 !important;
+    font-weight: 600 !important
+}
+
+.gb-admin-main .stat-card-v35 b {
+    display: block !important;
+    font-size: 28px !important;
+    color: #9b4a22 !important;
+    margin: 8px 0 !important
+}
+
+.gb-admin-main .stat-card-v35 em {
+    font-style: normal !important;
+    color: #bd6533 !important;
+    font-weight: 600 !important
+}
+
+.gb-admin-main .status-pill,
+.gb-admin-main .payment-pill {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 32px !important;
+    padding: 0 14px !important;
+    border-radius: 999px !important;
+    font-weight: 600 !important;
+    border: 1px solid #bcebd0 !important;
+    background: #eafaf1 !important;
+    color: #19783d !important
+}
+
+.gb-admin-main .payment-pill.unpaid {
+    background: #fff7e8 !important;
+    border-color: #f1c779 !important;
+    color: #a56b11 !important
+}
+
+.status-inline-v36 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+/* Badge trạng thái */
+
+.consult-status-pill {
+    min-width: 92px;
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 999px;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    padding: 0 12px;
+}
+
+/* Nút ... */
+
+.status-inline-v36 select {
+    width: 40px;
+    height: 36px;
+
+    border: 1px solid #efc9b3;
+    border-radius: 10px;
+
+    background: #fffaf7;
+    color: #8a4d2a;
+
+    font-size: 18px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    text-align: center;
+
+    padding: 0;
+}
+
+/* Đưa dấu ... ra giữa */
+
+.status-inline-v36 select option {
+    font-size: 15px;
+}
+
+/* Ẩn nút ✓ */
+
+.status-inline-v36 button {
+    display: none;
+}
+
+.gb-admin-main .order-detail-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 360px !important;
+    gap: 22px !important;
+    margin-bottom: 22px !important
+}
+
+.gb-admin-main .order-panel {
+    padding: 24px !important
+}
+
+.gb-admin-main .order-total {
+    font-size: 34px !important;
+    color: #a65b2b !important;
+    font-weight: 600 !important;
+    margin-top: 24px !important
+}
+
+.gb-admin-main .admin-tabs-v35,
+.gb-admin-main .admin-tabs-v36 {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+    margin: 0 0 20px !important
+}
+
+.gb-admin-main .admin-tabs-v35 a,
+.gb-admin-main .admin-tabs-v36 a {
+    padding: 12px 18px !important;
+    border-radius: 999px !important;
+    border: 1px solid #e5c4b2 !important;
+    text-decoration: none !important;
+    color: #7c4328 !important;
+    background: #fff !important;
+    font-weight: 600 !important
+}
+
+.gb-admin-main .admin-tabs-v35 a.active,
+.gb-admin-main .admin-tabs-v36 a.active {
+    background: linear-gradient(135deg, #b8783e, #d89b52) !important;
+    color: #fff !important;
+    box-shadow: 0 12px 24px rgba(154, 84, 38, .18) !important
+}
+
+@media(max-width:1100px) {
+    .gb-admin-sidebar {
+        position: relative !important;
+        width: auto !important;
+        min-height: auto !important
+    }
+
+    .gb-admin-main {
+        margin-left: 0 !important;
+        padding: 24px !important
+    }
+
+    .gb-admin-main .admin-search-box,
+    .gb-admin-main .order-detail-grid {
+        grid-template-columns: 1fr !important
+    }
+
+    .gb-admin-main .stat-grid-v35 {
+        grid-template-columns: repeat(2, 1fr) !important
+    }
+}
+
+@media(max-width:760px) {
+
+    .gb-admin-main .form-grid,
+    .gb-admin-main .stat-grid-v35 {
+        grid-template-columns: 1fr !important
+    }
+
+    .gb-admin-main h1 {
+        font-size: 30px !important
+    }
+}
+
+
+.gb-admin-main .admin-table .status-inline-v36 {
+    position: relative !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 5px !important;
+}
+
+.gb-admin-main .admin-table .status-inline-v36 select {
+    width: 44px !important;
+    min-width: 44px !important;
+    height: 32px !important;
+
+    padding: 0 !important;
+
+    border: 1px solid #e8cfc1 !important;
+    border-radius: 9px !important;
+
+    background: #fffdfb !important;
+
+    color: transparent !important;
+    font-size: 0 !important;
+
+    appearance: none !important;
+    -webkit-appearance: none !important;
+
+    cursor: pointer !important;
+}
+
+.gb-admin-main .admin-table .status-inline-v36::before {
+    content: "...";
+    position: absolute;
+
+    left: 14px;
+    top: 47%;
+
+    transform: translateY(-50%);
+
+    color: #6b3a25 !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+
+    pointer-events: none !important;
+    z-index: 5 !important;
+}
+
+.gb-admin-main .admin-table .status-inline-v36 select option {
+    color: #35180f !important;
+    background: #fff !important;
+    font-size: 14px !important;
+}
+
+/* nút tích nhỏ và xanh nhạt */
+.gb-admin-main .admin-table .status-inline-v36 button {
+    width: 34px !important;
+    height: 34px !important;
+
+    border-radius: 9px !important;
+
+    background: #eefbf2 !important;
+    color: #2f8a55 !important;
+
+    border: 1px solid #c9ecd6 !important;
+
+    font-size: 16px !important;
+    box-shadow: none !important;
+}
+
+/* badge đã thanh toán đậm hơn một chút */
+.gb-admin-main .payment-pill.paid {
+    background: #c9f0d7 !important;
+    color: #166d3e !important;
+    border-color: #9eddb7 !important;
+}
+
+
+.gb-admin-main .admin-table .status-inline-v36 {
+    gap: 4px !important;
+}
+
+.gb-admin-main .admin-table .status-inline-v36 select {
+    width: 38px !important;
+    min-width: 38px !important;
+    height: 30px !important;
+
+    border-radius: 8px !important;
+    padding: 0 !important;
+}
+
+.gb-admin-main .admin-table .status-inline-v36::before {
+    left: 11px !important;
+    font-size: 12px !important;
+}
+
+.gb-admin-main .admin-table .status-inline-v36 button {
+    width: 32px !important;
+    height: 32px !important;
+
+    border-radius: 8px !important;
+    font-size: 15px !important;
+}
+
+/* ===== MÀU BADGE ĐƠN HÀNG / THANH TOÁN ===== */
+
+/* Tất cả trạng thái bên cột Đơn hàng dùng cam nhạt */
+.gb-admin-main .order-status-cell-v63 .status-pill {
+    background: #fff3e8 !important;
+    color: #b85b24 !important;
+    border: 1px solid #f0c59f !important;
+}
+
+/* Thanh toán rồi: xanh */
+.gb-admin-main .order-payment-cell-v63 .payment-pill.paid {
+    background: #c9f0d7 !important;
+    color: #166d3e !important;
+    border: 1px solid #9eddb7 !important;
+}
+
+/* Chưa thanh toán / chờ xác nhận: cam */
+.gb-admin-main .order-payment-cell-v63 .payment-pill.unpaid {
+    background: #fff3e8 !important;
+    color: #b85b24 !important;
+    border: 1px solid #f0c59f !important;
+}
+
+
+.gb-admin-main .order-admin-table-v63 th:nth-child(5),
+.gb-admin-main .order-admin-table-v63 td:nth-child(5),
+.gb-admin-main .order-admin-table-v63 th:nth-child(6),
+.gb-admin-main .order-admin-table-v63 td:nth-child(6) {
+    min-width: 190px !important;
+    width: 190px !important;
+}
+
+.gb-admin-main .status-action-wrap {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    width: 100% !important;
+}
+
+.gb-admin-main .order-status-cell-v63 .status-pill,
+.gb-admin-main .order-payment-cell-v63 .payment-pill {
+    min-width: 118px !important;
+    height: 34px !important;
+    padding: 0 14px !important;
+    margin: 0 !important;
+
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    border-radius: 999px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    line-height: 1.1 !important;
+}
+
+/* Đơn hàng */
+.gb-admin-main .order-status-cell-v63 .status-pill.status-done {
+    background: #dff7e9 !important;
+    color: #19783d !important;
+    border: 1px solid #bcebd0 !important;
+}
+
+.gb-admin-main .order-status-cell-v63 .status-pill.status-other {
+    background: #fff3e8 !important;
+    color: #b85b24 !important;
+    border: 1px solid #f0c59f !important;
+}
+
+/* Thanh toán */
+.gb-admin-main .order-payment-cell-v63 .payment-pill.paid {
+    background: #c9f0d7 !important;
+    color: #166d3e !important;
+    border: 1px solid #9eddb7 !important;
+}
+
+.gb-admin-main .order-payment-cell-v63 .payment-pill.unpaid {
+    background: #fff3e8 !important;
+    color: #b85b24 !important;
+    border: 1px solid #f0c59f !important;
+}
+
+/* Nút ... */
+.gb-admin-main .status-inline-v36 {
+    position: relative !important;
+    width: 34px !important;
+    min-width: 34px !important;
+    height: 30px !important;
+    display: inline-flex !important;
+}
+
+.gb-admin-main .status-inline-v36 select {
+    width: 34px !important;
+    min-width: 34px !important;
+    height: 30px !important;
+
+    border: 1px solid #e7c9ba !important;
+    border-radius: 8px !important;
+    background: #fffaf7 !important;
+
+    color: transparent !important;
+    font-size: 0 !important;
+    padding: 0 !important;
+
+    appearance: none !important;
+    -webkit-appearance: none !important;
+}
+
+.gb-admin-main .status-inline-v36::before {
+    content: "...";
+    position: absolute;
+    left: 10px;
+    top: 46%;
+    transform: translateY(-50%);
+
+    color: #6b3a25 !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    pointer-events: none !important;
+}
+
+
+.gb-admin-main{max-width:1280px!important;margin-left:300px!important;padding:34px 44px 70px!important}
+.gb-admin-main a,.gb-admin-main button,.gb-admin-main select{position:relative!important;z-index:5!important;pointer-events:auto!important}
+.admin-link-fix,.admin-primary-v34,.admin-secondary-v34{position:relative!important;z-index:20!important;pointer-events:auto!important;text-decoration:none!important}
+.admin-hero-v35,.admin-hero-v36,.admin-hero-v34{position:relative!important;overflow:hidden!important}
+.admin-hero-v35:after,.admin-hero-v36:after,.admin-hero-v34:after{pointer-events:none!important;z-index:0!important}
+.admin-hero-v35>*,.admin-hero-v36>*,.admin-hero-v34>*{position:relative!important;z-index:2!important}
+
+/* Trang đơn hàng: form vừa trang, tìm kiếm chạy gọn */
+.order-toolbar-v62{display:grid!important;grid-template-columns:1fr minmax(360px,520px)!important;align-items:center!important;gap:22px!important;padding:26px 30px!important;margin-bottom:22px!important}
+.order-search-box-v62 input{width:100%!important;height:52px!important;border-radius:18px!important;border:1px solid #e5c4b2!important;padding:0 22px!important;font-size:16px!important;background:#fff!important}
+.order-panel-fixed{padding:16px 18px!important;overflow:hidden!important}
+.order-table-scroll-v63{overflow-x:auto!important}
+.order-admin-table-v63{min-width:1040px!important;width:100%!important;table-layout:fixed!important}
+.order-admin-table-v63 th,.order-admin-table-v63 td{padding:14px 14px!important;vertical-align:middle!important}
+.order-admin-table-v63 th:nth-child(1),.order-admin-table-v63 td:nth-child(1){width:60px!important;text-align:center!important}
+.order-admin-table-v63 th:nth-child(2),.order-admin-table-v63 td:nth-child(2){width:180px!important}
+.order-admin-table-v63 th:nth-child(3),.order-admin-table-v63 td:nth-child(3){width:250px!important}
+.order-admin-table-v63 th:nth-child(4),.order-admin-table-v63 td:nth-child(4){width:120px!important}
+.order-admin-table-v63 th:nth-child(5),.order-admin-table-v63 td:nth-child(5),.order-admin-table-v63 th:nth-child(6),.order-admin-table-v63 td:nth-child(6){width:180px!important;min-width:180px!important;text-align:center!important}
+.order-admin-table-v63 th:nth-child(7),.order-admin-table-v63 td:nth-child(7),.order-admin-table-v63 th:nth-child(8),.order-admin-table-v63 td:nth-child(8){width:78px!important;text-align:center!important}
+.status-action-wrap{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:6px!important;white-space:nowrap!important;width:100%!important}
+.order-status-cell-v63 .status-pill,.order-payment-cell-v63 .payment-pill,.admin-table .payment-pill,.admin-table .status-pill{min-width:118px!important;height:32px!important;padding:0 12px!important;margin:0!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;border-radius:999px!important;font-size:13px!important;font-weight:600!important;line-height:1.1!important}
+.order-status-cell-v63 .status-pill.status-done,.status-pill.status-done{background:#dff7e9!important;color:#19783d!important;border:1px solid #bcebd0!important}
+.order-status-cell-v63 .status-pill.status-other,.status-pill.status-other{background:#fff3e8!important;color:#b85b24!important;border:1px solid #f0c59f!important}
+.status-pill:contains('Đã hủy'){background:#fff3e8!important;color:#b85b24!important;border-color:#f0c59f!important}
+.order-payment-cell-v63 .payment-pill.paid,.payment-pill.paid{background:#c9f0d7!important;color:#166d3e!important;border:1px solid #9eddb7!important}
+.order-payment-cell-v63 .payment-pill.unpaid,.payment-pill.unpaid{background:#fff3e8!important;color:#b85b24!important;border:1px solid #f0c59f!important}
+.status-inline-v36{position:relative!important;display:inline-flex!important;align-items:center!important;width:34px!important;min-width:34px!important;height:30px!important;flex:0 0 auto!important}
+.status-inline-v36 select{width:34px!important;min-width:34px!important;height:30px!important;border:1px solid #e7c9ba!important;border-radius:8px!important;background:#fffaf7!important;color:transparent!important;font-size:0!important;padding:0!important;cursor:pointer!important;appearance:none!important;-webkit-appearance:none!important;box-shadow:none!important}
+.status-inline-v36:before{content:'...'!important;position:absolute!important;left:10px!important;top:45%!important;transform:translateY(-50%)!important;color:#6b3a25!important;font-size:12px!important;font-weight:600!important;pointer-events:none!important;z-index:2!important}
+.status-inline-v36 select option{color:#35180f!important;background:#fff!important;font-size:14px!important}
+.status-inline-v36 button{display:none!important}
+
+/* Trang tư vấn: nội dung rộng, trạng thái gọn */
+.admin-one-tab-clean{margin:18px 0!important}.admin-one-tab-clean a:not(.active){display:none!important}.admin-one-tab-clean a.active{background:#d0944b!important;color:#fff!important;border-color:#d0944b!important}
+.consult-panel-clean{padding:24px 26px!important;margin-top:0!important}.consult-table-clean{width:100%!important;table-layout:fixed!important}.consult-table-clean th,.consult-table-clean td{padding:14px 14px!important;vertical-align:middle!important}.consult-table-clean th:nth-child(1),.consult-table-clean td:nth-child(1){width:58px!important;text-align:center!important}.consult-table-clean th:nth-child(2),.consult-table-clean td:nth-child(2){width:150px!important}.consult-table-clean th:nth-child(3),.consult-table-clean td:nth-child(3){width:130px!important}.consult-table-clean th:nth-child(4),.consult-table-clean td:nth-child(4){width:120px!important}.consult-table-clean th:nth-child(5),.consult-table-clean td:nth-child(5){width:300px!important}.consult-table-clean th:nth-child(6),.consult-table-clean td:nth-child(6){width:180px!important;text-align:center!important}.consult-table-clean th:nth-child(7),.consult-table-clean td:nth-child(7){width:135px!important}.consult-table-clean th:nth-child(8),.consult-table-clean td:nth-child(8){width:82px!important;text-align:center!important}
+.consult-status-form-clean{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:6px!important;white-space:nowrap!important;width:100%!important}.consult-status-form-clean .consult-status-pill{min-width:108px!important;height:32px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;border-radius:999px!important;font-size:13px!important;font-weight:600!important;padding:0 12px!important;line-height:1!important}.consult-status-pill.new{background:#fff3e8!important;color:#b85b24!important;border:1px solid #f0c59f!important}.consult-status-pill.process{background:#fff7dc!important;color:#9b6b00!important;border:1px solid #eed588!important}.consult-status-pill.done{background:#d8f5e3!important;color:#157347!important;border:1px solid #a8e0bf!important}.consult-status-pill.cancel{background:#fde2e2!important;color:#c23333!important;border:1px solid #f0b1b1!important}.consult-status-form-clean select{width:34px!important;min-width:34px!important;height:30px!important;border:1px solid #e7c9ba!important;border-radius:8px!important;background:#fffaf7!important;color:transparent!important;font-size:0!important;padding:0!important;appearance:none!important;-webkit-appearance:none!important}.consult-status-form-clean{position:relative!important}.consult-status-form-clean:after{content:'...'!important;position:absolute!important;right:11px!important;top:50%!important;transform:translateY(-56%)!important;color:#6b3a25!important;font-size:12px!important;font-weight:600!important;pointer-events:none!important}.consult-status-form-clean select option{color:#35180f!important;background:#fff!important;font-size:14px!important}
+
+/* Form tạo đơn: gọn, dễ bấm */
+.order-create-hero-v34,.admin-form-v34{max-width:1080px!important}.manual-order-row-v34{grid-template-columns:minmax(0,1fr) 90px 34px!important;padding:16px!important;align-items:end!important}.qty-box-v34 input[type=number]::-webkit-inner-spin-button,.qty-box-v34 input[type=number]::-webkit-outer-spin-button{appearance:none!important;-webkit-appearance:none!important;margin:0!important}.qty-box-v34 input[type=number]{appearance:textfield!important;-moz-appearance:textfield!important;text-align:center!important}.remove-icon-v34{width:34px!important;height:34px!important;border-radius:10px!important;font-size:16px!important}.manual-order-actions-v34{justify-content:flex-end!important}.manual-order-actions-v34 .add-row-v34{display:none!important}.product-suggestions-v34{top:78px!important;max-height:260px!important;z-index:999!important}.product-suggest-item-v34{line-height:1.35!important}
+
+/* Nút trong hero admin không bị vùng trang trí che */
+.admin-title .btn,.admin-hero-v34 .btn,.admin-hero-v35 .btn,.admin-hero-v36 .btn{position:relative!important;z-index:30!important;pointer-events:auto!important;background:#fffaf7!important;color:#7a3f25!important;border:1px solid #e3c4b1!important;box-shadow:none!important}.admin-primary-v34{background:linear-gradient(135deg,#a66338,#d39a52)!important;color:#fff!important;border:0!important}
+
+/* Báo cáo doanh thu gọn hơn */
+.month-chart-panel-v35{padding:24px 28px!important}.month-chart-v35{min-height:220px!important;height:250px!important;align-items:end!important}.bar-v35{max-height:150px!important}.revenue-summary-box-v35{padding:24px 30px!important;display:flex!important;align-items:center!important;gap:24px!important}.revenue-summary-box-v35 b{font-size:34px!important;color:#9d5529!important}.revenue-head-v35 p{color:#795442!important}
+
+.gb-admin-main{max-width:calc(100vw - 320px)!important;overflow-x:hidden!important;padding:32px 34px!important;}
+.gb-admin-main *{box-sizing:border-box!important;}
+.gb-admin-main a,.gb-admin-main button,.gb-admin-main select,.gb-admin-main input{position:relative!important;z-index:5!important;pointer-events:auto!important;}
+.gb-admin-main .admin-hero-v34,.gb-admin-main .admin-hero-v35,.gb-admin-main .admin-hero-v36,.gb-admin-main .admin-title{position:relative!important;overflow:hidden!important;}
+.gb-admin-main .admin-hero-v34::before,.gb-admin-main .admin-hero-v35::before,.gb-admin-main .admin-hero-v36::before,.gb-admin-main .admin-title::before{pointer-events:none!important;}
+.admin-link-fix{display:inline-flex!important;align-items:center!important;justify-content:center!important;text-decoration:none!important;min-width:150px!important;height:48px!important;border-radius:999px!important;}
+
+.admin-hero-tight-clean{padding:30px 38px!important;margin-bottom:22px!important;min-height:auto!important;}
+.admin-hero-tight-clean h1{font-size:40px!important;line-height:1.08!important;margin:8px 0 8px!important;}
+.admin-hero-tight-clean p{font-size:16px!important;margin:0!important;}
+.admin-table-panel-clean{padding:18px!important;border-radius:24px!important;overflow:hidden!important;}
+.table-scroll-x{max-width:100%!important;overflow-x:auto!important;}
+.admin-table-compact-clean{width:100%!important;min-width:1040px!important;table-layout:fixed!important;}
+.admin-table-compact-clean th,.admin-table-compact-clean td{padding:14px 12px!important;vertical-align:middle!important;}
+.admin-table-compact-clean th:nth-child(1),.admin-table-compact-clean td:nth-child(1){width:58px!important;text-align:center!important;}
+.admin-table-compact-clean th:nth-child(2),.admin-table-compact-clean td:nth-child(2){width:170px!important;}
+.admin-table-compact-clean th:nth-child(3),.admin-table-compact-clean td:nth-child(3){width:230px!important;}
+.admin-table-compact-clean th:nth-child(4),.admin-table-compact-clean td:nth-child(4){width:115px!important;}
+.admin-table-compact-clean th:nth-child(5),.admin-table-compact-clean td:nth-child(5){width:170px!important;}
+.admin-table-compact-clean th:nth-child(6),.admin-table-compact-clean td:nth-child(6){width:180px!important;}
+.admin-table-compact-clean th:nth-child(7),.admin-table-compact-clean td:nth-child(7){width:90px!important;text-align:center!important;}
+.admin-table-compact-clean th:nth-child(8),.admin-table-compact-clean td:nth-child(8){width:76px!important;text-align:center!important;}
+
+.order-toolbar-clean{display:grid!important;grid-template-columns:1fr minmax(420px,620px)!important;gap:20px!important;align-items:center!important;padding:24px 28px!important;}
+.order-toolbar-clean h3{font-size:26px!important;margin:0 0 4px!important;}.order-toolbar-clean p{margin:0!important;}
+.order-search-wide-clean input{width:100%!important;height:54px!important;border-radius:18px!important;font-size:16px!important;padding:0 22px!important;}
+.status-action-wrap{display:flex!important;align-items:center!important;justify-content:center!important;gap:8px!important;white-space:nowrap!important;width:100%!important;}
+.status-action-wrap .status-pill,.status-action-wrap .payment-pill{min-width:112px!important;height:34px!important;padding:0 12px!important;border-radius:999px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;font-size:13px!important;font-weight:600!important;line-height:1.1!important;text-align:center!important;}
+.status-pill.status-done{background:#d8f5e4!important;color:#157347!important;border:1px solid #a6dfbd!important;}
+.status-pill.status-cancel{background:#fff0e2!important;color:#bd5a17!important;border:1px solid #efbd91!important;}
+.status-pill.status-shipping{background:#eaf2ff!important;color:#2366b4!important;border:1px solid #bdd7ff!important;}
+.status-pill.status-confirmed{background:#fff7d8!important;color:#986d00!important;border:1px solid #ecd279!important;}
+.status-pill.status-pending{background:#fff3e8!important;color:#b85b24!important;border:1px solid #f0c59f!important;}
+.payment-pill.paid{background:#c8efd7!important;color:#14683c!important;border:1px solid #9ddbb6!important;}
+.payment-pill.unpaid{background:#fff3e8!important;color:#b85b24!important;border:1px solid #f0c59f!important;}
+.status-inline-v36{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:38px!important;min-width:38px!important;height:32px!important;position:relative!important;}
+.status-inline-v36 select{width:38px!important;min-width:38px!important;height:32px!important;border:1px solid #e8c7b5!important;border-radius:10px!important;background:#fffaf7!important;color:#6b351e!important;font-size:13px!important;font-weight:600!important;text-align:center!important;text-align-last:center!important;padding:0!important;appearance:none!important;-webkit-appearance:none!important;cursor:pointer!important;}
+.status-inline-v36 select option{font-size:14px!important;color:#35180f!important;background:#fff!important;}
+.status-inline-v36 button{display:none!important;}
+
+.consult-table-scroll-clean{max-width:100%!important;overflow-x:auto!important;}
+.consult-table-clean{width:100%!important;min-width:1060px!important;table-layout:fixed!important;}
+.consult-table-clean th,.consult-table-clean td{padding:13px 12px!important;vertical-align:middle!important;}
+.consult-table-clean th:nth-child(1),.consult-table-clean td:nth-child(1){width:58px!important;text-align:center!important;}
+.consult-table-clean th:nth-child(2),.consult-table-clean td:nth-child(2){width:150px!important;}
+.consult-table-clean th:nth-child(3),.consult-table-clean td:nth-child(3){width:130px!important;}
+.consult-table-clean th:nth-child(4),.consult-table-clean td:nth-child(4){width:130px!important;}
+.consult-table-clean th:nth-child(5),.consult-table-clean td:nth-child(5){width:280px!important;}
+.consult-table-clean th:nth-child(6),.consult-table-clean td:nth-child(6){width:245px!important;}
+.consult-table-clean th:nth-child(7),.consult-table-clean td:nth-child(7){width:140px!important;}
+.consult-table-clean th:nth-child(8),.consult-table-clean td:nth-child(8){width:82px!important;text-align:center!important;}
+.consult-status-form-clean{display:flex!important;align-items:center!important;justify-content:center!important;gap:8px!important;white-space:nowrap!important;}
+.consult-status-pill{min-width:112px!important;height:34px!important;border-radius:999px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;padding:0 13px!important;font-size:13px!important;font-weight:600!important;line-height:1.05!important;}
+.consult-status-pill.new{background:#fff3e8!important;color:#b85b24!important;border:1px solid #f0c59f!important;}
+.consult-status-pill.process{background:#fff7d8!important;color:#8d6500!important;border:1px solid #ecd279!important;}
+.consult-status-pill.done{background:#d8f5e4!important;color:#157347!important;border:1px solid #a6dfbd!important;}
+.consult-status-pill.cancel{background:#ffe5e5!important;color:#bf3030!important;border:1px solid #f1b4b4!important;}
+.consult-status-form-clean select{width:38px!important;min-width:38px!important;height:32px!important;border:1px solid #e8c7b5!important;border-radius:10px!important;background:#fffaf7!important;color:#6b351e!important;font-size:13px!important;font-weight:600!important;text-align:center!important;text-align-last:center!important;padding:0!important;appearance:none!important;-webkit-appearance:none!important;cursor:pointer!important;}
+.consult-message-v36{line-height:1.35!important;word-break:break-word!important;}
+
+.manual-order-form-clean{padding:28px 32px!important;border-radius:26px!important;overflow:visible!important;}
+.manual-customer-grid-clean{gap:14px 18px!important;}
+.manual-order-row-clean{display:grid!important;grid-template-columns:minmax(0,1fr) 120px!important;gap:16px!important;align-items:end!important;padding:18px!important;border-radius:22px!important;}
+.product-search-box-clean{min-width:0!important;position:relative!important;}
+.product-search-box-clean input{height:52px!important;border-radius:16px!important;}
+.qty-box-clean input{height:52px!important;border-radius:16px!important;text-align:center!important;font-weight:600!important;font-size:18px!important;}
+.remove-order-row,.remove-icon-v34{display:none!important;}
+.product-suggestions-v34{left:0!important;right:0!important;top:calc(100% + 6px)!important;border-radius:16px!important;max-height:250px!important;z-index:9999!important;}
+.product-suggest-item-v34{padding:12px 16px!important;}
+.manual-order-actions-clean{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:18px!important;margin-top:18px!important;}
+.manual-order-total-v34{margin:0!important;min-width:190px!important;height:58px!important;border-radius:18px!important;display:flex!important;align-items:center!important;justify-content:center!important;}
+.save-order-v34{height:56px!important;min-width:190px!important;border-radius:18px!important;background:linear-gradient(135deg,#b86b35,#d8954c)!important;color:#fff!important;font-weight:600!important;box-shadow:0 18px 36px rgba(170,91,39,.2)!important;}
+
+.month-chart-panel-v35{overflow:hidden!important;}.month-chart-v35{min-height:240px!important;display:flex!important;align-items:end!important;justify-content:space-between!important;gap:12px!important;padding:20px 14px!important;}.bar-item-v35{min-width:54px!important;}
+.revenue-summary-box-v35{padding:22px 32px!important;border-radius:22px!important;}
+
+@media(max-width:1200px){.gb-admin-main{max-width:calc(100vw - 300px)!important;padding:24px!important}.order-toolbar-clean{grid-template-columns:1fr!important}.manual-order-row-clean{grid-template-columns:1fr!important}.manual-order-actions-clean{align-items:stretch!important;flex-direction:column!important}.save-order-v34{width:100%!important}.manual-order-total-v34{width:100%!important}}
+
+/* ===== OVERRIDE LEGACY AFTER / TRANSPARENT SELECT ===== */
+.consult-status-form-clean:after,.status-inline-v36:after{content:none!important;display:none!important;}
+.status-inline-v36 select,.consult-status-form-clean select{color:#6b351e!important;font-size:13px!important;background:#fffaf7!important;}
+.status-inline-v36 select:focus,.consult-status-form-clean select:focus{outline:2px solid #e8c7b5!important;outline-offset:1px!important;}
+.admin-table .status-pill.status-done{background:#d8f5e4!important;color:#157347!important;border:1px solid #a6dfbd!important;}
+.admin-table .status-pill.status-cancel{background:#fff0e2!important;color:#bd5a17!important;border:1px solid #efbd91!important;}
+.admin-table .status-pill.status-shipping{background:#eaf2ff!important;color:#2366b4!important;border:1px solid #bdd7ff!important;}
+.admin-table .status-pill.status-confirmed{background:#fff7d8!important;color:#986d00!important;border:1px solid #ecd279!important;}
+.admin-table .status-pill.status-pending{background:#fff3e8!important;color:#b85b24!important;border:1px solid #f0c59f!important;}
+
+
+/* =========================================================
+   FINAL FIX 28-05: ADMIN FORMS / DOT SELECT / NO OVERFLOW
+   ========================================================= */
+.gb-admin-main{
+    max-width: calc(100vw - 320px) !important;
+    margin-left: 300px !important;
+    padding: 28px 36px 64px !important;
+    overflow-x: hidden !important;
+}
+.gb-admin-main .admin-panel-v34,
+.gb-admin-main .admin-panel-v35,
+.gb-admin-main .admin-hero-v34,
+.gb-admin-main .admin-hero-v35,
+.gb-admin-main .admin-hero-v36{
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+.gb-admin-main .table-scroll-x{
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+}
+
+/* Ô tìm kiếm đơn hàng kéo dài, không mất chữ */
+.gb-admin-main .order-toolbar-clean,
+.gb-admin-main .order-toolbar-v62{
+    display: grid !important;
+    grid-template-columns: minmax(260px, 1fr) minmax(520px, 720px) !important;
+    align-items: center !important;
+    gap: 22px !important;
+}
+.gb-admin-main .order-search-wide-clean,
+.gb-admin-main .order-search-box-v62{
+    width: 100% !important;
+    max-width: 720px !important;
+}
+.gb-admin-main .order-search-wide-clean input,
+.gb-admin-main .order-search-box-v62 input{
+    width: 100% !important;
+    min-width: 0 !important;
+    height: 54px !important;
+    padding: 0 24px !important;
+    text-overflow: clip !important;
+}
+
+/* Bảng đơn hàng: không tràn cạnh, trạng thái gọn */
+.gb-admin-main .order-admin-table-v63,
+.gb-admin-main .admin-table-compact-clean{
+    min-width: 1030px !important;
+    width: 100% !important;
+    table-layout: fixed !important;
+}
+.gb-admin-main .order-admin-table-v63 th:nth-child(5),
+.gb-admin-main .order-admin-table-v63 td:nth-child(5),
+.gb-admin-main .order-admin-table-v63 th:nth-child(6),
+.gb-admin-main .order-admin-table-v63 td:nth-child(6){
+    width: 172px !important;
+    min-width: 172px !important;
+    max-width: 172px !important;
+    text-align: center !important;
+}
+.gb-admin-main .status-action-wrap{
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    width: auto !important;
+    max-width: 100% !important;
+    white-space: nowrap !important;
+}
+.gb-admin-main .status-action-wrap .status-pill,
+.gb-admin-main .status-action-wrap .payment-pill{
+    min-width: 104px !important;
+    max-width: 118px !important;
+    height: 32px !important;
+    padding: 0 10px !important;
+    font-size: 12.5px !important;
+    line-height: 1.05 !important;
+}
+
+/* Nút ...: luôn hiện dấu ..., không còn khung trắng */
+.gb-admin-main .status-inline-v36,
+.gb-admin-main .consult-status-form-clean .status-inline-v36{
+    position: relative !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 38px !important;
+    min-width: 38px !important;
+    max-width: 38px !important;
+    height: 32px !important;
+    flex: 0 0 38px !important;
+    overflow: visible !important;
+}
+.gb-admin-main .status-inline-v36 select,
+.gb-admin-main .consult-status-form-clean select{
+    width: 38px !important;
+    min-width: 38px !important;
+    max-width: 38px !important;
+    height: 32px !important;
+    border: 1px solid #e8c7b5 !important;
+    border-radius: 10px !important;
+    background: #fffaf7 !important;
+    color: transparent !important;
+    font-size: 0 !important;
+    padding: 0 !important;
+    cursor: pointer !important;
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    box-shadow: none !important;
+}
+.gb-admin-main .status-inline-v36::before,
+.gb-admin-main .consult-status-form-clean::after{
+    content: "..." !important;
+    position: absolute !important;
+    left: 50% !important;
+    top: 45% !important;
+    transform: translate(-50%,-50%) !important;
+    color: #6b351e !important;
+    font-size: 13px !important;
+    line-height: 1 !important;
+    font-weight: 600 !important;
+    pointer-events: none !important;
+    z-index: 30 !important;
+    display: block !important;
+}
+.gb-admin-main .status-inline-v36 select option,
+.gb-admin-main .consult-status-form-clean select option{
+    color: #35180f !important;
+    background: #fff !important;
+    font-size: 14px !important;
+}
+.gb-admin-main .status-inline-v36 button,
+.gb-admin-main .consult-status-form-clean button{
+    display: none !important;
+}
+
+/* Bảng tư vấn: nội dung rộng hơn, trạng thái nhỏ, không tràn */
+.gb-admin-main .consult-panel-clean{
+    padding: 24px 24px !important;
+    overflow: hidden !important;
+}
+.gb-admin-main .consult-table-clean{
+    min-width: 980px !important;
+    width: 100% !important;
+    table-layout: fixed !important;
+}
+.gb-admin-main .consult-table-clean th,
+.gb-admin-main .consult-table-clean td{
+    padding: 12px 12px !important;
+    vertical-align: middle !important;
+}
+.gb-admin-main .consult-table-clean th:nth-child(1),
+.gb-admin-main .consult-table-clean td:nth-child(1){width: 54px !important; text-align:center !important;}
+.gb-admin-main .consult-table-clean th:nth-child(2),
+.gb-admin-main .consult-table-clean td:nth-child(2){width: 145px !important;}
+.gb-admin-main .consult-table-clean th:nth-child(3),
+.gb-admin-main .consult-table-clean td:nth-child(3){width: 120px !important;}
+.gb-admin-main .consult-table-clean th:nth-child(4),
+.gb-admin-main .consult-table-clean td:nth-child(4){width: 118px !important;}
+.gb-admin-main .consult-table-clean th:nth-child(5),
+.gb-admin-main .consult-table-clean td:nth-child(5){width: 330px !important;}
+.gb-admin-main .consult-table-clean th:nth-child(6),
+.gb-admin-main .consult-table-clean td:nth-child(6){width: 170px !important; text-align:center !important;}
+.gb-admin-main .consult-table-clean th:nth-child(7),
+.gb-admin-main .consult-table-clean td:nth-child(7){width: 125px !important;}
+.gb-admin-main .consult-table-clean th:nth-child(8),
+.gb-admin-main .consult-table-clean td:nth-child(8){width: 76px !important; text-align:center !important;}
+.gb-admin-main .consult-status-form-clean{
+    position: relative !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    width: auto !important;
+    max-width: 160px !important;
+    white-space: nowrap !important;
+}
+.gb-admin-main .consult-status-form-clean .consult-status-pill{
+    min-width: 98px !important;
+    max-width: 108px !important;
+    height: 30px !important;
+    padding: 0 10px !important;
+    font-size: 12.5px !important;
+    line-height: 1.05 !important;
+}
+.gb-admin-main .consult-status-form-clean select{
+    flex: 0 0 34px !important;
+    width: 34px !important;
+    min-width: 34px !important;
+    max-width: 34px !important;
+    height: 30px !important;
+}
+.gb-admin-main .consult-status-form-clean::after{
+    left: calc(100% - 17px) !important;
+    top: 45% !important;
+    font-size: 12px !important;
+}
+
+/* Màu trạng thái rõ ràng */
+.gb-admin-main .status-pill.status-done,
+.gb-admin-main .consult-status-pill.done{background:#d8f5e4!important;color:#157347!important;border:1px solid #a6dfbd!important;}
+.gb-admin-main .status-pill.status-cancel{background:#fff0e2!important;color:#bd5a17!important;border:1px solid #efbd91!important;}
+.gb-admin-main .consult-status-pill.cancel{background:#ffe5e5!important;color:#bf3030!important;border:1px solid #f1b4b4!important;}
+.gb-admin-main .status-pill.status-shipping{background:#eaf2ff!important;color:#2366b4!important;border:1px solid #bdd7ff!important;}
+.gb-admin-main .status-pill.status-confirmed,
+.gb-admin-main .consult-status-pill.process{background:#fff7d8!important;color:#8d6500!important;border:1px solid #ecd279!important;}
+.gb-admin-main .status-pill.status-pending,
+.gb-admin-main .consult-status-pill.new{background:#fff3e8!important;color:#b85b24!important;border:1px solid #f0c59f!important;}
+.gb-admin-main .payment-pill.paid{background:#c8efd7!important;color:#14683c!important;border:1px solid #9ddbb6!important;}
+.gb-admin-main .payment-pill.unpaid{background:#fff3e8!important;color:#b85b24!important;border:1px solid #f0c59f!important;}
+
+/* Form thêm đơn hàng: một dòng, bỏ dấu X, nút lưu rõ */
+.gb-admin-main .manual-order-form-clean{
+    padding: 26px 30px !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+}
+.gb-admin-main .manual-order-row-clean{
+    display: grid !important;
+    grid-template-columns: minmax(360px, 1fr) 112px !important;
+    gap: 14px !important;
+    align-items: end !important;
+    padding: 18px !important;
+    overflow: visible !important;
+}
+.gb-admin-main .manual-order-row-clean > *:last-child:not(.qty-box-clean),
+.gb-admin-main .manual-order-row-clean button[class*="remove"],
+.gb-admin-main .manual-order-row-clean .remove-order-row,
+.gb-admin-main .manual-order-row-clean .remove-icon-v34,
+.gb-admin-main .manual-order-row-clean .delete-row,
+.gb-admin-main .manual-order-row-clean .delete-item,
+.gb-admin-main .manual-order-row-clean .remove-item,
+.gb-admin-main .manual-order-row-clean .remove-btn{
+    display: none !important;
+}
+.gb-admin-main .product-search-box-clean input,
+.gb-admin-main .qty-box-clean input{
+    height: 50px !important;
+    border-radius: 16px !important;
+}
+.gb-admin-main .manual-order-actions-clean{
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    gap: 18px !important;
+    margin-top: 18px !important;
+}
+.gb-admin-main .manual-order-total-v34{
+    order: 1 !important;
+    height: 56px !important;
+    min-width: 190px !important;
+}
+.gb-admin-main .save-order-v34{
+    order: 2 !important;
+    height: 56px !important;
+    min-width: 200px !important;
+    background: linear-gradient(135deg,#a95f31,#d6904b) !important;
+    color: #fff !important;
+    border: none !important;
+    font-weight: 600 !important;
+}
+
+@media (max-width: 1200px){
+    .gb-admin-main{max-width:calc(100vw - 300px)!important;padding:24px!important;}
+    .gb-admin-main .order-toolbar-clean,
+    .gb-admin-main .order-toolbar-v62{grid-template-columns:1fr!important;}
+    .gb-admin-main .order-search-wide-clean,
+    .gb-admin-main .order-search-box-v62{max-width:100%!important;}
+}
+
+/* =========================================================
+   FINAL HARD FIX: DOT MENU, TABLE FIT, DETAIL ORDER CLEAN
+   ========================================================= */
+.gb-admin-main{
+    max-width: calc(100vw - 300px) !important;
+    margin-left: 300px !important;
+    padding: 26px 34px 64px !important;
+    overflow-x: hidden !important;
+}
+.gb-admin-main *{box-sizing:border-box!important;}
+
+/* Search card: title and input side-by-side, input long enough */
+.gb-admin-main .order-toolbar-clean,
+.gb-admin-main .order-toolbar-v62{
+    display:grid!important;
+    grid-template-columns:minmax(300px, 0.78fr) minmax(560px, 1.45fr)!important;
+    align-items:center!important;
+    gap:26px!important;
+    padding:28px 34px!important;
+}
+.gb-admin-main .order-toolbar-v62 h3{margin:0 0 6px!important;}
+.gb-admin-main .order-toolbar-v62 p{margin:0!important;max-width:100%!important;line-height:1.45!important;}
+.gb-admin-main .order-search-box-v62,
+.gb-admin-main .order-search-wide-clean{width:100%!important;max-width:none!important;}
+.gb-admin-main .order-search-box-v62 input,
+.gb-admin-main .order-search-wide-clean input{
+    width:100%!important;
+    min-width:0!important;
+    height:54px!important;
+    white-space:nowrap!important;
+    overflow:visible!important;
+    text-overflow:clip!important;
+    padding:0 26px!important;
+}
+
+/* Table panels must stay inside page */
+.gb-admin-main .admin-table-panel-clean,
+.gb-admin-main .consult-panel-clean,
+.gb-admin-main .order-panel-fixed{overflow:hidden!important;max-width:100%!important;}
+.gb-admin-main .table-scroll-x,
+.gb-admin-main .order-table-scroll-v63,
+.gb-admin-main .consult-table-scroll-clean{
+    overflow-x:hidden!important;
+    max-width:100%!important;
+}
+
+/* Orders table fits full admin page */
+.gb-admin-main .order-admin-table-v63{
+    width:100%!important;
+    min-width:0!important;
+    table-layout:fixed!important;
+}
+.gb-admin-main .order-admin-table-v63 th,
+.gb-admin-main .order-admin-table-v63 td{padding:13px 10px!important;vertical-align:middle!important;}
+.gb-admin-main .order-admin-table-v63 th:nth-child(1),.gb-admin-main .order-admin-table-v63 td:nth-child(1){width:52px!important;text-align:center!important;}
+.gb-admin-main .order-admin-table-v63 th:nth-child(2),.gb-admin-main .order-admin-table-v63 td:nth-child(2){width:170px!important;}
+.gb-admin-main .order-admin-table-v63 th:nth-child(3),.gb-admin-main .order-admin-table-v63 td:nth-child(3){width:220px!important;}
+.gb-admin-main .order-admin-table-v63 th:nth-child(4),.gb-admin-main .order-admin-table-v63 td:nth-child(4){width:110px!important;}
+.gb-admin-main .order-admin-table-v63 th:nth-child(5),.gb-admin-main .order-admin-table-v63 td:nth-child(5){width:160px!important;text-align:center!important;}
+.gb-admin-main .order-admin-table-v63 th:nth-child(6),.gb-admin-main .order-admin-table-v63 td:nth-child(6){width:165px!important;text-align:center!important;}
+.gb-admin-main .order-admin-table-v63 th:nth-child(7),.gb-admin-main .order-admin-table-v63 td:nth-child(7){width:82px!important;text-align:center!important;}
+.gb-admin-main .order-admin-table-v63 th:nth-child(8),.gb-admin-main .order-admin-table-v63 td:nth-child(8){width:62px!important;text-align:center!important;}
+
+/* Contacts table fits full admin page; content smaller; status compact */
+.gb-admin-main .consult-table-clean{
+    width:100%!important;
+    min-width:0!important;
+    table-layout:fixed!important;
+}
+.gb-admin-main .consult-table-clean th,
+.gb-admin-main .consult-table-clean td{padding:12px 10px!important;vertical-align:middle!important;}
+.gb-admin-main .consult-table-clean th:nth-child(1),.gb-admin-main .consult-table-clean td:nth-child(1){width:50px!important;text-align:center!important;}
+.gb-admin-main .consult-table-clean th:nth-child(2),.gb-admin-main .consult-table-clean td:nth-child(2){width:140px!important;}
+.gb-admin-main .consult-table-clean th:nth-child(3),.gb-admin-main .consult-table-clean td:nth-child(3){width:112px!important;}
+.gb-admin-main .consult-table-clean th:nth-child(4),.gb-admin-main .consult-table-clean td:nth-child(4){width:110px!important;}
+.gb-admin-main .consult-table-clean th:nth-child(5),.gb-admin-main .consult-table-clean td:nth-child(5){width:auto!important;min-width:190px!important;}
+.gb-admin-main .consult-table-clean th:nth-child(6),.gb-admin-main .consult-table-clean td:nth-child(6){width:162px!important;text-align:center!important;}
+.gb-admin-main .consult-table-clean th:nth-child(7),.gb-admin-main .consult-table-clean td:nth-child(7){width:116px!important;}
+.gb-admin-main .consult-table-clean th:nth-child(8),.gb-admin-main .consult-table-clean td:nth-child(8){width:68px!important;text-align:center!important;}
+.gb-admin-main .consult-message-v36{line-height:1.42!important;word-break:break-word!important;}
+
+/* Status + dot menu: real dots are a span, select is invisible overlay */
+.gb-admin-main .status-action-wrap,
+.gb-admin-main .consult-status-form-clean{
+    position:relative!important;
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    gap:6px!important;
+    width:auto!important;
+    max-width:100%!important;
+    white-space:nowrap!important;
+    overflow:visible!important;
+}
+.gb-admin-main .status-action-wrap .status-pill,
+.gb-admin-main .status-action-wrap .payment-pill,
+.gb-admin-main .consult-status-pill{
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    height:31px!important;
+    min-width:96px!important;
+    max-width:112px!important;
+    padding:0 10px!important;
+    border-radius:999px!important;
+    font-size:12px!important;
+    font-weight:600!important;
+    line-height:1.08!important;
+    text-align:center!important;
+    white-space:normal!important;
+}
+.gb-admin-main .payment-pill{min-width:105px!important;}
+.gb-admin-main .status-inline-v36{
+    position:relative!important;
+    display:inline-flex!important;
+    width:32px!important;
+    min-width:32px!important;
+    max-width:32px!important;
+    height:30px!important;
+    flex:0 0 32px!important;
+    padding:0!important;
+    margin:0!important;
+}
+.gb-admin-main .status-inline-v36 select,
+.gb-admin-main .consult-status-form-clean select{
+    position:absolute!important;
+    inset:0!important;
+    width:32px!important;
+    min-width:32px!important;
+    max-width:32px!important;
+    height:30px!important;
+    border:0!important;
+    border-radius:9px!important;
+    opacity:0!important;
+    cursor:pointer!important;
+    z-index:5!important;
+    appearance:auto!important;
+    -webkit-appearance:auto!important;
+    font-size:14px!important;
+}
+.gb-admin-main .status-inline-v36:before,
+.gb-admin-main .status-inline-v36:after,
+.gb-admin-main .consult-status-form-clean:before,
+.gb-admin-main .consult-status-form-clean:after{content:none!important;display:none!important;}
+.gb-admin-main .dot-menu-admin{
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    width:32px!important;
+    min-width:32px!important;
+    height:30px!important;
+    border:1px solid #e8c7b5!important;
+    border-radius:9px!important;
+    background:#fffaf7!important;
+    color:#6b351e!important;
+    font-size:13px!important;
+    font-weight:600!important;
+    line-height:1!important;
+    box-shadow:none!important;
+    pointer-events:none!important;
+}
+.gb-admin-main .status-inline-v36 option,
+.gb-admin-main .consult-status-form-clean option{color:#35180f!important;background:#fff!important;font-size:14px!important;}
+
+/* Remove duplicate text inside badges if any legacy select overlay leaked */
+.gb-admin-main .consult-status-pill::before,
+.gb-admin-main .consult-status-pill::after,
+.gb-admin-main .status-pill::before,
+.gb-admin-main .status-pill::after,
+.gb-admin-main .payment-pill::before,
+.gb-admin-main .payment-pill::after{content:none!important;}
+
+/* Clear readable status colors */
+.gb-admin-main .status-pill.status-done,
+.gb-admin-main .consult-status-pill.done{background:#d8f5e4!important;color:#157347!important;border:1px solid #a6dfbd!important;}
+.gb-admin-main .status-pill.status-cancel{background:#fff0e2!important;color:#bd5a17!important;border:1px solid #efbd91!important;}
+.gb-admin-main .consult-status-pill.cancel{background:#ffe5e5!important;color:#bf3030!important;border:1px solid #f1b4b4!important;}
+.gb-admin-main .status-pill.status-shipping{background:#eaf2ff!important;color:#2366b4!important;border:1px solid #bdd7ff!important;}
+.gb-admin-main .status-pill.status-confirmed,
+.gb-admin-main .consult-status-pill.process{background:#fff7d8!important;color:#8d6500!important;border:1px solid #ecd279!important;}
+.gb-admin-main .status-pill.status-pending,
+.gb-admin-main .consult-status-pill.new{background:#fff3e8!important;color:#b85b24!important;border:1px solid #f0c59f!important;}
+.gb-admin-main .payment-pill.paid{background:#c8efd7!important;color:#14683c!important;border:1px solid #9ddbb6!important;}
+.gb-admin-main .payment-pill.unpaid{background:#fff3e8!important;color:#b85b24!important;border:1px solid #f0c59f!important;}
+
+/* Order detail page redesigned */
+.gb-admin-main .order-detail-hero-clean{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:24px!important;}
+.gb-admin-main .detail-actions-clean{display:flex!important;gap:12px!important;align-items:center!important;}
+.gb-admin-main .order-detail-summary-clean{
+    display:grid!important;
+    grid-template-columns: minmax(260px,1.4fr) minmax(170px,.75fr) minmax(170px,.75fr) minmax(190px,.85fr)!important;
+    gap:16px!important;
+    margin:18px 0 22px!important;
+}
+.gb-admin-main .detail-card-clean{
+    min-height:126px!important;
+    border:1px solid #eed0bf!important;
+    border-radius:24px!important;
+    background:linear-gradient(180deg,#fff,#fff8f3)!important;
+    padding:20px!important;
+    display:flex!important;
+    align-items:center!important;
+    gap:16px!important;
+    box-shadow:0 18px 40px rgba(96,45,24,.06)!important;
+}
+.gb-admin-main .detail-icon-clean{
+    width:48px!important;height:48px!important;border-radius:16px!important;
+    display:flex!important;align-items:center!important;justify-content:center!important;
+    background:#fff0e6!important;border:1px solid #efd0bc!important;font-size:22px!important;
+}
+.gb-admin-main .detail-card-clean small{display:block!important;color:#9a6a52!important;font-weight:600!important;text-transform:uppercase!important;letter-spacing:.08em!important;margin-bottom:8px!important;}
+.gb-admin-main .detail-card-clean h2,.gb-admin-main .detail-card-clean h3{margin:0!important;color:#35180f!important;}
+.gb-admin-main .detail-card-clean p{margin:7px 0 0!important;color:#80614f!important;}
+.gb-admin-main .order-items-panel-clean{padding:24px!important;overflow:hidden!important;}
+.gb-admin-main .order-detail-table-clean{width:100%!important;table-layout:fixed!important;}
+.gb-admin-main .order-detail-table-clean th,.gb-admin-main .order-detail-table-clean td{padding:14px 16px!important;}
+
+@media(max-width:1250px){
+    .gb-admin-main .order-toolbar-clean,.gb-admin-main .order-toolbar-v62{grid-template-columns:1fr!important;}
+    .gb-admin-main .order-detail-summary-clean{grid-template-columns:1fr 1fr!important;}
+}
+
+/* =========================================================
+   FINAL ADMIN FORM FIX - unified status pill, no overflow
+   ========================================================= */
+.gb-admin-main{
+    max-width: calc(100vw - 300px) !important;
+    margin-left: 300px !important;
+    padding: 28px 42px 70px !important;
+    overflow-x: hidden !important;
+}
+.gb-admin-main .admin-hero-tight-clean{
+    min-height: 138px !important;
+    padding: 34px 42px !important;
+    margin-bottom: 26px !important;
+}
+
+/* Toolbar: text + search on same row, input long enough */
+.gb-admin-main .order-toolbar-final{
+    display:grid !important;
+    grid-template-columns: 330px minmax(420px, 1fr) !important;
+    align-items:center !important;
+    gap: 28px !important;
+    padding: 28px 36px !important;
+    min-height: 120px !important;
+    max-width: 100% !important;
+}
+.gb-admin-main .order-toolbar-final h3{margin:0 0 8px !important;font-size:28px !important;}
+.gb-admin-main .order-toolbar-final p{margin:0 !important;line-height:1.45 !important;}
+.gb-admin-main .order-search-input-final{
+    width:100% !important;
+    min-width:0 !important;
+    height:58px !important;
+    border:1px solid #e6bda7 !important;
+    border-radius:18px !important;
+    padding:0 24px !important;
+    font-size:17px !important;
+    background:#fffdfb !important;
+    outline:none !important;
+}
+.gb-admin-main .order-search-input-final:focus{box-shadow:0 0 0 4px rgba(205,139,73,.12) !important;}
+
+/* Panels never overflow page */
+.gb-admin-main .admin-table-panel-final{
+    width:100% !important;
+    max-width:100% !important;
+    overflow:hidden !important;
+    padding:20px 22px !important;
+}
+.gb-admin-main .admin-table-panel-final table{
+    width:100% !important;
+    min-width:0 !important;
+    table-layout:fixed !important;
+}
+.gb-admin-main .admin-table-panel-final th,
+.gb-admin-main .admin-table-panel-final td{
+    vertical-align:middle !important;
+    overflow:hidden !important;
+}
+
+/* Orders table compact and balanced */
+.gb-admin-main .order-table-final th,
+.gb-admin-main .order-table-final td{padding:13px 10px !important;}
+.gb-admin-main .order-table-final th:nth-child(1),.gb-admin-main .order-table-final td:nth-child(1){width:54px !important;}
+.gb-admin-main .order-table-final th:nth-child(2),.gb-admin-main .order-table-final td:nth-child(2){width:175px !important;}
+.gb-admin-main .order-table-final th:nth-child(3),.gb-admin-main .order-table-final td:nth-child(3){width:235px !important;}
+.gb-admin-main .order-table-final th:nth-child(4),.gb-admin-main .order-table-final td:nth-child(4){width:112px !important;}
+.gb-admin-main .order-table-final th:nth-child(5),.gb-admin-main .order-table-final td:nth-child(5){width:162px !important;text-align:center !important;}
+.gb-admin-main .order-table-final th:nth-child(6),.gb-admin-main .order-table-final td:nth-child(6){width:176px !important;text-align:center !important;}
+.gb-admin-main .order-table-final th:nth-child(7),.gb-admin-main .order-table-final td:nth-child(7){width:78px !important;text-align:center !important;}
+.gb-admin-main .order-table-final th:nth-child(8),.gb-admin-main .order-table-final td:nth-child(8){width:62px !important;text-align:center !important;}
+
+/* Consult table: phone under name, content smaller, no horizontal scroll */
+.gb-admin-main .consult-panel-final{padding:24px 28px !important;}
+.gb-admin-main .consult-table-final th,
+.gb-admin-main .consult-table-final td{padding:14px 12px !important;}
+.gb-admin-main .consult-table-final th:nth-child(1),.gb-admin-main .consult-table-final td:nth-child(1){width:54px !important;}
+.gb-admin-main .consult-table-final th:nth-child(2),.gb-admin-main .consult-table-final td:nth-child(2){width:195px !important;}
+.gb-admin-main .consult-table-final th:nth-child(3),.gb-admin-main .consult-table-final td:nth-child(3){width:125px !important;}
+.gb-admin-main .consult-table-final th:nth-child(4),.gb-admin-main .consult-table-final td:nth-child(4){width:auto !important;}
+.gb-admin-main .consult-table-final th:nth-child(5),.gb-admin-main .consult-table-final td:nth-child(5){width:174px !important;text-align:center !important;}
+.gb-admin-main .consult-table-final th:nth-child(6),.gb-admin-main .consult-table-final td:nth-child(6){width:135px !important;}
+.gb-admin-main .consult-table-final th:nth-child(7),.gb-admin-main .consult-table-final td:nth-child(7){width:78px !important;text-align:center !important;}
+.gb-admin-main .consult-message-final{
+    line-height:1.45 !important;
+    word-break:break-word !important;
+    white-space:normal !important;
+}
+
+/* Shared small cells */
+.gb-admin-main .cell-center{text-align:center !important;}
+.gb-admin-main .customer-cell-final b{display:block !important;font-weight:950 !important;line-height:1.25 !important;}
+.gb-admin-main .customer-cell-final span{display:block !important;margin-top:5px !important;color:#9b664d !important;font-weight:600 !important;font-size:13px !important;}
+.gb-admin-main .money-cell-final{white-space:nowrap !important;}
+
+/* Kill old broken dot/select rules completely */
+.gb-admin-main .status-action-wrap,
+.gb-admin-main .consult-status-form-clean,
+.gb-admin-main .status-inline-v36,
+.gb-admin-main .mini-update-form-v63{
+    all:unset;
+}
+.gb-admin-main .dot-menu-admin{display:none !important;}
+
+/* Unified status: text and ... in the same colored pill */
+.gb-admin-main form.status-pill-select{
+    position:relative !important;
+    display:inline-flex !important;
+    align-items:center !important;
+    justify-content:space-between !important;
+    gap:6px !important;
+    width:136px !important;
+    min-width:136px !important;
+    max-width:136px !important;
+    height:34px !important;
+    padding:0 9px 0 13px !important;
+    border-radius:999px !important;
+    box-sizing:border-box !important;
+    overflow:hidden !important;
+    white-space:nowrap !important;
+    vertical-align:middle !important;
+}
+.gb-admin-main form.status-pill-select .status-label-final{
+    display:block !important;
+    flex:1 1 auto !important;
+    min-width:0 !important;
+    overflow:hidden !important;
+    text-overflow:ellipsis !important;
+    text-align:center !important;
+    font-size:12.5px !important;
+    font-weight:950 !important;
+    line-height:1.05 !important;
+}
+.gb-admin-main form.status-pill-select .status-dots-final{
+    display:inline-flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    flex:0 0 28px !important;
+    width:28px !important;
+    height:24px !important;
+    border-radius:999px !important;
+    border:1px solid rgba(142,76,43,.20) !important;
+    background:rgba(255,255,255,.50) !important;
+    font-size:13px !important;
+    font-weight:950 !important;
+    line-height:1 !important;
+}
+.gb-admin-main form.status-pill-select select{
+    position:absolute !important;
+    inset:0 !important;
+    width:100% !important;
+    height:100% !important;
+    opacity:0 !important;
+    cursor:pointer !important;
+    z-index:4 !important;
+    appearance:auto !important;
+    -webkit-appearance:auto !important;
+}
+.gb-admin-main form.status-pill-select option{font-size:14px !important;color:#35180f !important;background:#fff !important;}
+
+/* Distinct status colors */
+.gb-admin-main form.status-pill-select.is-success,
+.gb-admin-main .status-pill.status-done,
+.gb-admin-main .consult-status-pill.done{
+    background:#d8f5e4 !important;color:#157347 !important;border:1px solid #a6dfbd !important;
+}
+.gb-admin-main form.status-pill-select.is-paid{
+    background:#c8efd7 !important;color:#14683c !important;border:1px solid #9ddbb6 !important;
+}
+.gb-admin-main form.status-pill-select.is-unpaid,
+.gb-admin-main form.status-pill-select.is-pending{
+    background:#fff3e8 !important;color:#b85b24 !important;border:1px solid #f0c59f !important;
+}
+.gb-admin-main form.status-pill-select.is-warning{
+    background:#fff7d8 !important;color:#8d6500 !important;border:1px solid #ecd279 !important;
+}
+.gb-admin-main form.status-pill-select.is-info{
+    background:#eaf2ff !important;color:#2366b4 !important;border:1px solid #bdd7ff !important;
+}
+.gb-admin-main form.status-pill-select.is-cancel{
+    background:#fff0e2 !important;color:#bd5a17 !important;border:1px solid #efbd91 !important;
+}
+
+/* Detail page: clean card layout, no full-width thin bars */
+.gb-admin-main .order-detail-summary-clean{
+    display:grid !important;
+    grid-template-columns:1.4fr .8fr .8fr .9fr !important;
+    gap:16px !important;
+    margin:18px 0 22px !important;
+}
+.gb-admin-main .detail-card-clean{
+    min-height:124px !important;
+    border:1px solid #eed0bf !important;
+    border-radius:24px !important;
+    background:linear-gradient(180deg,#fff,#fff8f3) !important;
+    padding:18px !important;
+    box-shadow:0 18px 40px rgba(96,45,24,.06) !important;
+}
+.gb-admin-main .detail-card-clean .status-pill,
+.gb-admin-main .detail-card-clean .payment-pill{
+    display:inline-flex !important;
+    min-width:130px !important;
+    height:34px !important;
+    align-items:center !important;
+    justify-content:center !important;
+    border-radius:999px !important;
+    padding:0 14px !important;
+    font-weight:950 !important;
+}
+
+@media(max-width:1250px){
+    .gb-admin-main .order-toolbar-final{grid-template-columns:1fr !important;}
+    .gb-admin-main .order-detail-summary-clean{grid-template-columns:1fr 1fr !important;}
+}
+
+/* =========================================================
+   FINAL ABSOLUTE FIX - KHONG MAT CHU TRANG THAI DON HANG
+   Dấu ... nằm trong cùng nền, chữ hiện đầy đủ, chưa thanh toán cam rõ
+   ========================================================= */
+.gb-admin-main .order-table-final th:nth-child(5),
+.gb-admin-main .order-table-final td:nth-child(5){
+    width:180px !important;
+    min-width:180px !important;
+    max-width:180px !important;
+}
+.gb-admin-main .order-table-final th:nth-child(6),
+.gb-admin-main .order-table-final td:nth-child(6){
+    width:195px !important;
+    min-width:195px !important;
+    max-width:195px !important;
+}
+.gb-admin-main .order-table-final form.status-pill-select{
+    width:168px !important;
+    min-width:168px !important;
+    max-width:168px !important;
+    height:36px !important;
+    padding:0 8px 0 14px !important;
+    display:inline-flex !important;
+    align-items:center !important;
+    justify-content:space-between !important;
+    gap:8px !important;
+    overflow:visible !important;
+    box-sizing:border-box !important;
+    white-space:nowrap !important;
+    border-radius:999px !important;
+}
+.gb-admin-main .order-table-final form.status-pill-select .status-label-final{
+    display:inline-flex !important;
+    align-items:center !important;
+    justify-content:flex-start !important;
+    flex:1 1 auto !important;
+    min-width:0 !important;
+    max-width:none !important;
+    overflow:visible !important;
+    text-overflow:clip !important;
+    white-space:nowrap !important;
+    text-align:left !important;
+    font-size:13px !important;
+    font-weight:950 !important;
+    line-height:1 !important;
+}
+.gb-admin-main .order-table-final form.status-pill-select .status-dots-final{
+    display:inline-flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    flex:0 0 30px !important;
+    width:30px !important;
+    min-width:30px !important;
+    max-width:30px !important;
+    height:24px !important;
+    margin-left:auto !important;
+    border-radius:999px !important;
+    background:rgba(255,255,255,.72) !important;
+    border:1px solid rgba(130,75,45,.18) !important;
+    color:#7a3d1c !important;
+    font-size:13px !important;
+    font-weight:950 !important;
+    line-height:1 !important;
+}
+.gb-admin-main .order-table-final form.status-pill-select select{
+    position:absolute !important;
+    inset:0 !important;
+    width:100% !important;
+    height:100% !important;
+    opacity:0 !important;
+    cursor:pointer !important;
+    z-index:5 !important;
+}
+.gb-admin-main .order-table-final form.status-pill-select.is-unpaid,
+.gb-admin-main .order-table-final form.status-pill-select.is-pending{
+    background:#fff0dc !important;
+    color:#b95700 !important;
+    border:1px solid #ee9f53 !important;
+}
+.gb-admin-main .order-table-final form.status-pill-select.is-paid,
+.gb-admin-main .order-table-final form.status-pill-select.is-success{
+    background:#c9f3d9 !important;
+    color:#08733d !important;
+    border:1px solid #8ed9ad !important;
+}
+.gb-admin-main .order-table-final form.status-pill-select.is-warning{
+    background:#fff6d6 !important;
+    color:#8d6500 !important;
+    border:1px solid #e9ce71 !important;
+}
+.gb-admin-main .order-table-final form.status-pill-select.is-info{
+    background:#eaf2ff !important;
+    color:#2366b4 !important;
+    border:1px solid #bdd7ff !important;
+}
+.gb-admin-main .order-table-final form.status-pill-select.is-cancel{
+    background:#fff0e2 !important;
+    color:#bd5a17 !important;
+    border:1px solid #efbd91 !important;
+}
+
+
+/* =========================
+   FINAL FIX V5
+   ========================= */
+
+.gb-admin-main .order-table-final{
+    table-layout:fixed !important;
+    width:100% !important;
+}
+
+.gb-admin-main .order-table-final th:nth-child(5),
+.gb-admin-main .order-table-final td:nth-child(5){
+    width:190px !important;
+    min-width:190px !important;
+}
+
+.gb-admin-main .order-table-final th:nth-child(6),
+.gb-admin-main .order-table-final td:nth-child(6){
+    width:220px !important;
+    min-width:220px !important;
+}
+
+.gb-admin-main .order-table-final form.status-pill-select{
+    width:182px !important;
+    min-width:182px !important;
+    max-width:182px !important;
+    overflow:hidden !important;
+}
+
+.gb-admin-main .order-table-final form.status-pill-select .status-label-final{
+    overflow:hidden !important;
+    text-overflow:ellipsis !important;
+    white-space:nowrap !important;
+    padding-right:4px !important;
+    font-size:14px !important;
+    font-weight:600 !important;
+}
+
+.gb-admin-main .order-table-final form.status-pill-select .status-dots-final{
+    flex:0 0 28px !important;
+    width:28px !important;
+    min-width:28px !important;
+    height:24px !important;
+    border-radius:999px !important;
+    background:rgba(255,255,255,.75) !important;
+}
+
+.gb-admin-main .order-table-final form.status-pill-select.is-unpaid{
+    background:#fff1e3 !important;
+    border:1px solid #f2a55e !important;
+    color:#c55d00 !important;
+}
+
+.gb-admin-main .order-table-final form.status-pill-select.is-unpaid .status-label-final{
+    color:#c55d00 !important;
+}
+
+.gb-admin-main .order-table-final form.status-pill-select.is-paid{
+    background:#cef4dc !important;
+    border:1px solid #8dd8aa !important;
+    color:#0c7a43 !important;
+}
+
+/* PRINT FIX */
+
+@media print{
+
+    body{
+        background:#ffffff !important;
+    }
+
+    .gb-admin-sidebar,
+    .detail-actions,
+    .detail-actions-clean,
+    .no-print{
+        display:none !important;
+    }
+
+    .gb-admin-main{
+        width:100% !important;
+        margin:0 !important;
+        padding:0 !important;
+    }
+
+    .order-detail-hero-clean{
+        border:none !important;
+        box-shadow:none !important;
+        padding:0 0 20px 0 !important;
+        margin:0 0 20px 0 !important;
+        background:#ffffff !important;
+    }
+
+    .order-detail-summary-clean{
+        display:grid !important;
+        grid-template-columns:1fr 1fr !important;
+        gap:14px !important;
+        margin-bottom:20px !important;
+    }
+
+    .detail-card-clean{
+        border:1px solid #d8d8d8 !important;
+        box-shadow:none !important;
+        background:#ffffff !important;
+        border-radius:14px !important;
+        min-height:auto !important;
+    }
+
+    .admin-table{
+        width:100% !important;
+        border-collapse:collapse !important;
+        font-size:13px !important;
+    }
+
+    .admin-table th,
+    .admin-table td{
+        border:1px solid #d8d8d8 !important;
+        padding:8px !important;
+    }
+}
+
+/* =========================================================
+   FINAL ADMIN ORDER LAYOUT FIX: LIKE SAMPLE, NO OVERLAP
+   ========================================================= */
+.gb-admin-main{overflow-x:hidden!important;}
+.admin-hero-tight-clean{max-width:1280px!important;margin-left:auto!important;margin-right:auto!important;}
+.order-tools-sample{
+    max-width:1280px!important;
+    margin:0 auto 22px!important;
+    display:grid!important;
+    grid-template-columns:minmax(360px,.9fr) minmax(560px,1.1fr)!important;
+    gap:18px!important;
+    align-items:stretch!important;
+}
+.order-search-card-sample,
+.order-filter-card-sample{
+    padding:20px 22px!important;
+    border-radius:20px!important;
+    min-height:116px!important;
+    display:flex!important;
+    flex-direction:column!important;
+    justify-content:center!important;
+    overflow:hidden!important;
+}
+.order-search-card-sample h3,
+.order-filter-card-sample h3{
+    margin:0 0 12px!important;
+    font-size:18px!important;
+    line-height:1.15!important;
+}
+.order-search-box-sample{
+    height:48px!important;
+    border:1px solid #efc9b5!important;
+    border-radius:16px!important;
+    display:flex!important;
+    align-items:center!important;
+    gap:10px!important;
+    padding:0 14px!important;
+    background:#fff!important;
+}
+.order-search-box-sample span{color:#9a4d27!important;font-weight:600!important;line-height:1!important;}
+.order-search-box-sample input,
+.order-search-input-final{
+    width:100%!important;
+    min-width:0!important;
+    height:100%!important;
+    border:0!important;
+    outline:0!important;
+    box-shadow:none!important;
+    background:transparent!important;
+    padding:0!important;
+    font-size:15px!important;
+    white-space:nowrap!important;
+    text-overflow:ellipsis!important;
+}
+.status-filter-list-sample{
+    display:flex!important;
+    gap:12px!important;
+    align-items:center!important;
+    flex-wrap:nowrap!important;
+    overflow-x:auto!important;
+    padding-bottom:2px!important;
+}
+.status-filter-btn{
+    flex:0 0 auto!important;
+    border:1px solid #efc9b5!important;
+    background:#fff8f3!important;
+    color:#9b4a1d!important;
+    height:44px!important;
+    min-width:92px!important;
+    padding:0 20px!important;
+    border-radius:999px!important;
+    font-weight:600!important;
+    font-size:14px!important;
+    cursor:pointer!important;
+}
+.status-filter-btn.active{background:#fff0e7!important;border-color:#e8a77b!important;}
+.status-filter-btn.warn{background:#fff7df!important;border-color:#e9c45d!important;color:#a16600!important;}
+.status-filter-btn.blue{background:#eaf4ff!important;border-color:#8ec5ff!important;color:#0f5fac!important;}
+.status-filter-btn.green{background:#d9f5e3!important;border-color:#97d8ac!important;color:#08743c!important;}
+.status-filter-btn.red{background:#fff0f0!important;border-color:#f0a3a3!important;color:#c63232!important;}
+
+.admin-table-panel-final{max-width:1280px!important;margin-left:auto!important;margin-right:auto!important;overflow:hidden!important;padding:0!important;}
+.order-table-final{table-layout:fixed!important;width:100%!important;}
+.order-table-final th,.order-table-final td{padding:14px 12px!important;vertical-align:middle!important;}
+.order-table-final th:nth-child(1),.order-table-final td:nth-child(1){width:60px!important;text-align:center!important;}
+.order-table-final th:nth-child(2),.order-table-final td:nth-child(2){width:190px!important;}
+.order-table-final th:nth-child(3),.order-table-final td:nth-child(3){width:250px!important;}
+.order-table-final th:nth-child(4),.order-table-final td:nth-child(4){width:128px!important;}
+.order-table-final th:nth-child(5),.order-table-final td:nth-child(5){width:175px!important;}
+.order-table-final th:nth-child(6),.order-table-final td:nth-child(6){width:205px!important;}
+.order-table-final th:nth-child(7),.order-table-final td:nth-child(7){width:86px!important;}
+.order-table-final th:nth-child(8),.order-table-final td:nth-child(8){width:74px!important;}
+
+/* order status: text color only + dots, payment keeps pill */
+.order-table-final td:nth-child(5) .status-pill-select{
+    width:132px!important;
+    min-width:132px!important;
+    height:34px!important;
+    background:transparent!important;
+    border:0!important;
+    padding:0!important;
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:space-between!important;
+    gap:8px!important;
+    box-shadow:none!important;
+}
+.order-table-final td:nth-child(5) .status-label-final{
+    font-size:14px!important;
+    font-weight:600!important;
+    white-space:nowrap!important;
+}
+.order-table-final td:nth-child(5) .is-success .status-label-final{color:#08743c!important;}
+.order-table-final td:nth-child(5) .is-cancel .status-label-final{color:#c63232!important;}
+.order-table-final td:nth-child(5) .is-info .status-label-final{color:#0f5fac!important;}
+.order-table-final td:nth-child(5) .is-warning .status-label-final,
+.order-table-final td:nth-child(5) .is-pending .status-label-final{color:#b55b00!important;}
+
+.order-table-final td:nth-child(6) .status-pill-select{
+    width:170px!important;
+    min-width:170px!important;
+    max-width:170px!important;
+    height:38px!important;
+    padding:0 8px 0 16px!important;
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:space-between!important;
+    gap:8px!important;
+    border-radius:999px!important;
+    overflow:hidden!important;
+}
+.order-table-final td:nth-child(6) .status-label-final{
+    white-space:nowrap!important;
+    overflow:visible!important;
+    text-overflow:clip!important;
+    font-size:14px!important;
+    font-weight:600!important;
+}
+.status-dots-final{
+    flex:0 0 30px!important;
+    width:30px!important;
+    min-width:30px!important;
+    height:26px!important;
+    border-radius:999px!important;
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    background:rgba(255,255,255,.82)!important;
+    border:1px solid rgba(133,79,48,.18)!important;
+    font-weight:600!important;
+    line-height:1!important;
+}
+.status-pill-select select{position:absolute!important;inset:0!important;opacity:0!important;cursor:pointer!important;width:100%!important;height:100%!important;}
+.order-table-final td:nth-child(6) .is-unpaid{background:#fff0e3!important;border:1px solid #efa35f!important;color:#c45d00!important;}
+.order-table-final td:nth-child(6) .is-paid{background:#cef4dc!important;border:1px solid #8ed8aa!important;color:#08733d!important;}
+
+@media(max-width:1280px){
+    .order-tools-sample{grid-template-columns:1fr!important;}
+    .order-filter-card-sample{min-height:auto!important;}
+    .status-filter-list-sample{flex-wrap:wrap!important;}
+}
+
+/* =========================================================
+   USER FINAL FIX: admin order search/filter/status clean
+   ========================================================= */
+.order-tools-sample{
+    max-width:1280px !important;
+    display:grid !important;
+    grid-template-columns:minmax(420px, .82fr) minmax(620px, 1.18fr) !important;
+    gap:18px !important;
+    align-items:stretch !important;
+}
+.order-search-card-sample,
+.order-filter-card-sample{
+    overflow:visible !important;
+    min-height:112px !important;
+    padding:20px 22px !important;
+}
+.order-search-box-sample{
+    position:relative !important;
+    width:100% !important;
+    height:50px !important;
+    border:1px solid #efc9b5 !important;
+    border-radius:17px !important;
+    background:#fff !important;
+    box-shadow:none !important;
+    outline:none !important;
+    overflow:hidden !important;
+    display:grid !important;
+    grid-template-columns:28px 1fr !important;
+    align-items:center !important;
+    column-gap:8px !important;
+    padding:0 16px !important;
+}
+.order-search-box-sample span{
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    width:28px !important;
+    height:100% !important;
+    color:#9a4d27 !important;
+}
+.order-search-card-sample .order-search-box-sample input,
+.order-search-card-sample input.order-search-input-final,
+.order-search-box-sample input[type="text"]{
+    border:0 !important;
+    outline:0 !important;
+    box-shadow:none !important;
+    background:transparent !important;
+    height:100% !important;
+    width:100% !important;
+    min-width:0 !important;
+    padding:0 !important;
+    margin:0 !important;
+    border-radius:0 !important;
+    font-size:15px !important;
+    line-height:50px !important;
+}
+.status-filter-list-sample{
+    display:flex !important;
+    flex-wrap:wrap !important;
+    overflow:visible !important;
+    gap:10px !important;
+    padding:0 !important;
+}
+.status-filter-list-sample::-webkit-scrollbar{display:none !important;}
+.status-filter-btn{
+    height:40px !important;
+    min-width:auto !important;
+    padding:0 18px !important;
+    font-size:14px !important;
+}
+
+/* Đơn hàng: bỏ toàn bộ nền xanh/viền xanh, chỉ giữ chữ màu + nút ... */
+.order-table-final td:nth-child(5) form.status-pill-select,
+.order-table-final td:nth-child(5) form.status-pill-select.is-success,
+.order-table-final td:nth-child(5) form.status-pill-select.is-cancel,
+.order-table-final td:nth-child(5) form.status-pill-select.is-info,
+.order-table-final td:nth-child(5) form.status-pill-select.is-warning,
+.order-table-final td:nth-child(5) form.status-pill-select.is-pending{
+    position:relative !important;
+    width:150px !important;
+    min-width:150px !important;
+    max-width:150px !important;
+    height:34px !important;
+    padding:0 !important;
+    margin:0 auto !important;
+    background:transparent !important;
+    border:0 !important;
+    box-shadow:none !important;
+    outline:0 !important;
+    border-radius:0 !important;
+    display:inline-flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    gap:8px !important;
+    overflow:visible !important;
+}
+.order-table-final td:nth-child(5) form.status-pill-select .status-label-final{
+    flex:0 1 auto !important;
+    background:transparent !important;
+    border:0 !important;
+    padding:0 !important;
+    margin:0 !important;
+    white-space:nowrap !important;
+    overflow:visible !important;
+    text-overflow:clip !important;
+    font-size:14px !important;
+    font-weight:600 !important;
+}
+.order-table-final td:nth-child(5) form.status-pill-select.is-success .status-label-final{color:#08743c !important;}
+.order-table-final td:nth-child(5) form.status-pill-select.is-cancel .status-label-final{color:#c63232 !important;}
+.order-table-final td:nth-child(5) form.status-pill-select.is-info .status-label-final{color:#0f5fac !important;}
+.order-table-final td:nth-child(5) form.status-pill-select.is-warning .status-label-final,
+.order-table-final td:nth-child(5) form.status-pill-select.is-pending .status-label-final{color:#b55b00 !important;}
+.order-table-final td:nth-child(5) form.status-pill-select .status-dots-final{
+    flex:0 0 30px !important;
+    width:30px !important;
+    min-width:30px !important;
+    height:26px !important;
+    background:#fffaf6 !important;
+    border:1px solid #efc9b5 !important;
+    box-shadow:none !important;
+    border-radius:999px !important;
+}
+.order-table-final td:nth-child(5) form.status-pill-select select{
+    position:absolute !important;
+    inset:0 !important;
+    width:100% !important;
+    height:100% !important;
+    opacity:0 !important;
+    cursor:pointer !important;
+}
+
+/* Thanh toán vẫn có nền rõ */
+.order-table-final td:nth-child(6) form.status-pill-select.is-unpaid{
+    background:#fff0e3 !important;
+    border:1px solid #efa35f !important;
+    color:#c45d00 !important;
+}
+.order-table-final td:nth-child(6) form.status-pill-select.is-paid{
+    background:#cef4dc !important;
+    border:1px solid #8ed8aa !important;
+    color:#08733d !important;
+}
+.order-table-final td:nth-child(6) form.status-pill-select{
+    width:178px !important;
+    max-width:178px !important;
+}
+.order-table-final th:nth-child(5),.order-table-final td:nth-child(5){width:170px !important;}
+.order-table-final th:nth-child(6),.order-table-final td:nth-child(6){width:215px !important;}
+
+@media(max-width:1280px){
+    .order-tools-sample{grid-template-columns:1fr !important;}
+}
+
+
+/* =========================================================
+   FONT ONLY FIX V4 - GlowBeauty
+   Chỉ chỉnh font chữ và độ dày chữ, KHÔNG chỉnh bố cục/form.
+   ========================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
+:root {
+    --gb-font-final: "Be Vietnam Pro", "Inter", "Segoe UI", Arial, sans-serif;
+}
+html, body, body *,
+button, input, select, textarea,
+a, p, span, label, small, strong, b,
+h1, h2, h3, h4, h5, h6,
+.site-header, .site-header *,
+.product-card, .product-card *,
+.products-grid, .products-grid *,
+.cart-page, .cart-page *,
+.contact-page, .contact-page *,
+.admin-page, .admin-page *,
+.gb-admin-main, .gb-admin-main * {
+    font-family: "Be Vietnam Pro", "Inter", Arial !important;
+    font-style: normal !important;
+    text-rendering: geometricPrecision !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+}
+body, p, span, small, input, select, textarea {
+    font-weight: 400 !important;
+}
+.site-header nav a,
+.header-actions a,
+label,
+.stock, .product-stock,
+.kicker, .section-kicker,
+[class*="kicker"],
+[class*="label"] {
+    font-weight: 500 !important;
+}
+h1, h2, h3,
+.brand,
+.logo-text,
+.product-title,
+.product-name,
+.product-card h3,
+.card-title,
+.category-title,
+.section-title,
+.contact-title,
+.page-title,
+[class*="title"],
+[class*="heading"] {
+    font-weight: 600 !important;
+    letter-spacing: -0.02em !important;
+    line-height: 1.18 !important;
+}
+.price,
+.product-price,
+.total-price,
+.cart-total,
+[class*="price"],
+[class*="total"] {
+    font-weight: 600 !important;
+    letter-spacing: -0.015em !important;
+}
+button, .btn, .button, [class*="btn"], [class*="button"],
+input[type="submit"], input[type="button"] {
+    font-weight: 500 !important;
+    letter-spacing: 0 !important;
+}
+/* Riêng chữ trên nút thêm giỏ hàng: đều nét, không bị đậm cục */
+.add-to-cart,
+.btn-add-cart,
+.add-cart,
+.cart-btn,
+.product-card button,
+.product-card .btn,
+.product-card [class*="btn"] {
+    font-weight: 500 !important;
+    letter-spacing: 0 !important;
+}
+
+
+/* =========================================================
+   USER FIX 2026-05-28: bộ lọc đơn hàng nằm gọn 1 dòng.
+   ========================================================= */
+.order-tools-sample{
+    grid-template-columns:minmax(380px, .95fr) minmax(760px, 1.45fr) !important;
+    gap:22px !important;
+    align-items:stretch !important;
+}
+.order-filter-card-sample{
+    overflow:visible !important;
+}
+.status-filter-list-sample{
+    display:flex !important;
+    flex-wrap:nowrap !important;
+    gap:8px !important;
+    align-items:center !important;
+    justify-content:flex-start !important;
+    overflow:visible !important;
+}
+.status-filter-btn{
+    height:36px !important;
+    padding:0 13px !important;
+    font-size:13px !important;
+    line-height:1 !important;
+    white-space:nowrap !important;
+    flex:0 0 auto !important;
+}
+@media(max-width:1280px){
+    .order-tools-sample{
+        grid-template-columns:1fr !important;
+    }
+    .status-filter-list-sample{
+        flex-wrap:wrap !important;
+    }
+}
+
+/* =========================================================
+   USER FIX V2: đơn hàng nhỏ gọn, không mất cột cuối; nút lọc trạng thái khác màu.
+   ========================================================= */
+.gb-admin-main .order-tools-sample{
+    grid-template-columns:minmax(320px,.9fr) minmax(520px,1.1fr) !important;
+    gap:14px !important;
+}
+.gb-admin-main .status-filter-list-sample{
+    display:flex !important;
+    flex-wrap:nowrap !important;
+    gap:8px !important;
+    overflow-x:auto !important;
+    padding-bottom:2px !important;
+}
+.gb-admin-main .status-filter-btn{
+    flex:0 0 auto !important;
+    height:38px !important;
+    padding:0 14px !important;
+    font-size:14px !important;
+}
+.gb-admin-main .status-filter-btn.pending{background:#fff1e7!important;border-color:#eead83!important;color:#b65b24!important;}
+.gb-admin-main .status-filter-btn.confirmed{background:#fff8dd!important;border-color:#e6c253!important;color:#906800!important;}
+.gb-admin-main .admin-table-panel-final{
+    padding:16px !important;
+    overflow-x:visible !important;
+}
+.gb-admin-main .order-table-final{
+    width:100% !important;
+    table-layout:fixed !important;
+    font-size:14px !important;
+}
+.gb-admin-main .order-table-final th,
+.gb-admin-main .order-table-final td{
+    padding:12px 10px !important;
+}
+.gb-admin-main .order-table-final th:nth-child(1),
+.gb-admin-main .order-table-final td:nth-child(1){width:52px!important;}
+.gb-admin-main .order-table-final th:nth-child(2),
+.gb-admin-main .order-table-final td:nth-child(2){width:170px!important;}
+.gb-admin-main .order-table-final th:nth-child(3),
+.gb-admin-main .order-table-final td:nth-child(3){width:230px!important;}
+.gb-admin-main .order-table-final th:nth-child(4),
+.gb-admin-main .order-table-final td:nth-child(4){width:110px!important;}
+.gb-admin-main .order-table-final th:nth-child(5),
+.gb-admin-main .order-table-final td:nth-child(5){width:180px!important;}
+.gb-admin-main .order-table-final th:nth-child(6),
+.gb-admin-main .order-table-final td:nth-child(6){width:190px!important;}
+.gb-admin-main .order-table-final th:nth-child(7),
+.gb-admin-main .order-table-final td:nth-child(7){width:74px!important;}
+.gb-admin-main .order-table-final th:nth-child(8),
+.gb-admin-main .order-table-final td:nth-child(8){width:58px!important;}
+.gb-admin-main .order-table-final form.status-pill-select{
+    max-width:150px !important;
+    height:34px !important;
+    padding:0 7px 0 12px !important;
+}
+.gb-admin-main .order-table-final td:nth-child(6) form.status-pill-select{
+    max-width:160px !important;
+}
+.gb-admin-main .order-table-final form.status-pill-select .status-label-final{
+    font-size:13px !important;
+    white-space:nowrap !important;
+}
+.gb-admin-main .order-table-final form.status-pill-select .status-dots-final{
+    width:25px !important;
+    min-width:25px !important;
+    height:25px !important;
+    font-size:13px !important;
+}
+.gb-admin-main .customer-cell-final b{font-size:14px!important;}
+.gb-admin-main .customer-cell-final span{font-size:12px!important;}
+.gb-admin-main .money-cell-final b{font-size:14px!important;}
+@media(max-width:1350px){
+    .gb-admin-main .admin-table-panel-final{overflow-x:auto!important;}
+    .gb-admin-main .order-table-final{min-width:1064px!important;}
+}
+
+
+/* =========================================================
+   FIX DUNG 2026-05-28: form lọc không mất chữ + 6 màu trạng thái riêng
+   ========================================================= */
+.gb-admin-main .order-tools-sample{
+    display:grid !important;
+    grid-template-columns:minmax(360px,.9fr) minmax(560px,1.1fr) !important;
+    gap:18px !important;
+    align-items:stretch !important;
+    overflow:visible !important;
+}
+.gb-admin-main .order-filter-card-sample,
+.gb-admin-main .order-search-card-sample{
+    overflow:visible !important;
+}
+.gb-admin-main .status-filter-list-sample{
+    display:flex !important;
+    flex-wrap:wrap !important;
+    gap:10px !important;
+    overflow:visible !important;
+    max-width:100% !important;
+}
+.gb-admin-main .status-filter-btn{
+    flex:0 0 auto !important;
+    min-width:max-content !important;
+    max-width:none !important;
+    height:42px !important;
+    padding:0 18px !important;
+    border-radius:999px !important;
+    white-space:nowrap !important;
+    overflow:visible !important;
+    text-overflow:clip !important;
+    font-weight:800 !important;
+    box-shadow:none !important;
+}
+.gb-admin-main .status-filter-btn.active,
+.gb-admin-main .status-filter-btn:focus,
+.gb-admin-main .status-filter-btn:hover{
+    transform:none !important;
+}
+.gb-admin-main .status-filter-btn:not(.pending):not(.confirmed):not(.blue):not(.green):not(.red){
+    background:#fff3eb !important;
+    color:#a34d22 !important;
+    border:1px solid #efb58e !important;
+}
+.gb-admin-main .status-filter-btn.pending{
+    background:#fff0df !important;
+    color:#b85b00 !important;
+    border:1px solid #f0a765 !important;
+}
+.gb-admin-main .status-filter-btn.confirmed{
+    background:#fff7cc !important;
+    color:#8a6500 !important;
+    border:1px solid #e6c957 !important;
+}
+.gb-admin-main .status-filter-btn.blue{
+    background:#e9f3ff !important;
+    color:#1766b0 !important;
+    border:1px solid #9cccff !important;
+}
+.gb-admin-main .status-filter-btn.green{
+    background:#dcf7e6 !important;
+    color:#08783f !important;
+    border:1px solid #8edcad !important;
+}
+.gb-admin-main .status-filter-btn.red{
+    background:#ffe8ee !important;
+    color:#c42346 !important;
+    border:1px solid #f3a1b2 !important;
+}
+.gb-admin-main .order-table-final form.status-pill-select.is-cancel{
+    background:#ffe8ee !important;
+    color:#c42346 !important;
+    border:1px solid #f3a1b2 !important;
+}
+.gb-admin-main .order-table-final form.status-pill-select.is-cancel .status-label-final{
+    color:#c42346 !important;
+}
+@media(max-width:1280px){
+    .gb-admin-main .order-tools-sample{grid-template-columns:1fr !important;}
+}
+
+
+/* =========================================================
+   FIX V4 DUNG: bộ lọc trạng thái chuyên nghiệp, đủ chữ, 6 màu riêng
+   ========================================================= */
+.gb-admin-main .order-filter-card-sample{
+    position:relative !important;
+    padding:24px 26px !important;
+    border-radius:26px !important;
+    background:
+        radial-gradient(circle at 100% 0%, rgba(255,220,194,.55), transparent 34%),
+        linear-gradient(135deg,#ffffff 0%,#fffaf7 48%,#fff7f1 100%) !important;
+    border:1px solid #efd2c1 !important;
+    box-shadow:0 22px 60px rgba(93,48,27,.08) !important;
+}
+.gb-admin-main .order-filter-card-sample h3{
+    display:flex !important;
+    align-items:center !important;
+    gap:10px !important;
+    margin-bottom:16px !important;
+    font-size:19px !important;
+    font-weight:900 !important;
+    color:#2b140d !important;
+}
+.gb-admin-main .order-filter-card-sample h3::before{
+    content:"" !important;
+    width:10px !important;
+    height:22px !important;
+    border-radius:999px !important;
+    background:linear-gradient(180deg,#d96335,#f3b57c) !important;
+    box-shadow:0 8px 18px rgba(217,99,53,.24) !important;
+}
+.gb-admin-main .status-filter-list-sample{
+    display:flex !important;
+    flex-wrap:wrap !important;
+    gap:12px !important;
+    align-items:center !important;
+    overflow:visible !important;
+}
+.gb-admin-main .status-filter-btn{
+    position:relative !important;
+    display:inline-flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    gap:8px !important;
+    flex:0 0 auto !important;
+    min-width:max-content !important;
+    height:46px !important;
+    padding:0 20px 0 18px !important;
+    border-radius:999px !important;
+    white-space:nowrap !important;
+    overflow:visible !important;
+    text-overflow:clip !important;
+    font-weight:900 !important;
+    letter-spacing:.005em !important;
+    box-shadow:0 10px 28px rgba(72,36,20,.06) !important;
+    transition:transform .18s ease, box-shadow .18s ease, filter .18s ease !important;
+}
+.gb-admin-main .status-filter-btn::before{
+    content:"" !important;
+    width:8px !important;
+    height:8px !important;
+    border-radius:999px !important;
+    background:currentColor !important;
+    box-shadow:0 0 0 4px rgba(255,255,255,.72) !important;
+}
+.gb-admin-main .status-filter-btn:hover,
+.gb-admin-main .status-filter-btn.active{
+    transform:translateY(-1px) !important;
+    box-shadow:0 14px 34px rgba(72,36,20,.12) !important;
+    filter:saturate(1.04) !important;
+}
+.gb-admin-main .status-filter-btn.all{
+    background:linear-gradient(135deg,#fff7f1,#ffffff) !important;
+    color:#b14f24 !important;
+    border:1px solid #efa77d !important;
+}
+.gb-admin-main .status-filter-btn.pending{
+    background:linear-gradient(135deg,#fff2df,#fffaf2) !important;
+    color:#b86400 !important;
+    border:1px solid #eda85d !important;
+}
+.gb-admin-main .status-filter-btn.confirmed{
+    background:linear-gradient(135deg,#fff7bd,#fffdf0) !important;
+    color:#806100 !important;
+    border:1px solid #dfbf35 !important;
+}
+.gb-admin-main .status-filter-btn.blue{
+    background:linear-gradient(135deg,#e3f2ff,#f5fbff) !important;
+    color:#1263b1 !important;
+    border:1px solid #80bfff !important;
+}
+.gb-admin-main .status-filter-btn.green{
+    background:linear-gradient(135deg,#d7f7e2,#f2fff6) !important;
+    color:#06733b !important;
+    border:1px solid #7cd79c !important;
+}
+.gb-admin-main .status-filter-btn.red{
+    background:linear-gradient(135deg,#ffe4ee,#fff7fa) !important;
+    color:#c0264d !important;
+    border:1px solid #f08ba7 !important;
+}
+@media(max-width:900px){
+    .gb-admin-main .order-filter-card-sample{padding:20px !important;}
+    .gb-admin-main .status-filter-btn{height:42px !important;padding:0 15px !important;font-size:14px !important;}
+}
+
+.admin-mini-img{width:58px;height:58px;object-fit:contain;background:#fff7f2;border-radius:14px;border:1px solid #ead5c6;padding:4px}
+
+
+/* =========================================================
+   FIX 20260606: lỗi cộng đôi giỏ hàng + chữ/icon bị rò mã hóa
+   ========================================================= */
+.gb-admin-body,
+.gb-admin-main,
+.gb-admin-sidebar,
+.gb-admin-main * {
+    font-family: Arial, Helvetica, sans-serif !important;
+    text-rendering: geometricPrecision !important;
+}
+
+.product-admin td.actions a.edit::before,
+.product-admin td.actions a.delete::before,
+.gb-admin-main .actions a::before,
+.gb-admin-main .actions .edit::before,
+.gb-admin-main .actions .delete::before {
+    content: none !important;
+    display: none !important;
+}
+
+.product-admin td.actions,
+.gb-admin-main .actions {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+}
+
+.product-admin td.actions a.edit,
+.product-admin td.actions a.delete,
+.gb-admin-main .actions a,
+.gb-admin-main .actions .edit,
+.gb-admin-main .actions .delete {
+    width: 98px !important;
+    min-height: 40px !important;
+    padding: 0 12px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: clip !important;
+    font-size: 15px !important;
+    line-height: 1 !important;
+}
+
+.product-admin td,
+.product-admin th {
+    vertical-align: middle !important;
+}
+
+.admin-search-box input,
+.gb-admin-main input,
+.gb-admin-main textarea,
+.gb-admin-main select,
+.gb-admin-main button {
+    font-family: Arial, Helvetica, sans-serif !important;
+}
+
+/* ===== FIX 08-06: font admin đồng bộ, gọn và chuyên nghiệp ===== */
+:root{--gb-admin-font:"Be Vietnam Pro","Segoe UI",Tahoma,Arial,sans-serif;}
+body.gb-admin-body,
+body.gb-admin-body *:not(i),
+.gb-admin-main,
+.gb-admin-main *:not(i),
+.admin-main-v34,
+.admin-main-v34 *:not(i),
+.admin-main-v36,
+.admin-main-v36 *:not(i),
+button,input,select,textarea,table,td,th{
+    font-family:var(--gb-admin-font)!important;
+    letter-spacing:normal!important;
+}
+.gb-admin-main h1,
+.admin-main-v34 h1,
+.admin-main-v36 h1,
+.gb-admin-main .admin-title h1,
+.gb-admin-main .admin-hero-v35 h1,
+.gb-admin-main .admin-hero-v36 h1,
+.admin-hero-v34 h1{
+    font-size:36px!important;
+    line-height:1.18!important;
+    font-weight:750!important;
+    letter-spacing:-.025em!important;
+    color:#2a1510!important;
+}
+.gb-admin-main h2,.admin-main-v34 h2,.admin-main-v36 h2,
+.form-section-title-v34 b,.admin-panel-v35 h2,.order-panel h2{
+    font-size:24px!important;
+    line-height:1.25!important;
+    font-weight:730!important;
+    letter-spacing:-.015em!important;
+    color:#2a1510!important;
+}
+.gb-admin-main p,.admin-main-v34 p,.admin-main-v36 p,
+.gb-admin-main .admin-sub,.admin-hero-v34 p,.admin-hero-v35 p,.admin-hero-v36 p{
+    font-size:15.5px!important;
+    font-weight:400!important;
+    line-height:1.55!important;
+    color:#7b5a4b!important;
+}
+.gb-admin-main label,.admin-main-v34 label,.admin-main-v36 label{
+    font-size:14px!important;
+    font-weight:650!important;
+    color:#4a2418!important;
+    text-align:left!important;
+}
+.gb-admin-main input,.gb-admin-main select,.gb-admin-main textarea,
+.admin-main-v34 input,.admin-main-v34 select,.admin-main-v34 textarea,
+.admin-main-v36 input,.admin-main-v36 select,.admin-main-v36 textarea{
+    font-size:15px!important;
+    font-weight:400!important;
+    line-height:1.45!important;
+    color:#351b13!important;
+    border-radius:14px!important;
+}
+.gb-admin-main table,.admin-main-v34 table,.admin-main-v36 table{font-size:15px!important;line-height:1.45!important;}
+.gb-admin-main th,.admin-main-v34 th,.admin-main-v36 th{font-weight:700!important;color:#5a2b1b!important;text-align:left!important;}
+.gb-admin-main td,.admin-main-v34 td,.admin-main-v36 td{font-weight:400!important;color:#2f1b13!important;vertical-align:middle!important;word-break:normal!important;overflow-wrap:anywhere!important;}
+.gb-admin-main td b,.admin-main-v34 td b,.admin-main-v36 td b{font-weight:700!important;}
+.gb-admin-main .btn,.admin-main-v34 .btn,.admin-main-v36 .btn,
+.gb-admin-main button,.admin-main-v34 button,.admin-main-v36 button,
+.gb-admin-main a[class*="btn"],.admin-main-v34 a[class*="btn"],.admin-main-v36 a[class*="btn"]{
+    font-weight:650!important;
+    letter-spacing:0!important;
+}
+/* Form thêm đơn hàng cân bằng hơn */
+.manual-order-form-clean{padding:32px!important;border-radius:26px!important;}
+.manual-customer-grid-clean{display:grid!important;grid-template-columns:1fr 1fr!important;gap:22px!important;align-items:end!important;}
+.manual-customer-grid-clean .field.full{grid-column:1/-1!important;}
+.manual-order-row-clean{display:grid!important;grid-template-columns:minmax(0,1fr) 140px!important;gap:18px!important;align-items:end!important;}
+.product-search-box-clean label,.qty-box-clean label{display:block!important;text-align:left!important;margin:0 0 8px!important;}
+.qty-box-clean input{text-align:center!important;font-weight:650!important;}
+.form-section-title-v34{align-items:center!important;margin:26px 0 14px!important;}
+.form-section-title-v34 small{font-size:14px!important;color:#7b5a4b!important;font-weight:400!important;}
+@media(max-width:900px){.manual-customer-grid-clean,.manual-order-row-clean{grid-template-columns:1fr!important;}}
+
+/* === FIX 08-06: Sửa nút Xoá trong bảng tư vấn không xuống từng chữ === */
+.gb-admin-main .consult-table-final th:last-child,
+.gb-admin-main .consult-table-final td:last-child,
+.gb-admin-main .consult-table-v36 th:last-child,
+.gb-admin-main .consult-table-v36 td:last-child{
+    width:120px!important;
+    min-width:120px!important;
+    text-align:center!important;
+}
+.gb-admin-main .actions .delete,
+.gb-admin-main td.actions .delete,
+.gb-admin-main .delete-soft-v36,
+.gb-admin-main button.delete,
+.gb-admin-main a.delete{
+    width:auto!important;
+    min-width:88px!important;
+    height:40px!important;
+    padding:0 14px!important;
+    display:inline-flex!important;
+    flex-direction:row!important;
+    align-items:center!important;
+    justify-content:center!important;
+    white-space:nowrap!important;
+    word-break:keep-all!important;
+    overflow:visible!important;
+    text-overflow:clip!important;
+    line-height:1!important;
+}
+
+
+/* ===== FIX 08-06: cột giá sản phẩm không bị vỡ dòng ===== */
+.gb-admin-main .product-admin th:nth-child(5),
+.gb-admin-main .product-admin td:nth-child(5),
+.gb-admin-main .product-admin td.price-cell{
+    width: 130px !important;
+    min-width: 130px !important;
+    white-space: nowrap !important;
+    word-break: keep-all !important;
+    overflow-wrap: normal !important;
+    text-align: left !important;
+    font-weight: 600 !important;
+}
+
+.gb-admin-main .product-admin th:nth-child(6),
+.gb-admin-main .product-admin td:nth-child(6){
+    width: 70px !important;
+    min-width: 70px !important;
+    text-align: center !important;
+}
+
+.gb-admin-main .product-admin th:nth-child(7),
+.gb-admin-main .product-admin td:nth-child(7){
+    width: 105px !important;
+    min-width: 105px !important;
+    white-space: nowrap !important;
+    text-align: center !important;
+}
+
+.gb-admin-main .product-admin th:nth-child(8),
+.gb-admin-main .product-admin td:nth-child(8){
+    width: 130px !important;
+    min-width: 130px !important;
+    text-align: center !important;
+}
+
+/* ===== FIX 08-06 FINAL: bảng sản phẩm admin không vỡ chữ thương hiệu/giá ===== */
+.gb-admin-main .product-admin{
+    table-layout:auto!important;
+    width:100%!important;
+}
+.gb-admin-main .product-admin th,
+.gb-admin-main .product-admin td{
+    word-break:normal!important;
+    overflow-wrap:normal!important;
+}
+.gb-admin-main .product-admin th:nth-child(1),
+.gb-admin-main .product-admin td:nth-child(1){
+    width:110px!important;
+    min-width:110px!important;
+    text-align:center!important;
+}
+.gb-admin-main .product-admin th:nth-child(2),
+.gb-admin-main .product-admin td:nth-child(2){
+    width:360px!important;
+    min-width:360px!important;
+}
+.gb-admin-main .product-admin th:nth-child(3),
+.gb-admin-main .product-admin td:nth-child(3){
+    width:140px!important;
+    min-width:140px!important;
+    white-space:nowrap!important;
+    text-align:left!important;
+}
+.gb-admin-main .product-admin th:nth-child(4),
+.gb-admin-main .product-admin td:nth-child(4){
+    width:130px!important;
+    min-width:130px!important;
+    white-space:nowrap!important;
+}
+.gb-admin-main .product-admin th:nth-child(5),
+.gb-admin-main .product-admin td:nth-child(5),
+.gb-admin-main .product-admin td.price-cell{
+    width:135px!important;
+    min-width:135px!important;
+    white-space:nowrap!important;
+    text-align:center!important;
+    font-weight:700!important;
+}
+.gb-admin-main .product-admin th:nth-child(6),
+.gb-admin-main .product-admin td:nth-child(6){
+    width:70px!important;
+    min-width:70px!important;
+    text-align:center!important;
+    white-space:nowrap!important;
+}
+.gb-admin-main .product-admin th:nth-child(7),
+.gb-admin-main .product-admin td:nth-child(7){
+    width:110px!important;
+    min-width:110px!important;
+    text-align:center!important;
+    white-space:nowrap!important;
+}
+.gb-admin-main .product-admin th:nth-child(8),
+.gb-admin-main .product-admin td:nth-child(8){
+    width:130px!important;
+    min-width:130px!important;
+    text-align:center!important;
+}
+
+/* ===== FIX TRIỆT ĐỂ 08-06: bảng sản phẩm không tràn ngang ===== */
+.gb-admin-main{
+    padding-left: 28px !important;
+    padding-right: 28px !important;
+    overflow-x: hidden !important;
+}
+
+.gb-admin-main .product-admin{
+    width: 100% !important;
+    max-width: 100% !important;
+    table-layout: fixed !important;
+    box-sizing: border-box !important;
+}
+
+.gb-admin-main .product-admin th,
+.gb-admin-main .product-admin td{
+    box-sizing: border-box !important;
+    padding: 14px 12px !important;
+    font-size: 15px !important;
+    line-height: 1.35 !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
+/* Chia lại tỉ lệ cột để tổng đúng 100%, không ép bảng vượt khung */
+.gb-admin-main .product-admin th:nth-child(1),
+.gb-admin-main .product-admin td:nth-child(1){
+    width: 9% !important;
+    min-width: 0 !important;
+    text-align: center !important;
+}
+
+.gb-admin-main .product-admin th:nth-child(2),
+.gb-admin-main .product-admin td:nth-child(2){
+    width: 31% !important;
+    min-width: 0 !important;
+}
+
+.gb-admin-main .product-admin th:nth-child(3),
+.gb-admin-main .product-admin td:nth-child(3){
+    width: 13% !important;
+    min-width: 0 !important;
+    white-space: nowrap !important;
+}
+
+.gb-admin-main .product-admin th:nth-child(4),
+.gb-admin-main .product-admin td:nth-child(4){
+    width: 12% !important;
+    min-width: 0 !important;
+    white-space: nowrap !important;
+}
+
+.gb-admin-main .product-admin th:nth-child(5),
+.gb-admin-main .product-admin td:nth-child(5),
+.gb-admin-main .product-admin td.price-cell{
+    width: 11% !important;
+    min-width: 0 !important;
+    white-space: nowrap !important;
+    text-align: center !important;
+    font-weight: 700 !important;
+}
+
+.gb-admin-main .product-admin th:nth-child(6),
+.gb-admin-main .product-admin td:nth-child(6){
+    width: 6% !important;
+    min-width: 0 !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+}
+
+.gb-admin-main .product-admin th:nth-child(7),
+.gb-admin-main .product-admin td:nth-child(7){
+    width: 9% !important;
+    min-width: 0 !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+}
+
+.gb-admin-main .product-admin th:nth-child(8),
+.gb-admin-main .product-admin td:nth-child(8){
+    width: 9% !important;
+    min-width: 0 !important;
+    text-align: center !important;
+    overflow: visible !important;
+}
+
+.gb-admin-main .product-admin img{
+    width: 72px !important;
+    height: 72px !important;
+    object-fit: cover !important;
+    border-radius: 14px !important;
+}
+
+.gb-admin-main .product-admin td:nth-child(2) b{
+    display: block !important;
+    margin-bottom: 7px !important;
+    white-space: normal !important;
+    overflow: hidden !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+}
+
+.gb-admin-main .product-admin td:nth-child(2) small{
+    display: block !important;
+    max-width: 100% !important;
+    white-space: normal !important;
+    overflow: hidden !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+}
+
+.gb-admin-main .product-admin td.actions,
+.gb-admin-main .product-admin .actions{
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+    overflow: visible !important;
+}
+
+.gb-admin-main .product-admin td.actions a.edit,
+.gb-admin-main .product-admin td.actions a.delete{
+    width: 76px !important;
+    min-width: 76px !important;
+    max-width: 76px !important;
+    min-height: 34px !important;
+    height: 34px !important;
+    margin: 0 !important;
+    padding: 0 8px !important;
+    white-space: nowrap !important;
+    word-break: keep-all !important;
+    font-size: 14px !important;
+    border-radius: 12px !important;
+}
+
+/* =========================================================
+   FIX CUỐI 08-06: Bảng sản phẩm giống ảnh mẫu + responsive mobile
+   - Không tràn ngang desktop
+   - Cột thao tác không bị đẩy ra ngoài
+   - Mobile chuyển thành từng thẻ dễ đọc
+========================================================= */
+.gb-admin-main{
+    overflow-x: hidden !important;
+    padding-left: 28px !important;
+    padding-right: 28px !important;
+}
+
+.gb-admin-main .product-admin{
+    width: 100% !important;
+    max-width: 100% !important;
+    table-layout: fixed !important;
+    border-collapse: separate !important;
+    box-sizing: border-box !important;
+}
+
+.gb-admin-main .product-admin th,
+.gb-admin-main .product-admin td{
+    box-sizing: border-box !important;
+    padding: 14px 12px !important;
+    font-size: 14px !important;
+    line-height: 1.38 !important;
+    vertical-align: middle !important;
+}
+
+.gb-admin-main .product-admin th:nth-child(1),
+.gb-admin-main .product-admin td:nth-child(1){
+    width: 9% !important;
+    text-align: center !important;
+}
+
+.gb-admin-main .product-admin th:nth-child(2),
+.gb-admin-main .product-admin td:nth-child(2){
+    width: 30% !important;
+}
+
+.gb-admin-main .product-admin th:nth-child(3),
+.gb-admin-main .product-admin td:nth-child(3){
+    width: 13% !important;
+    white-space: nowrap !important;
+}
+
+.gb-admin-main .product-admin th:nth-child(4),
+.gb-admin-main .product-admin td:nth-child(4){
+    width: 11% !important;
+    white-space: nowrap !important;
+}
+
+.gb-admin-main .product-admin th:nth-child(5),
+.gb-admin-main .product-admin td:nth-child(5),
+.gb-admin-main .product-admin td.price-cell{
+    width: 11% !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+    font-weight: 700 !important;
+}
+
+.gb-admin-main .product-admin th:nth-child(6),
+.gb-admin-main .product-admin td:nth-child(6){
+    width: 6% !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+}
+
+.gb-admin-main .product-admin th:nth-child(7),
+.gb-admin-main .product-admin td:nth-child(7){
+    width: 10% !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+}
+
+.gb-admin-main .product-admin th:nth-child(8),
+.gb-admin-main .product-admin td:nth-child(8){
+    width: 10% !important;
+    text-align: center !important;
+    overflow: visible !important;
+}
+
+.gb-admin-main .product-admin td.actions,
+.gb-admin-main .product-admin .actions{
+    display: table-cell !important;
+    vertical-align: middle !important;
+    text-align: center !important;
+    padding: 10px 8px !important;
+    overflow: visible !important;
+}
+
+.gb-admin-main .product-admin td.actions a.edit,
+.gb-admin-main .product-admin td.actions a.delete{
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 78px !important;
+    min-width: 78px !important;
+    max-width: 78px !important;
+    height: 34px !important;
+    min-height: 34px !important;
+    margin: 4px auto !important;
+    padding: 0 8px !important;
+    white-space: nowrap !important;
+    word-break: keep-all !important;
+    overflow: hidden !important;
+    text-overflow: clip !important;
+    border-radius: 12px !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+}
+
+.gb-admin-main .product-admin img{
+    width: 68px !important;
+    height: 68px !important;
+    object-fit: cover !important;
+    border-radius: 13px !important;
+}
+
+.gb-admin-main .product-admin td:nth-child(2) b,
+.gb-admin-main .product-admin td:nth-child(2) small{
+    white-space: normal !important;
+    word-break: normal !important;
+}
+
+@media(max-width: 1200px){
+    .gb-admin-main{
+        padding-left: 18px !important;
+        padding-right: 18px !important;
+    }
+    .gb-admin-main .product-admin th,
+    .gb-admin-main .product-admin td{
+        padding: 12px 9px !important;
+        font-size: 13px !important;
+    }
+    .gb-admin-main .product-admin td.actions a.edit,
+    .gb-admin-main .product-admin td.actions a.delete{
+        width: 70px !important;
+        min-width: 70px !important;
+        max-width: 70px !important;
+        font-size: 13px !important;
+    }
+}
+
+@media(max-width: 760px){
+    body.gb-admin-body{
+        background: #fff5ef !important;
+    }
+
+    .gb-admin-sidebar{
+        position: relative !important;
+        inset: auto !important;
+        width: auto !important;
+        padding: 16px !important;
+        border-radius: 0 0 22px 22px !important;
+    }
+
+    .gb-admin-brand strong{
+        font-size: 22px !important;
+    }
+
+    .gb-admin-nav{
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 10px !important;
+    }
+
+    .gb-admin-nav a{
+        min-height: 50px !important;
+        grid-template-columns: 38px 1fr !important;
+        font-size: 14px !important;
+        border-radius: 15px !important;
+    }
+
+    .gb-admin-main{
+        margin-left: 0 !important;
+        padding: 16px 12px 28px !important;
+        overflow-x: hidden !important;
+    }
+
+    .gb-admin-main .admin-title,
+    .gb-admin-main .admin-search-box{
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 14px !important;
+        padding: 18px !important;
+        border-radius: 20px !important;
+    }
+
+    .gb-admin-main h1{
+        font-size: 28px !important;
+    }
+
+    .gb-admin-main .admin-search-box label{
+        font-size: 22px !important;
+    }
+
+    .gb-admin-main .product-admin,
+    .gb-admin-main .product-admin thead,
+    .gb-admin-main .product-admin tbody,
+    .gb-admin-main .product-admin tr,
+    .gb-admin-main .product-admin th,
+    .gb-admin-main .product-admin td{
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .gb-admin-main .product-admin{
+        border: 0 !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        table-layout: auto !important;
+    }
+
+    .gb-admin-main .product-admin thead{
+        display: none !important;
+    }
+
+    .gb-admin-main .product-admin tr{
+        background: #fff !important;
+        border: 1px solid #efcfbf !important;
+        border-radius: 18px !important;
+        margin-bottom: 14px !important;
+        padding: 12px !important;
+        box-shadow: 0 12px 26px rgba(105,54,28,.08) !important;
+        overflow: hidden !important;
+    }
+
+    .gb-admin-main .product-admin td{
+        border: 0 !important;
+        padding: 8px 0 !important;
+        text-align: left !important;
+        white-space: normal !important;
+        overflow: visible !important;
+        display: grid !important;
+        grid-template-columns: 112px 1fr !important;
+        gap: 12px !important;
+        align-items: center !important;
+        font-size: 14px !important;
+    }
+
+    .gb-admin-main .product-admin td::before{
+        color: #8a4a2d !important;
+        font-weight: 800 !important;
+        font-size: 13px !important;
+    }
+
+    .gb-admin-main .product-admin td:nth-child(1)::before{content:'Ảnh';}
+    .gb-admin-main .product-admin td:nth-child(2)::before{content:'Tên sản phẩm';}
+    .gb-admin-main .product-admin td:nth-child(3)::before{content:'Thương hiệu';}
+    .gb-admin-main .product-admin td:nth-child(4)::before{content:'Danh mục';}
+    .gb-admin-main .product-admin td:nth-child(5)::before{content:'Giá';}
+    .gb-admin-main .product-admin td:nth-child(6)::before{content:'Kho';}
+    .gb-admin-main .product-admin td:nth-child(7)::before{content:'Trạng thái';}
+    .gb-admin-main .product-admin td:nth-child(8)::before{content:'Thao tác';}
+
+    .gb-admin-main .product-admin td.actions{
+        display: grid !important;
+        grid-template-columns: 112px 1fr !important;
+        text-align: left !important;
+    }
+
+    .gb-admin-main .product-admin td.actions a.edit,
+    .gb-admin-main .product-admin td.actions a.delete{
+        width: 86px !important;
+        min-width: 86px !important;
+        max-width: 86px !important;
+        margin: 3px 6px 3px 0 !important;
+        display: inline-flex !important;
+    }
+}
+
+/* =========================================================
+   FIX 08-06: ADMIN PRODUCT TABLE GIỐNG MẪU + MOBILE RESPONSIVE
+   ========================================================= */
+.gb-admin-main .product-admin,
+.gb-admin-main .product-table-wrap,
+.gb-admin-main .table-card{
+    width:100% !important;
+    max-width:100% !important;
+    overflow:hidden !important;
+}
+
+.gb-admin-main .product-admin table{
+    width:100% !important;
+    max-width:100% !important;
+    table-layout:fixed !important;
+    border-collapse:collapse !important;
+}
+
+.gb-admin-main .product-admin th,
+.gb-admin-main .product-admin td{
+    box-sizing:border-box !important;
+    vertical-align:middle !important;
+    overflow:hidden !important;
+}
+
+.gb-admin-main .product-admin th:nth-child(1),
+.gb-admin-main .product-admin td:nth-child(1){width:10% !important;}
+.gb-admin-main .product-admin th:nth-child(2),
+.gb-admin-main .product-admin td:nth-child(2){width:31% !important;}
+.gb-admin-main .product-admin th:nth-child(3),
+.gb-admin-main .product-admin td:nth-child(3){width:12% !important;}
+.gb-admin-main .product-admin th:nth-child(4),
+.gb-admin-main .product-admin td:nth-child(4){width:11% !important;}
+.gb-admin-main .product-admin th:nth-child(5),
+.gb-admin-main .product-admin td:nth-child(5){width:11% !important;}
+.gb-admin-main .product-admin th:nth-child(6),
+.gb-admin-main .product-admin td:nth-child(6){width:6% !important;text-align:center !important;}
+.gb-admin-main .product-admin th:nth-child(7),
+.gb-admin-main .product-admin td:nth-child(7){width:10% !important;text-align:center !important;}
+.gb-admin-main .product-admin th:nth-child(8),
+.gb-admin-main .product-admin td:nth-child(8){width:9% !important;text-align:center !important;}
+
+.gb-admin-main .product-admin td:nth-child(3),
+.gb-admin-main .product-admin td:nth-child(5),
+.gb-admin-main .product-admin td:nth-child(7){
+    white-space:nowrap !important;
+    word-break:normal !important;
+}
+
+.gb-admin-main .product-admin td:nth-child(2) b,
+.gb-admin-main .product-admin td:nth-child(2) small{
+    display:block !important;
+    max-width:100% !important;
+    overflow:hidden !important;
+    text-overflow:ellipsis !important;
+}
+
+.gb-admin-main .product-admin td:nth-child(5){
+    font-weight:700 !important;
+    color:#2b130d !important;
+}
+
+.gb-admin-main .product-admin td.actions,
+.gb-admin-main .product-admin .actions{
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:center !important;
+    justify-content:center !important;
+    gap:8px !important;
+    padding:12px 6px !important;
+}
+
+.gb-admin-main .product-admin .actions a,
+.gb-admin-main .product-admin .actions .edit,
+.gb-admin-main .product-admin .actions .delete{
+    width:82px !important;
+    min-width:82px !important;
+    max-width:82px !important;
+    height:36px !important;
+    min-height:36px !important;
+    padding:0 8px !important;
+    border-radius:12px !important;
+    display:inline-flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    gap:4px !important;
+    white-space:nowrap !important;
+    word-break:normal !important;
+    overflow:hidden !important;
+    text-overflow:clip !important;
+    font-size:13px !important;
+    line-height:1 !important;
+}
+
+@media (max-width: 900px){
+    .gb-admin-main{
+        padding:14px !important;
+        overflow-x:hidden !important;
+    }
+    .gb-admin-main .product-admin,
+    .gb-admin-main .product-table-wrap,
+    .gb-admin-main .table-card{
+        overflow-x:auto !important;
+        -webkit-overflow-scrolling:touch !important;
+    }
+    .gb-admin-main .product-admin table{
+        min-width:760px !important;
+        table-layout:fixed !important;
+    }
+    .gb-admin-main .product-admin .actions a,
+    .gb-admin-main .product-admin .actions .edit,
+    .gb-admin-main .product-admin .actions .delete{
+        width:78px !important;
+        min-width:78px !important;
+        max-width:78px !important;
+    }
+}
+
+/* =========================================================
+   FINAL FIX 08-06: khóa lại bảng sản phẩm admin giống ảnh mẫu
+   - Không để td.actions thành flex vì sẽ phá layout table
+   - Cột Thao tác đủ rộng, nút nằm gọn trong cột
+   - Thương hiệu/Giá không xuống dòng
+========================================================= */
+.gb-admin-main .table-card,
+.gb-admin-main .product-table-wrap{
+    width:100% !important;
+    max-width:100% !important;
+    overflow:hidden !important;
+    box-sizing:border-box !important;
+}
+
+.gb-admin-main table.product-admin,
+.gb-admin-main .product-admin{
+    width:100% !important;
+    max-width:100% !important;
+    table-layout:fixed !important;
+    border-collapse:separate !important;
+    border-spacing:0 !important;
+    box-sizing:border-box !important;
+}
+
+.gb-admin-main table.product-admin th,
+.gb-admin-main table.product-admin td,
+.gb-admin-main .product-admin th,
+.gb-admin-main .product-admin td{
+    box-sizing:border-box !important;
+    vertical-align:middle !important;
+    padding:14px 12px !important;
+    font-size:14px !important;
+    line-height:1.35 !important;
+    overflow:hidden !important;
+}
+
+.gb-admin-main table.product-admin th:nth-child(1),
+.gb-admin-main table.product-admin td:nth-child(1),
+.gb-admin-main .product-admin th:nth-child(1),
+.gb-admin-main .product-admin td:nth-child(1){width:10% !important;text-align:center !important;}
+
+.gb-admin-main table.product-admin th:nth-child(2),
+.gb-admin-main table.product-admin td:nth-child(2),
+.gb-admin-main .product-admin th:nth-child(2),
+.gb-admin-main .product-admin td:nth-child(2){width:31% !important;}
+
+.gb-admin-main table.product-admin th:nth-child(3),
+.gb-admin-main table.product-admin td:nth-child(3),
+.gb-admin-main .product-admin th:nth-child(3),
+.gb-admin-main .product-admin td:nth-child(3){width:12% !important;white-space:nowrap !important;word-break:normal !important;}
+
+.gb-admin-main table.product-admin th:nth-child(4),
+.gb-admin-main table.product-admin td:nth-child(4),
+.gb-admin-main .product-admin th:nth-child(4),
+.gb-admin-main .product-admin td:nth-child(4){width:11% !important;white-space:nowrap !important;word-break:normal !important;}
+
+.gb-admin-main table.product-admin th:nth-child(5),
+.gb-admin-main table.product-admin td:nth-child(5),
+.gb-admin-main .product-admin th:nth-child(5),
+.gb-admin-main .product-admin td:nth-child(5),
+.gb-admin-main .product-admin td.price-cell{width:11% !important;text-align:center !important;white-space:nowrap !important;word-break:normal !important;font-weight:700 !important;color:#2b130d !important;}
+
+.gb-admin-main table.product-admin th:nth-child(6),
+.gb-admin-main table.product-admin td:nth-child(6),
+.gb-admin-main .product-admin th:nth-child(6),
+.gb-admin-main .product-admin td:nth-child(6){width:6% !important;text-align:center !important;white-space:nowrap !important;}
+
+.gb-admin-main table.product-admin th:nth-child(7),
+.gb-admin-main table.product-admin td:nth-child(7),
+.gb-admin-main .product-admin th:nth-child(7),
+.gb-admin-main .product-admin td:nth-child(7){width:10% !important;text-align:center !important;white-space:nowrap !important;}
+
+.gb-admin-main table.product-admin th:nth-child(8),
+.gb-admin-main table.product-admin td:nth-child(8),
+.gb-admin-main .product-admin th:nth-child(8),
+.gb-admin-main .product-admin td:nth-child(8){width:9% !important;text-align:center !important;overflow:hidden !important;}
+
+.gb-admin-main table.product-admin td.actions,
+.gb-admin-main .product-admin td.actions{
+    display:table-cell !important;
+    vertical-align:middle !important;
+    text-align:center !important;
+    padding:10px 6px !important;
+    overflow:hidden !important;
+}
+
+.gb-admin-main table.product-admin td.actions a,
+.gb-admin-main table.product-admin td.actions a.edit,
+.gb-admin-main table.product-admin td.actions a.delete,
+.gb-admin-main .product-admin td.actions a,
+.gb-admin-main .product-admin td.actions a.edit,
+.gb-admin-main .product-admin td.actions a.delete{
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    width:82px !important;
+    min-width:82px !important;
+    max-width:82px !important;
+    height:36px !important;
+    min-height:36px !important;
+    margin:5px auto !important;
+    padding:0 8px !important;
+    border-radius:12px !important;
+    white-space:nowrap !important;
+    word-break:normal !important;
+    overflow:hidden !important;
+    text-overflow:clip !important;
+    font-size:14px !important;
+    line-height:1 !important;
+    font-weight:700 !important;
+}
+
+.gb-admin-main table.product-admin td.actions a.edit::before,
+.gb-admin-main .product-admin td.actions a.edit::before{
+    content:"✏️" !important;
+    display:inline-block !important;
+    margin-right:4px !important;
+    font-size:13px !important;
+}
+.gb-admin-main table.product-admin td.actions a.delete::before,
+.gb-admin-main .product-admin td.actions a.delete::before{
+    content:"🗑️" !important;
+    display:inline-block !important;
+    margin-right:4px !important;
+    font-size:13px !important;
+}
+
+.gb-admin-main table.product-admin img,
+.gb-admin-main .product-admin img{
+    width:68px !important;
+    height:68px !important;
+    object-fit:cover !important;
+    border-radius:13px !important;
+}
+
+.gb-admin-main table.product-admin td:nth-child(2) b,
+.gb-admin-main .product-admin td:nth-child(2) b{
+    display:block !important;
+    margin-bottom:6px !important;
+    white-space:normal !important;
+    overflow:hidden !important;
+    display:-webkit-box !important;
+    -webkit-line-clamp:2 !important;
+    -webkit-box-orient:vertical !important;
+}
+.gb-admin-main table.product-admin td:nth-child(2) small,
+.gb-admin-main .product-admin td:nth-child(2) small{
+    display:block !important;
+    white-space:normal !important;
+    overflow:hidden !important;
+    display:-webkit-box !important;
+    -webkit-line-clamp:2 !important;
+    -webkit-box-orient:vertical !important;
+}
+
+/* Mobile admin: cho bảng cuộn ngang gọn, không phá layout desktop */
+@media(max-width:900px){
+    .gb-admin-main .product-table-wrap,
+    .gb-admin-main .table-card{
+        overflow-x:auto !important;
+        -webkit-overflow-scrolling:touch !important;
+    }
+    .gb-admin-main table.product-admin,
+    .gb-admin-main .product-admin{
+        min-width:760px !important;
+        table-layout:fixed !important;
+    }
+    .gb-admin-main table.product-admin td.actions,
+    .gb-admin-main .product-admin td.actions{
+        display:table-cell !important;
+    }
+}
+
+/* =========================================================
+   FINAL LOCK 08-06: Bảng sản phẩm Admin giống ảnh mẫu ổn định
+   - Không tràn ngang desktop
+   - Cột thao tác đủ chỗ cho Sửa/Xóa
+   - Brand/Giá không vỡ chữ
+========================================================= */
+.gb-admin-main .table-card,
+.gb-admin-main .product-table-wrap{
+    width:100% !important;
+    max-width:100% !important;
+    overflow:hidden !important;
+    box-sizing:border-box !important;
+}
+.gb-admin-main table.product-admin,
+.gb-admin-main .product-admin table,
+.gb-admin-main .product-admin{
+    width:100% !important;
+    max-width:100% !important;
+    table-layout:fixed !important;
+    border-collapse:separate !important;
+    border-spacing:0 !important;
+}
+.gb-admin-main table.product-admin th,
+.gb-admin-main table.product-admin td,
+.gb-admin-main .product-admin th,
+.gb-admin-main .product-admin td{
+    box-sizing:border-box !important;
+    padding:14px 12px !important;
+    vertical-align:middle !important;
+    overflow:hidden !important;
+    line-height:1.35 !important;
+}
+.gb-admin-main table.product-admin th:nth-child(1),
+.gb-admin-main table.product-admin td:nth-child(1),
+.gb-admin-main .product-admin th:nth-child(1),
+.gb-admin-main .product-admin td:nth-child(1){width:9% !important;text-align:center !important;}
+.gb-admin-main table.product-admin th:nth-child(2),
+.gb-admin-main table.product-admin td:nth-child(2),
+.gb-admin-main .product-admin th:nth-child(2),
+.gb-admin-main .product-admin td:nth-child(2){width:31% !important;}
+.gb-admin-main table.product-admin th:nth-child(3),
+.gb-admin-main table.product-admin td:nth-child(3),
+.gb-admin-main .product-admin th:nth-child(3),
+.gb-admin-main .product-admin td:nth-child(3){width:12% !important;white-space:nowrap !important;word-break:normal !important;}
+.gb-admin-main table.product-admin th:nth-child(4),
+.gb-admin-main table.product-admin td:nth-child(4),
+.gb-admin-main .product-admin th:nth-child(4),
+.gb-admin-main .product-admin td:nth-child(4){width:11% !important;white-space:nowrap !important;word-break:normal !important;}
+.gb-admin-main table.product-admin th:nth-child(5),
+.gb-admin-main table.product-admin td:nth-child(5),
+.gb-admin-main .product-admin th:nth-child(5),
+.gb-admin-main .product-admin td:nth-child(5){width:10% !important;text-align:center !important;white-space:nowrap !important;font-weight:700 !important;}
+.gb-admin-main table.product-admin th:nth-child(6),
+.gb-admin-main table.product-admin td:nth-child(6),
+.gb-admin-main .product-admin th:nth-child(6),
+.gb-admin-main .product-admin td:nth-child(6){width:6% !important;text-align:center !important;white-space:nowrap !important;}
+.gb-admin-main table.product-admin th:nth-child(7),
+.gb-admin-main table.product-admin td:nth-child(7),
+.gb-admin-main .product-admin th:nth-child(7),
+.gb-admin-main .product-admin td:nth-child(7){width:9% !important;text-align:center !important;white-space:nowrap !important;}
+.gb-admin-main table.product-admin th:nth-child(8),
+.gb-admin-main table.product-admin td:nth-child(8),
+.gb-admin-main .product-admin th:nth-child(8),
+.gb-admin-main .product-admin td:nth-child(8){width:12% !important;text-align:center !important;}
+.gb-admin-main table.product-admin td.actions,
+.gb-admin-main .product-admin td.actions{
+    display:table-cell !important;
+    text-align:center !important;
+    vertical-align:middle !important;
+    padding:10px 8px !important;
+    overflow:hidden !important;
+}
+.gb-admin-main table.product-admin td.actions a,
+.gb-admin-main table.product-admin td.actions a.edit,
+.gb-admin-main table.product-admin td.actions a.delete,
+.gb-admin-main .product-admin td.actions a,
+.gb-admin-main .product-admin td.actions a.edit,
+.gb-admin-main .product-admin td.actions a.delete{
+    width:88px !important;
+    min-width:88px !important;
+    max-width:88px !important;
+    height:36px !important;
+    min-height:36px !important;
+    margin:5px auto !important;
+    padding:0 8px !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    border-radius:12px !important;
+    white-space:nowrap !important;
+    word-break:normal !important;
+    overflow:hidden !important;
+    text-overflow:clip !important;
+    font-size:14px !important;
+    font-weight:700 !important;
+    line-height:1 !important;
+}
+.gb-admin-main table.product-admin img,
+.gb-admin-main .product-admin img{
+    width:68px !important;
+    height:68px !important;
+    object-fit:cover !important;
+    border-radius:13px !important;
+}
+@media(max-width:900px){
+    .gb-admin-main .product-table-wrap,
+    .gb-admin-main .table-card{overflow-x:auto !important;-webkit-overflow-scrolling:touch !important;}
+    .gb-admin-main table.product-admin,
+    .gb-admin-main .product-admin table,
+    .gb-admin-main .product-admin{min-width:820px !important;}
+}
+
+/* =========================================================
+   FINAL ADMIN MOBILE FIX 09-06
+   Admin dùng được trên điện thoại: menu không che màn hình, bảng kéo ngang,
+   nút loa nhỏ cố định góc phải dưới.
+========================================================= */
+html,body{max-width:100%;overflow-x:hidden;}
+.gb-admin-main *{box-sizing:border-box;}
+@media(max-width:900px){
+    .gb-admin-body,.admin-body{display:block!important;overflow-x:hidden!important;background:#fff8f4!important;}
+    .gb-admin-sidebar,.admin-sidebar,.admin-sidebar-v36{
+        position:relative!important;
+        left:auto!important;top:auto!important;bottom:auto!important;
+        width:100%!important;min-width:0!important;height:auto!important;
+        padding:14px!important;border-radius:0 0 24px 24px!important;
+        overflow:visible!important;
+    }
+    .gb-admin-brand,.admin-logo{display:flex!important;align-items:center!important;gap:10px!important;margin-bottom:12px!important;}
+    .gb-admin-brand img,.admin-logo img{width:48px!important;height:48px!important;}
+    .gb-admin-brand strong,.admin-logo strong{font-size:22px!important;}
+    .gb-admin-mini-title{font-size:12px!important;margin:6px 0 10px!important;}
+    .gb-admin-nav,.admin-nav-v36{display:flex!important;gap:9px!important;overflow-x:auto!important;-webkit-overflow-scrolling:touch!important;padding-bottom:6px!important;scrollbar-width:none!important;}
+    .gb-admin-nav::-webkit-scrollbar,.admin-nav-v36::-webkit-scrollbar{display:none!important;}
+    .gb-admin-nav a,.admin-nav-v36 a{flex:0 0 auto!important;width:auto!important;min-width:max-content!important;padding:10px 13px!important;border-radius:18px!important;gap:7px!important;font-size:14px!important;}
+    .gb-admin-nav a .nav-ico,.admin-nav-v36 a .nav-ico{width:34px!important;height:34px!important;min-width:34px!important;font-size:17px!important;}
+    .gb-admin-main,.admin-main,.admin-main-v36{
+        margin-left:0!important;width:100%!important;max-width:100%!important;
+        padding:16px 12px 90px!important;overflow-x:hidden!important;
+    }
+    .gb-admin-main h1,.admin-main h1{font-size:clamp(28px,8vw,40px)!important;line-height:1.15!important;}
+    .gb-admin-main .card,.gb-admin-main .table-card,.gb-admin-main .admin-card,.gb-admin-main section,.gb-admin-main form{max-width:100%!important;border-radius:22px!important;}
+    .gb-admin-main .table-card,.gb-admin-main .product-table-wrap,.gb-admin-main .admin-table-wrap{overflow-x:auto!important;-webkit-overflow-scrolling:touch!important;}
+    .gb-admin-main table{min-width:760px!important;width:100%!important;}
+    .gb-admin-main input,.gb-admin-main select,.gb-admin-main textarea{font-size:16px!important;max-width:100%!important;}
+    .gb-admin-main .form-grid,.gb-admin-main .form-row,.gb-admin-main .dashboard-grid,.gb-admin-main .stats-grid{display:grid!important;grid-template-columns:1fr!important;gap:14px!important;}
+}
+
+/* =========================================================
+   ADMIN MOBILE OVERFLOW FIX V10 - 10/06/2026
+   Chỉ xử lý mobile admin: bảng kéo ngang, không bị cắt cột,
+   biểu đồ kéo ngang xem đủ, form/card vừa màn hình.
+========================================================= */
+@media (max-width: 900px){
+  html, body{
+    max-width:100% !important;
+    width:100% !important;
+    overflow-x:hidden !important;
+    background:#fff8f4 !important;
+  }
+
+  body.gb-admin-body,
+  body.admin-body,
+  .gb-admin-body,
+  .admin-body{
+    display:block !important;
+    min-width:0 !important;
+    width:100% !important;
+    overflow-x:hidden !important;
+  }
+
+  .gb-admin-main,
+  .admin-main,
+  .admin-main-v34,
+  .admin-main-v35,
+  .admin-main-v36{
+    margin-left:0 !important;
+    width:100% !important;
+    max-width:100vw !important;
+    min-width:0 !important;
+    padding:14px 10px 92px !important;
+    overflow-x:hidden !important;
+  }
+
+  .gb-admin-main > *,
+  .admin-main > *,
+  .admin-main-v34 > *,
+  .admin-main-v35 > *,
+  .admin-main-v36 > *{
+    max-width:100% !important;
+    box-sizing:border-box !important;
+  }
+
+  .gb-admin-main .admin-panel-v34,
+  .gb-admin-main .admin-panel-v35,
+  .gb-admin-main .admin-panel-v36,
+  .gb-admin-main .admin-table-panel-final,
+  .gb-admin-main .admin-table-panel-clean,
+  .gb-admin-main .table-card,
+  .gb-admin-main .admin-card,
+  .gb-admin-main .card,
+  .gb-admin-main section,
+  .admin-main .admin-panel-v34,
+  .admin-main .admin-panel-v35,
+  .admin-main .admin-panel-v36,
+  .admin-main .admin-table-panel-final,
+  .admin-main .admin-table-panel-clean,
+  .admin-main .table-card,
+  .admin-main .admin-card,
+  .admin-main .card,
+  .admin-main section{
+    width:100% !important;
+    max-width:100% !important;
+    min-width:0 !important;
+    overflow-x:auto !important;
+    overflow-y:visible !important;
+    -webkit-overflow-scrolling:touch !important;
+    touch-action:pan-x pan-y !important;
+    border-radius:20px !important;
+  }
+
+  .gb-admin-main .admin-panel-v34::-webkit-scrollbar,
+  .gb-admin-main .admin-panel-v35::-webkit-scrollbar,
+  .gb-admin-main .admin-panel-v36::-webkit-scrollbar,
+  .gb-admin-main .admin-table-panel-final::-webkit-scrollbar,
+  .gb-admin-main .admin-table-panel-clean::-webkit-scrollbar,
+  .gb-admin-main .table-card::-webkit-scrollbar,
+  .admin-main .admin-panel-v34::-webkit-scrollbar,
+  .admin-main .admin-panel-v35::-webkit-scrollbar,
+  .admin-main .admin-panel-v36::-webkit-scrollbar,
+  .admin-main .admin-table-panel-final::-webkit-scrollbar,
+  .admin-main .admin-table-panel-clean::-webkit-scrollbar,
+  .admin-main .table-card::-webkit-scrollbar{
+    height:7px !important;
+  }
+
+  .gb-admin-main table,
+  .admin-main table,
+  .admin-main-v34 table,
+  .admin-main-v35 table,
+  .admin-main-v36 table,
+  .gb-admin-main .admin-table,
+  .admin-main .admin-table{
+    display:table !important;
+    width:max-content !important;
+    min-width:760px !important;
+    max-width:none !important;
+    table-layout:auto !important;
+    border-collapse:separate !important;
+  }
+
+  .gb-admin-main .order-table-final,
+  .gb-admin-main .order-admin-table,
+  .gb-admin-main .order-admin-table-v63,
+  .admin-main .order-table-final,
+  .admin-main .order-admin-table,
+  .admin-main .order-admin-table-v63{
+    min-width:980px !important;
+  }
+
+  .gb-admin-main .product-admin,
+  .admin-main .product-admin{
+    min-width:860px !important;
+  }
+
+  .gb-admin-main th,
+  .gb-admin-main td,
+  .admin-main th,
+  .admin-main td{
+    white-space:normal !important;
+    word-break:normal !important;
+    overflow-wrap:break-word !important;
+    overflow:visible !important;
+    text-overflow:clip !important;
+    padding:10px 9px !important;
+    font-size:12px !important;
+    line-height:1.35 !important;
+    vertical-align:middle !important;
+  }
+
+  .gb-admin-main th,
+  .admin-main th{
+    white-space:nowrap !important;
+    font-size:11px !important;
+  }
+
+  .gb-admin-main .status-pill,
+  .gb-admin-main .payment-pill,
+  .admin-main .status-pill,
+  .admin-main .payment-pill{
+    min-width:96px !important;
+    height:30px !important;
+    padding:0 9px !important;
+    font-size:11px !important;
+    white-space:nowrap !important;
+  }
+
+  .gb-admin-main .admin-actions,
+  .gb-admin-main td.actions,
+  .admin-main .admin-actions,
+  .admin-main td.actions{
+    white-space:nowrap !important;
+    min-width:110px !important;
+  }
+
+  .gb-admin-main .month-chart-panel-v35,
+  .gb-admin-main .chart-panel,
+  .admin-main .month-chart-panel-v35,
+  .admin-main .chart-panel{
+    width:100% !important;
+    max-width:100% !important;
+    overflow-x:auto !important;
+    overflow-y:visible !important;
+    -webkit-overflow-scrolling:touch !important;
+  }
+
+  .gb-admin-main .month-chart-v35,
+  .admin-main .month-chart-v35{
+    width:max-content !important;
+    min-width:720px !important;
+    justify-content:flex-start !important;
+    gap:18px !important;
+    padding:18px 14px 24px !important;
+  }
+
+  .gb-admin-main .bar-item-v35,
+  .admin-main .bar-item-v35{
+    min-width:72px !important;
+    flex:0 0 72px !important;
+  }
+
+  .gb-admin-main .dashboard-grid,
+  .gb-admin-main .stats-grid,
+  .gb-admin-main .form-grid,
+  .admin-main .dashboard-grid,
+  .admin-main .stats-grid,
+  .admin-main .form-grid{
+    display:grid !important;
+    grid-template-columns:1fr !important;
+    gap:12px !important;
+  }
+
+  .gb-admin-main input,
+  .gb-admin-main select,
+  .gb-admin-main textarea,
+  .admin-main input,
+  .admin-main select,
+  .admin-main textarea{
+    max-width:100% !important;
+    width:100% !important;
+    font-size:16px !important;
+  }
+
+  .gb-voice-toggle,
+  #gbVoiceToggle{
+    right:10px !important;
+    bottom:16px !important;
+    width:42px !important;
+    height:42px !important;
+    min-width:42px !important;
+    min-height:42px !important;
+    z-index:9999 !important;
+  }
+}
+
+/* =========================================================
+   ADMIN MOBILE RESPONSIVE FINAL FIX - 2026-06-10
+   Thu nhỏ toàn bộ admin trên mobile, chống bảng/form tràn màn hình.
+   ========================================================= */
+@media (max-width: 768px) {
+  html, body.admin-body, body.gb-admin-body { width:100% !important; max-width:100% !important; overflow-x:hidden !important; }
+  body.gb-admin-body * { box-sizing:border-box !important; }
+  .gb-admin-sidebar, .admin-sidebar { position:relative !important; left:auto !important; top:auto !important; width:100% !important; max-width:100% !important; height:auto !important; min-height:0 !important; padding:12px !important; border-radius:0 0 18px 18px !important; overflow:visible !important; }
+  .gb-admin-brand, .admin-logo { display:flex !important; align-items:center !important; gap:10px !important; min-width:0 !important; }
+  .gb-admin-brand img, .admin-logo img { width:44px !important; height:44px !important; }
+  .gb-admin-brand strong { font-size:20px !important; line-height:1.1 !important; }
+  .gb-admin-mini-title { font-size:13px !important; margin:8px 0 !important; }
+  .gb-admin-nav, .admin-nav-v36 { display:grid !important; grid-template-columns:repeat(2,minmax(0,1fr)) !important; gap:8px !important; width:100% !important; }
+  .gb-admin-nav a, .admin-nav-v36 a { width:100% !important; min-width:0 !important; min-height:42px !important; padding:8px !important; border-radius:13px !important; font-size:13px !important; line-height:1.15 !important; display:grid !important; grid-template-columns:28px minmax(0,1fr) !important; gap:6px !important; align-items:center !important; overflow:hidden !important; }
+  .gb-admin-nav a span:last-child, .admin-nav-v36 a span:last-child { overflow:hidden !important; text-overflow:ellipsis !important; white-space:nowrap !important; }
+  .nav-ico { font-size:18px !important; }
+
+  .gb-admin-main, .admin-main { margin-left:0 !important; width:100% !important; max-width:100% !important; padding:12px !important; overflow-x:hidden !important; }
+  .gb-admin-main h1, .admin-main h1 { font-size:24px !important; line-height:1.18 !important; overflow-wrap:anywhere !important; }
+  .admin-title, .admin-search-box, .dashboard-grid, .stat-grid, .admin-card, .gb-card, .form-card { width:100% !important; max-width:100% !important; display:grid !important; grid-template-columns:1fr !important; gap:10px !important; padding:14px !important; border-radius:18px !important; overflow:hidden !important; }
+  .admin-actions, .admin-filters, .form-actions, .table-actions { display:flex !important; flex-wrap:wrap !important; gap:8px !important; width:100% !important; }
+  .admin-actions a, .admin-actions button, .form-actions button, .form-actions a, .table-actions a, .table-actions button { flex:1 1 100% !important; min-height:40px !important; justify-content:center !important; text-align:center !important; }
+  .admin-main input, .admin-main select, .admin-main textarea, .gb-admin-main input, .gb-admin-main select, .gb-admin-main textarea { width:100% !important; max-width:100% !important; min-width:0 !important; font-size:16px !important; }
+
+  .admin-table-wrap, .table-wrap, .gb-table-wrap { width:100% !important; max-width:100% !important; overflow-x:auto !important; -webkit-overflow-scrolling:touch !important; border-radius:16px !important; }
+  table.admin-table, table.product-admin, .admin-table, .product-admin, .order-admin-table, .customer-admin-table { width:100% !important; max-width:100% !important; min-width:0 !important; border-collapse:separate !important; }
+  .admin-main table, .gb-admin-main table { font-size:13px !important; }
+  .admin-main th, .admin-main td, .gb-admin-main th, .gb-admin-main td { padding:8px !important; white-space:normal !important; overflow-wrap:anywhere !important; vertical-align:middle !important; }
+  .admin-main img, .gb-admin-main img { max-width:72px !important; height:auto !important; object-fit:cover !important; border-radius:10px !important; }
+
+  .gb-admin-main .product-admin, .gb-admin-main .product-admin thead, .gb-admin-main .product-admin tbody, .gb-admin-main .product-admin tr, .gb-admin-main .product-admin th, .gb-admin-main .product-admin td { display:block !important; width:100% !important; max-width:100% !important; }
+  .gb-admin-main .product-admin thead { display:none !important; }
+  .gb-admin-main .product-admin tr { background:#fff !important; border:1px solid #efcfbf !important; border-radius:16px !important; margin:0 0 12px !important; padding:10px !important; overflow:hidden !important; }
+  .gb-admin-main .product-admin td { display:grid !important; grid-template-columns:92px minmax(0,1fr) !important; gap:8px !important; align-items:center !important; border:0 !important; padding:7px 0 !important; font-size:13px !important; }
+  .gb-admin-main .product-admin td::before { font-weight:800 !important; color:#8a4a2d !important; font-size:12px !important; }
+  .gb-admin-main .product-admin td:nth-child(1)::before{content:'Ảnh';}
+  .gb-admin-main .product-admin td:nth-child(2)::before{content:'Tên';}
+  .gb-admin-main .product-admin td:nth-child(3)::before{content:'Thương hiệu';}
+  .gb-admin-main .product-admin td:nth-child(4)::before{content:'Danh mục';}
+  .gb-admin-main .product-admin td:nth-child(5)::before{content:'Giá';}
+  .gb-admin-main .product-admin td:nth-child(6)::before{content:'Kho';}
+  .gb-admin-main .product-admin td:nth-child(7)::before{content:'Trạng thái';}
+  .gb-admin-main .product-admin td:nth-child(8)::before{content:'Thao tác';}
+}
+@media (max-width: 390px) {
+  .gb-admin-nav, .admin-nav-v36 { grid-template-columns:1fr !important; }
+  .gb-admin-main, .admin-main { padding:10px !important; }
+  .gb-admin-main .product-admin td { grid-template-columns:82px minmax(0,1fr) !important; }
+}
+
+
+/* ===== GLOWBEAUTY ADMIN COMPACT SIZE FIX - 2026-06-10 ===== */
+@media (min-width:901px){
+  .admin-sidebar{width:250px!important;padding:22px 18px!important;}
+  .admin-main{margin-left:250px!important;width:calc(100% - 250px)!important;padding:26px 30px!important;}
+  .admin-logo{font-size:24px!important;margin-bottom:20px!important;}
+  .admin-logo img{width:40px!important;height:40px!important;}
+  .admin-sidebar a{padding:11px 13px!important;font-size:14px!important;border-radius:12px!important;margin:6px 0!important;}
+  .admin-main h1{font-size:34px!important;line-height:1.12!important;}
+  .admin-title{padding:18px 22px!important;border-radius:22px!important;margin-bottom:18px!important;}
+  .stat-grid{gap:12px!important;margin:18px 0 28px!important;}
+  .stat-grid div{padding:18px!important;border-radius:18px!important;}
+  .stat-grid b{font-size:24px!important;}
+  .admin-form{padding:24px!important;border-radius:22px!important;max-width:960px!important;}
+  .form-grid{gap:14px!important;}
+  .admin-form input,.admin-form textarea,.admin-form select{padding:12px 14px!important;border-radius:13px!important;font-size:14px!important;}
+  .admin-table th,.admin-table td{padding:11px 13px!important;font-size:13.5px!important;}
+  .product-admin img{width:58px!important;height:58px!important;border-radius:12px!important;}
+  .admin-table td.actions a,.admin-table a.edit,.admin-table a.delete{width:72px!important;min-width:72px!important;height:34px!important;font-size:13px!important;}
+  .order-detail-grid{gap:16px!important;}
+  .order-panel{padding:18px!important;border-radius:18px!important;}
+  .order-total{font-size:28px!important;}
+}
+
+
+/* ===== ADMIN TABLE COMPACT CUSTOMER + PHONE FIX ===== */
+.gb-admin-main .admin-table td.customer-cell-final,
+.admin-main .admin-table td.customer-cell-final{
+    min-width:150px!important;
+    white-space:normal!important;
+}
+.gb-admin-main .customer-cell-final b,
+.admin-main .customer-cell-final b{
+    display:block!important;
+    font-weight:950!important;
+    line-height:1.25!important;
+}
+.gb-admin-main .customer-cell-final span,
+.admin-main .customer-cell-final span{
+    display:block!important;
+    margin-top:5px!important;
+    color:#9b664d!important;
+    font-weight:700!important;
+    font-size:13px!important;
+    white-space:nowrap!important;
+}
+.gb-admin-main .admin-table td:nth-child(1),
+.admin-main .admin-table td:nth-child(1),
+.gb-admin-main .admin-table td:nth-child(4),
+.admin-main .admin-table td:nth-child(4),
+.gb-admin-main .admin-table td:nth-child(7),
+.admin-main .admin-table td:nth-child(7),
+.gb-admin-main .admin-table td:nth-child(8),
+.admin-main .admin-table td:nth-child(8){
+    white-space:nowrap!important;
+}
+.gb-admin-main .order-admin-table td:nth-child(4) b,
+.admin-main .order-admin-table td:nth-child(4) b,
+.gb-admin-main .admin-table td b,
+.admin-main .admin-table td b{
+    white-space:nowrap!important;
+}
+.gb-admin-main .order-admin-table,
+.admin-main .order-admin-table{
+    min-width:1060px!important;
+}
+.gb-admin-main .admin-table,
+.admin-main .admin-table{
+    font-size:14px!important;
+}
