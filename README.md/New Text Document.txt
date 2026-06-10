@@ -1,0 +1,227 @@
+# BEAUTY MAKEUP SHOP
+
+## GIỚI THIỆU DỰ ÁN
+
+Beauty Makeup Shop là website bán mỹ phẩm trực tuyến được xây dựng bằng ngôn ngữ PHP và hệ quản trị cơ sở dữ liệu MySQL.
+
+Hệ thống được thiết kế nhằm hỗ trợ khách hàng tìm kiếm, lựa chọn và đặt mua mỹ phẩm trực tuyến một cách thuận tiện. Ngoài ra, website còn cung cấp trang quản trị giúp quản lý sản phẩm, đơn hàng, khách hàng và doanh thu.
+
+---
+
+## CHỨC NĂNG CHÍNH
+
+### Đối với khách hàng
+
+* Đăng ký tài khoản.
+* Đăng nhập hệ thống.
+* Xem danh sách sản phẩm.
+* Tìm kiếm sản phẩm.
+* Xem chi tiết sản phẩm.
+* Thêm sản phẩm vào giỏ hàng.
+* Quản lý giỏ hàng.
+* Đặt hàng trực tuyến.
+* Theo dõi đơn hàng.
+* Quản lý thông tin cá nhân.
+* Thêm sản phẩm yêu thích.
+
+### Đối với quản trị viên
+
+* Quản lý sản phẩm.
+* Thêm sản phẩm.
+* Sửa sản phẩm.
+* Xóa sản phẩm.
+* Quản lý danh mục sản phẩm.
+* Quản lý khách hàng.
+* Quản lý đơn hàng.
+* Thống kê doanh thu.
+* Theo dõi hàng tồn kho.
+* Quản lý nội dung website.
+
+---
+
+## CÔNG NGHỆ SỬ DỤNG
+
+### Ngôn ngữ lập trình
+
+* PHP
+
+### Cơ sở dữ liệu
+
+* MySQL
+
+### Giao diện
+
+* HTML5
+* CSS3
+* JavaScript
+* Bootstrap
+
+### Mô hình phát triển
+
+* MVC (Model - View - Controller)
+
+---
+
+## CẤU TRÚC THƯ MỤC
+
+```text
+beauty_makeup_shop
+│
+├── app
+│   ├── controllers
+│   ├── models
+│   ├── views
+│   └── core
+│
+├── config
+├── public
+│   ├── assets
+│   ├── css
+│   ├── js
+│   └── images
+│
+├── uploads
+├── index.php
+├── database.sql
+└── README.md
+```
+
+---
+
+## HƯỚNG DẪN TRIỂN KHAI TRÊN HOSTING
+
+### Bước 1: Upload mã nguồn
+
+Upload toàn bộ source code lên thư mục:
+
+```text
+public_html
+```
+
+hoặc thư mục gốc do nhà cung cấp Hosting quy định.
+
+---
+
+### Bước 2: Tạo cơ sở dữ liệu
+
+Đăng nhập cPanel.
+
+Chọn mục:
+
+```text
+MySQL Databases
+```
+
+Tạo:
+
+* Database
+* User Database
+
+Gán quyền:
+
+```text
+ALL PRIVILEGES
+```
+
+---
+
+### Bước 3: Import dữ liệu
+
+Đăng nhập phpMyAdmin.
+
+Chọn cơ sở dữ liệu vừa tạo.
+
+Import file:
+
+```text
+database.sql
+```
+
+---
+
+### Bước 4: Cấu hình kết nối cơ sở dữ liệu
+
+Mở file:
+
+```text
+config/database.php
+```
+
+Cập nhật thông tin:
+
+```php
+Host: localhost
+Database: ten_database
+Username: ten_user
+Password: mat_khau_database
+```
+
+---
+
+### Bước 5: Truy cập website
+
+Sau khi hoàn tất cấu hình:
+
+```text
+https://tenmiencuaban.com
+```
+
+Website sẽ hoạt động bình thường.
+
+---
+
+## TÀI KHOẢN QUẢN TRỊ
+
+Tài khoản quản trị được lưu trong cơ sở dữ liệu.
+
+Sau khi import dữ liệu, sử dụng tài khoản Admin đã được tạo sẵn trong bảng người dùng để đăng nhập hệ thống quản trị.
+
+---
+
+## KẾT QUẢ ĐẠT ĐƯỢC
+
+* Xây dựng thành công website bán mỹ phẩm trực tuyến.
+* Quản lý sản phẩm và đơn hàng hiệu quả.
+* Hỗ trợ mua hàng trực tuyến.
+* Giao diện thân thiện trên máy tính và điện thoại.
+* Hệ thống quản trị dễ sử dụng.
+* Hỗ trợ hiển thị Responsive trên thiết bị di động.
+
+---
+
+## HƯỚNG PHÁT TRIỂN
+
+* Tích hợp thanh toán trực tuyến.
+* Gửi email xác nhận đơn hàng.
+* Tích hợp chatbot hỗ trợ khách hàng.
+* Thống kê doanh thu nâng cao.
+* Tích hợp đăng nhập Google và Facebook.
+* Tối ưu SEO cho website.
+
+---
+
+## THÔNG TIN TRIỂN KHAI
+
+Website đã được triển khai trên Hosting và có thể truy cập trực tuyến.
+
+Môi trường triển khai:
+
+* Hosting Linux
+* Apache
+* PHP 8.x
+* MySQL
+
+---
+
+## TÁC GIẢ
+
+Giảng viên hướng dẫn: Phạm Thu Hường
+
+Họ và tên sinh viên: Nguyễn Thị Ngoan
+		 	   Lê Thị Ngọc Ánh
+
+Lớp: 1A11_CNTT14
+
+Môn học: Phát triển ứng dụng trên nền web
+
+Năm thực hiện: 2026
