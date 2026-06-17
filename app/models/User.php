@@ -3,6 +3,17 @@ require_once __DIR__ . '/../core/Database.php';
 require_once __DIR__ . '/../core/Validator.php';
 
 class User  {
+
+    private static function ensureAdminSeenColumn() {
+        try {
+            $pdo = Database::connect();
+            $check = $pdo->prepare("SHOW COLUMNS FROM users LIKE 'admin_seen'");
+            $check->execute();
+            if (!$check->fetch()) $pdo->exec("ALTER TABLE users ADD admin_seen TINYINT NOT NULL DEFAULT 1");
+        } catch(Exception $e) {}
+    }
+
+
     public static function findByEmail($email) {
         $st=Database::connect()->prepare("SELECT * FROM users WHERE email=?");
         $st->execute([$email]);
@@ -13,7 +24,7 @@ class User  {
         $email=trim((string)$email);
         if(!filter_var($email,FILTER_VALIDATE_EMAIL)) throw new Exception('Email không hợp lệ.');
         if(trim((string)$pass)==='') throw new Exception('Mật khẩu không được để trống.');
-        return Database::connect()->prepare("INSERT INTO users(name,email,password,role) VALUES(?,?,?, 'customer')")->execute([$name,$email,password_hash($pass,PASSWORD_DEFAULT)]);
+        $pdo=Database::connect(); self::ensureAdminSeenColumn(); return $pdo->prepare("INSERT INTO users(name,email,password,role,admin_seen) VALUES(?,?,?,'customer',0)")->execute([$name,$email,password_hash($pass,PASSWORD_DEFAULT)]);
     }
     public static function allCustomers() {
         $st=Database::connect()->query("SELECT * FROM users WHERE role='customer' ORDER BY id DESC");
@@ -38,7 +49,8 @@ class User  {
             $st=$db->prepare("UPDATE users SET name=?, email=?, role='customer' WHERE id=? AND role='customer'");
             return $st->execute([$name,$email,(int)$data['id']]);
         }
-        $st=$db->prepare("INSERT INTO users(name,email,password,role) VALUES(?,?,?,'customer')");
+        self::ensureAdminSeenColumn();
+        $st=$db->prepare("INSERT INTO users(name,email,password,role,admin_seen) VALUES(?,?,?,'customer',0)");
         return $st->execute([$name,$email,password_hash($password ?: '123456',PASSWORD_DEFAULT)]);
     }
     public static function deleteCustomer($id) {
@@ -46,6 +58,45 @@ class User  {
         $pdo->prepare("DELETE FROM users WHERE id=? AND role='customer'")->execute([(int)$id]);
         self::reindexCustomers($pdo);
         return true;
+    }
+
+
+    public static function latestCustomerId() {
+        try {
+            $row = Database::connect()->query("SELECT COALESCE(MAX(id),0) latest_id FROM users WHERE role='customer'")->fetch();
+            return (int)($row['latest_id'] ?? 0);
+        } catch(Exception $e) {
+            return 0;
+        }
+    }
+
+    public static function countCustomersAfterId($id) {
+        try {
+            $st = Database::connect()->prepare("SELECT COUNT(*) c FROM users WHERE role='customer' AND id > ?");
+            $st->execute([(int)$id]);
+            $row = $st->fetch();
+            return (int)($row['c'] ?? 0);
+        } catch(Exception $e) {
+            return 0;
+        }
+    }
+
+
+    public static function countAdminUnseen() {
+        self::ensureAdminSeenColumn();
+        try {
+            $row = Database::connect()->query("SELECT COUNT(*) c FROM users WHERE role='customer' AND admin_seen=0")->fetch();
+            return (int)($row['c'] ?? 0);
+        } catch(Exception $e) {
+            return 0;
+        }
+    }
+
+    public static function markAdminSeen() {
+        self::ensureAdminSeenColumn();
+        try {
+            Database::connect()->exec("UPDATE users SET admin_seen=1 WHERE role='customer' AND admin_seen=0");
+        } catch(Exception $e) {}
     }
 
     private static function reindexCustomers($pdo) {

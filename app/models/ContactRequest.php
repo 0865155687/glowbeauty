@@ -59,6 +59,38 @@ class ContactRequest  {
         }
     }
 
+    public static function latestNotification() {
+        $pdo=Database::connect();
+        self::ensureTable($pdo);
+        try {
+            $st = $pdo->query("SELECT id, name, phone, created_at FROM contact_requests ORDER BY id DESC LIMIT 1");
+            $row = $st ? $st->fetch() : null;
+            if (!$row) return null;
+            return [
+                'id' => (int)($row['id'] ?? 0),
+                'name' => $row['name'] ?? '',
+                'phone' => $row['phone'] ?? '',
+                'created_at' => $row['created_at'] ?? ''
+            ];
+        } catch(Exception $e) {
+            return null;
+        }
+    }
+
+
+    public static function countAfterId($id) {
+        $pdo=Database::connect();
+        self::ensureTable($pdo);
+        try {
+            $st=$pdo->prepare("SELECT COUNT(*) c FROM contact_requests WHERE id > ?");
+            $st->execute([(int)$id]);
+            $row=$st->fetch();
+            return (int)($row['c'] ?? 0);
+        } catch(Exception $e) {
+            return 0;
+        }
+    }
+
     public static function find($id) {
         $pdo=Database::connect();
         self::ensureTable($pdo);

@@ -8,7 +8,14 @@ class Wishlist {
         return $st->fetchAll();
     }
     public static function add($userId, $productId) {
-        $st = Database::connect()->prepare("INSERT IGNORE INTO wishlists(user_id, product_id, created_at) VALUES(?,?,NOW())");
+        $pdo = Database::connect();
+        $check = $pdo->prepare("SELECT stock,status FROM products WHERE id=? LIMIT 1");
+        $check->execute([(int)$productId]);
+        $p = $check->fetch();
+        if (!$p || (int)$p['stock'] <= 0 || (int)$p['status'] !== 1) {
+            return false;
+        }
+        $st = $pdo->prepare("INSERT IGNORE INTO wishlists(user_id, product_id, created_at) VALUES(?,?,NOW())");
         return $st->execute([(int)$userId,(int)$productId]);
     }
     public static function remove($userId, $productId) {
