@@ -62,12 +62,12 @@ $tabIndex = 0;
 
                         <div class="card-actions product-card-simple-actions">
                             <div class="product-meta-line"><div class="stock-badge">
-                                <?= $p['stock'] > 0 ? 'Còn hàng: '.$p['stock'] : 'Đã hết hàng' ?>
+                                <?= $p['stock'] <= 0 ? 'Đã hết hàng' : ((int)$p['stock'] < 3 ? 'Sắp hết hàng: còn '.$p['stock'] : 'Còn hàng: '.$p['stock']) ?>
                             </div><div class="price"><?= number_format($p['price'], 0, ',', '.') ?>đ</div></div>
                             <div class="product-action-row">
                                 <a class="mini-btn add-cart-btn <?= $p['stock'] <= 0 ? 'disabled' : '' ?>" href="<?= $p['stock'] > 0 ? BASE_URL.'cart/add?id='.$p['id'] : '#' ?>"><span class="gb-cart-icon" aria-hidden="true">🛒</span><span class="gb-cart-text">Thêm vào giỏ</span></a>
                                 <?php $isSaved = in_array((int)$p['id'], $savedIds, true); ?>
-                                <a class="save-heart js-save-heart <?= $isSaved ? 'is-saved' : '' ?>"
+                                <a class="save-heart js-save-heart <?= $isSaved ? 'is-saved' : '' ?> <?= $p['stock'] <= 0 ? 'disabled' : '' ?>"
                                    href="<?= BASE_URL ?>wishlist/add?id=<?= (int)$p['id'] ?>"
                                    onclick="return gbToggleWishlist(event, this)"
                                    data-url="<?= BASE_URL ?>wishlist/add?id=<?= (int)$p['id'] ?>"
