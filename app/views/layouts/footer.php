@@ -45,10 +45,14 @@
     <button class="ai-chat-close" type="button" onclick="toggleGlowAi()">×</button>
   </div>
   <div class="ai-chat-body" id="glowAiBody">
-    <div class="ai-msg bot">GlowBeauty xin chào bạn 👋
-
-Mình là trợ lý của GlowBeauty.
-Mình có thể giúp gì được cho bạn?</div>
+    <div class="ai-msg bot">Hellooo bạn đẹp ơi 👋
+Mình là AI GlowBeauty — tư vấn mỹ phẩm, makeup, skincare và tra cứu đơn hàng cho bạn nè ✨</div>
+    <div class="ai-quick-row">
+      <button type="button" onclick="glowAiQuick('Da dầu nên dùng kem nền nào?')">Da dầu</button>
+      <button type="button" onclick="glowAiQuick('Da ngăm hợp son màu gì?')">Da ngăm</button>
+      <button type="button" onclick="glowAiQuick('Tôi muốn xem phấn má')">Phấn má</button>
+      <button type="button" onclick="glowAiQuick('Kiểm tra đơn hàng của tôi')">Tra đơn</button>
+    </div>
   </div>
   <div class="ai-chat-foot">
     <input id="glowAiInput" type="text" placeholder="Nhập câu hỏi hoặc mã đơn/số điện thoại..." onkeydown="if(event.key==='Enter') glowAiSend()">
@@ -153,4 +157,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
 <script src="<?= BASE_URL ?>public/assets/js/ajax-cart.js?v=fix-cart-20260609-mobile-v1"></script>
 <script src="<?= BASE_URL ?>public/assets/js/fix-no-favorite-tabs-ajax-cart.js?v=fix-cart-20260609-mobile-v1"></script>
+
+<style>
+.ai-chatbox{border-radius:24px!important;box-shadow:0 18px 45px rgba(86,42,22,.28)!important;overflow:hidden!important}
+.ai-chat-head{background:linear-gradient(135deg,#7b4226,#a8693f)!important}
+.ai-msg.bot{background:#fff3ec!important;border:1px solid #f4d4c5!important;line-height:1.55!important}
+.ai-msg.user{background:linear-gradient(135deg,#9b623a,#7b4226)!important;color:#fff!important;border-radius:18px 18px 4px 18px!important}
+.ai-quick-row{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 4px}
+.ai-quick-row button{border:1px solid #efc8b7;background:#fff8f4;color:#7b4226;border-radius:999px;padding:7px 10px;font-weight:700;cursor:pointer}
+.ai-quick-row button:hover{background:#ffe7dc}
+.ai-chat-foot input{border-radius:999px!important}
+.ai-chat-foot button{border-radius:999px!important;font-weight:800!important}
+</style>
+
 </body></html>

@@ -30,10 +30,30 @@ if (!function_exists('gb_image_url')) {
         $image = trim((string)$image);
         if ($image === '') return gb_url('public/assets/images/glowbeauty-logo-small.png');
         if (preg_match('~^https?://~i', $image)) return $image;
+
         $image = ltrim($image, '/');
-        if (strpos($image, 'public/') === 0) return gb_url($image);
-        if (strpos($image, 'assets/') === 0) return gb_url('public/' . $image);
-        return gb_url('public/assets/images/' . $image);
+        if (strpos($image, 'public/') === 0) {
+            $rel = $image;
+        } elseif (strpos($image, 'assets/') === 0) {
+            $rel = 'public/' . $image;
+        } else {
+            $rel = 'public/assets/images/' . $image;
+        }
+
+        $docRoot = dirname(__DIR__, 3);
+        $abs = $docRoot . '/' . $rel;
+        if (is_file($abs)) return gb_url($rel);
+
+        $dir = dirname($abs);
+        $base = pathinfo($abs, PATHINFO_FILENAME);
+        foreach (['.jpg','.jpeg','.png','.webp','.jfif','.JPG','.JPEG','.PNG','.WEBP','.JFIF'] as $ext) {
+            $try = $dir . '/' . $base . $ext;
+            if (is_file($try)) {
+                $tryRel = trim(str_replace('\\', '/', substr($try, strlen($docRoot))), '/');
+                return gb_url($tryRel);
+            }
+        }
+        return gb_url($rel);
     }
 }
 
@@ -48,6 +68,13 @@ if (!empty($_SESSION['user']['id']) && file_exists($wishlistModelPath)) {
     $guestWishlist = $_SESSION['guest_wishlist'] ?? [];
     $wishlistCount = is_array($guestWishlist) ? count(array_unique(array_map('intval', $guestWishlist))) : 0;
 }
+$orderNotifyCount = 0;
+$orderModelPath = __DIR__ . '/../../models/Order.php';
+if (!empty($_SESSION['user']['id']) && (($_SESSION['user']['role'] ?? '') !== 'admin') && file_exists($orderModelPath)) {
+    require_once $orderModelPath;
+    try { $orderNotifyCount = Order::countUnseenByUser((int)$_SESSION['user']['id']); } catch (Throwable $e) { $orderNotifyCount = 0; }
+}
+
 $current = trim($_GET['url'] ?? 'home', '/');
 if ($current === '') {
     $current = 'home';
@@ -72,6 +99,27 @@ $menus = [
 
     <link rel="stylesheet" href="<?= gb_url('public/assets/css/style.css?v=20260610-final-mobile-responsive') ?>">
     <link rel="stylesheet" href="<?= gb_url('public/assets/css/cart-modern.css?v=20260610-final-mobile-responsive') ?>">
+
+<style>
+.order-top-btn{position:relative}
+.order-notify-count{
+    min-width:22px;
+    height:22px;
+    padding:0 7px;
+    border-radius:999px;
+    background:#ef3f68;
+    color:#fff;
+    display:inline-grid;
+    place-items:center;
+    font-size:12px;
+    font-weight:900;
+    box-shadow:0 8px 18px rgba(239,63,104,.25);
+}
+@media(max-width:768px){
+    .order-notify-count{position:absolute;right:7px;top:5px}
+}
+</style>
+
 </head>
 
 <body>
@@ -105,6 +153,18 @@ $menus = [
                     <span>Giỏ hàng</span>
                     <span class="cart-count"><?= (int)$cartCount ?></span>
                 </a>
+
+                <?php if (!empty($_SESSION['user']) && (($_SESSION['user']['role'] ?? '') !== 'admin')): ?>
+                    <a class="cart-btn order-top-btn <?= strpos($current, 'account/orders') === 0 ? 'active' : '' ?>" href="<?= gb_url('account/orders') ?>" aria-label="Đơn hàng của tôi">
+                        <svg class="mobile-nav-svg" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path d="M7 3.5H17C18.1 3.5 19 4.4 19 5.5V20.5L16 18.7L13 20.5L10 18.7L7 20.5L5 19.3V5.5C5 4.4 5.9 3.5 7 3.5Z" stroke="currentColor" stroke-width="2.15" stroke-linejoin="round" />
+                            <path d="M8.5 8H15.5M8.5 11.5H15.5M8.5 15H12.5" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" />
+                        </svg>
+                        <span class="cart-icon">📋</span>
+                        <span>Đơn hàng của tôi</span>
+                        <?php if(!empty($orderNotifyCount)): ?><span class="order-notify-count"><?= (int)$orderNotifyCount ?></span><?php endif; ?>
+                    </a>
+                <?php endif; ?>
 
                 <a class="outline-btn wish-top-btn" href="<?= gb_url('account/wishlist') ?>" title="Danh sách đã lưu" aria-label="Yêu thích">
                     <svg class="mobile-nav-svg" viewBox="0 0 24 24" fill="none" aria-hidden="true">

@@ -64,130 +64,344 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 <style>
-/* Nút loa Admin: chỉ giữ 1 icon tròn ở góc phải dưới */
+/* Nút chuông Admin: không dùng giọng đọc, chỉ chuông + popup */
 .gb-voice-toggle{
     position:fixed;
     right:20px;
-    bottom:20px;
-    z-index:99999;
+    bottom:22px;
     width:58px;
     height:58px;
     border:0;
     border-radius:50%;
-    background:linear-gradient(135deg,#8b4f31,#c9864b);
+    background:linear-gradient(135deg,#c07a3a,#a85b2a);
     color:#fff;
+    font-size:24px;
+    cursor:pointer;
+    z-index:99999;
+    box-shadow:0 18px 38px rgba(75,32,14,.28);
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:25px;
-    line-height:1;
-    box-shadow:0 12px 34px rgba(75,39,20,.28);
-    cursor:pointer;
-    transition:.18s ease;
+    transition:.2s ease;
 }
 .gb-voice-toggle:hover{transform:translateY(-2px) scale(1.04);}
 .gb-voice-toggle.is-off{background:linear-gradient(135deg,#7c7c7c,#4b5563);}
 .gb-voice-toggle.has-new::after{
-    content:'';
+    content:"";
     position:absolute;
+    top:6px;
     right:6px;
-    top:5px;
     width:13px;
     height:13px;
     background:#ef4444;
     border:2px solid #fff;
     border-radius:50%;
-    animation:gbVoicePing 1.15s infinite;
+    animation:gbNotifyPing 1.15s infinite;
 }
-@keyframes gbVoicePing{0%{box-shadow:0 0 0 0 rgba(239,68,68,.6)}70%{box-shadow:0 0 0 10px rgba(239,68,68,0)}100%{box-shadow:0 0 0 0 rgba(239,68,68,0)}}
-@media(max-width:700px){.gb-voice-toggle{right:14px;bottom:14px;width:52px;height:52px;font-size:23px;}}
+@keyframes gbNotifyPing{0%{box-shadow:0 0 0 0 rgba(239,68,68,.6)}70%{box-shadow:0 0 0 10px rgba(239,68,68,0)}100%{box-shadow:0 0 0 0 rgba(239,68,68,0)}}
+
+.gb-admin-toast-wrap{
+    position:fixed;
+    right:22px;
+    bottom:92px;
+    width:min(360px,calc(100vw - 32px));
+    display:grid;
+    gap:12px;
+    z-index:99998;
+    pointer-events:none;
+}
+.gb-admin-toast{
+    pointer-events:auto;
+    background:#fffaf7;
+    border:1px solid #efcfbf;
+    border-radius:22px;
+    box-shadow:0 22px 48px rgba(65,28,15,.22);
+    padding:16px 17px;
+    color:#35180f;
+    animation:gbToastIn .25s ease both;
+}
+.gb-admin-toast-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    margin-bottom:9px;
+}
+.gb-admin-toast-title{
+    font-weight:800;
+    font-size:17px;
+    color:#8c421f;
+}
+.gb-admin-toast-close{
+    border:0;
+    background:#fff0e6;
+    color:#8c421f;
+    width:30px;
+    height:30px;
+    border-radius:50%;
+    cursor:pointer;
+    font-weight:800;
+}
+.gb-admin-toast p{
+    margin:4px 0;
+    font-size:14px;
+    line-height:1.45;
+}
+.gb-admin-toast b{color:#35180f;}
+.gb-admin-toast-actions{
+    margin-top:12px;
+    display:flex;
+    gap:8px;
+    justify-content:flex-end;
+}
+.gb-admin-toast-actions a{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-height:36px;
+    padding:0 14px;
+    border-radius:999px;
+    background:#c07a3a;
+    color:white;
+    font-weight:700;
+    font-size:13px;
+    text-decoration:none;
+}
+@keyframes gbToastIn{from{opacity:0;transform:translateY(12px) scale(.98)}to{opacity:1;transform:none}}
+@media(max-width:700px){
+    .gb-voice-toggle{right:14px;bottom:14px;width:52px;height:52px;font-size:23px;}
+    .gb-admin-toast-wrap{right:14px;bottom:76px;}
+}
 </style>
 
-<button type="button" id="gbVoiceToggle" class="gb-voice-toggle" title="Bật/tắt báo giọng nói" aria-label="Bật/tắt báo giọng nói">🔇</button>
+<button type="button" id="gbVoiceToggle" class="gb-voice-toggle" title="Bật/tắt chuông thông báo đơn hàng" aria-label="Bật/tắt chuông thông báo đơn hàng">🔕</button>
+<div id="gbAdminToastWrap" class="gb-admin-toast-wrap" aria-live="polite"></div>
 
 <script>
 (function(){
     var statusUrl = '<?= BASE_URL ?>admin/notification-status';
-    var voiceEnabledKey = 'gb_admin_voice_enabled';
-    var lastOrderKey = 'gb_admin_last_order_id';
-    var lastContactKey = 'gb_admin_last_contact_id';
-    var firstRunKey = 'gb_admin_first_poll_done';
-    var pollMs = 10000;
-    var toggle = document.getElementById('gbVoiceToggle');
 
-    function isVoiceEnabled(){ return localStorage.getItem(voiceEnabledKey) === '1'; }
-    function updateToggle(){
-        if(!toggle) return;
-        var on = isVoiceEnabled();
-        toggle.textContent = on ? '🔊' : '🔇';
-        toggle.classList.toggle('is-off', !on);
-        toggle.title = on ? 'Đang bật báo giọng nói - bấm để tắt' : 'Đang tắt báo giọng nói - bấm để bật';
-        toggle.setAttribute('aria-label', toggle.title);
+    // Đổi sang key mới để loại bỏ lỗi lưu ID cũ trong localStorage.
+    var notifyEnabledKey = 'gb_admin_notify_enabled_v2';
+    var lastOrderKey = 'gb_admin_last_order_id_v2';
+    var lastContactKey = 'gb_admin_last_contact_id_v2';
+
+    var pollMs = 15000;
+    var toggle = document.getElementById('gbVoiceToggle');
+    var toastWrap = document.getElementById('gbAdminToastWrap');
+    var audioCtx = null;
+    var checking = false;
+
+    function isNotifyEnabled(){
+        return localStorage.getItem(notifyEnabledKey) === '1';
     }
-    function speak(msg){
-        if(!isVoiceEnabled()) return;
-        if(!('speechSynthesis' in window)) return;
+
+    function unlockAudio(){
         try{
-            window.speechSynthesis.cancel();
-            var u = new SpeechSynthesisUtterance(msg);
-            u.lang = 'vi-VN';
-            u.rate = 1;
-            u.pitch = 1;
-            window.speechSynthesis.speak(u);
+            var Ctx = window.AudioContext || window.webkitAudioContext;
+            if(!Ctx) return;
+            if(!audioCtx) audioCtx = new Ctx();
+            if(audioCtx.state === 'suspended') audioCtx.resume();
         }catch(e){}
     }
+
+    function playOneTing(offset){
+        try{
+            unlockAudio();
+            if(!audioCtx) return;
+            var now = audioCtx.currentTime + (offset || 0);
+
+            // Âm "ting" lớn, rõ, không phụ thuộc file mp3.
+            [
+                {freq:880, start:0.00, dur:0.16, vol:0.58},
+                {freq:1320, start:0.03, dur:0.20, vol:0.38},
+                {freq:1760, start:0.08, dur:0.12, vol:0.22}
+            ].forEach(function(note){
+                var osc = audioCtx.createOscillator();
+                var gain = audioCtx.createGain();
+
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(note.freq, now + note.start);
+
+                gain.gain.setValueAtTime(0.0001, now + note.start);
+                gain.gain.exponentialRampToValueAtTime(note.vol, now + note.start + 0.025);
+                gain.gain.exponentialRampToValueAtTime(0.0001, now + note.start + note.dur);
+
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start(now + note.start);
+                osc.stop(now + note.start + note.dur + 0.05);
+            });
+        }catch(e){}
+    }
+
+    function playNotifySound(){
+        if(!isNotifyEnabled()) return;
+
+        // Ting ting thật rõ: 3 tiếng liên tiếp.
+        playOneTing(0);
+        playOneTing(0.55);
+        playOneTing(1.10);
+    }
+
+    function updateToggle(){
+        if(!toggle) return;
+        var on = isNotifyEnabled();
+        toggle.textContent = on ? '🔔' : '🔕';
+        toggle.classList.toggle('is-off', !on);
+        toggle.title = on ? 'Đang bật chuông + popup đơn hàng mới - bấm để tắt' : 'Đang tắt chuông + popup đơn hàng mới - bấm để bật';
+        toggle.setAttribute('aria-label', toggle.title);
+    }
+
     function markNew(){
         if(!toggle) return;
         toggle.classList.add('has-new');
-        clearTimeout(window.__gbVoiceDotTimer);
-        window.__gbVoiceDotTimer = setTimeout(function(){ toggle.classList.remove('has-new'); }, 14000);
+        clearTimeout(window.__gbNotifyDotTimer);
+        window.__gbNotifyDotTimer = setTimeout(function(){
+            toggle.classList.remove('has-new');
+        }, 16000);
     }
-    function parseIntSafe(v){ v=parseInt(v||'0',10); return isNaN(v)?0:v; }
-    function check(){
-        fetch(statusUrl, {cache:'no-store', credentials:'same-origin'})
+
+    function money(v){
+        v = parseInt(v || 0, 10);
+        if(isNaN(v)) v = 0;
+        return v.toLocaleString('vi-VN') + 'đ';
+    }
+
+    function htmlEscape(s){
+        return String(s == null ? '' : '').replace(/[&<>"']/g, function(c){
+            return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c];
+        });
+    }
+
+    function showToast(type, data){
+        if(!toastWrap || !isNotifyEnabled()) return;
+
+        var isOrder = type === 'order';
+        var title = isOrder ? '🔔 Đơn hàng mới' : '💬 Yêu cầu tư vấn mới';
+        var body = '';
+
+        if(isOrder && data){
+            // Popup đơn hàng mới: chỉ hiện thông báo + nút xem đơn hàng cho gọn.
+            body = '<p>Bạn vừa có đơn hàng mới cần kiểm tra.</p>';
+        }else if(data){
+            body =
+                '<p>Khách hàng: <b>' + htmlEscape(data.name || data.customer_name || 'Khách hàng') + '</b></p>' +
+                '<p>SĐT: <b>' + htmlEscape(data.phone || '') + '</b></p>';
+        }else{
+            body = '<p>Bạn có thông báo mới cần kiểm tra.</p>';
+        }
+
+        var div = document.createElement('div');
+        div.className = 'gb-admin-toast';
+        div.innerHTML =
+            '<div class="gb-admin-toast-head">' +
+                '<div class="gb-admin-toast-title">' + title + '</div>' +
+                '<button type="button" class="gb-admin-toast-close" aria-label="Đóng">×</button>' +
+            '</div>' +
+            body +
+            '<div class="gb-admin-toast-actions">' +
+                '<a href="<?= BASE_URL ?>admin/orders">Xem đơn hàng</a>' +
+            '</div>';
+
+        toastWrap.prepend(div);
+        div.querySelector('.gb-admin-toast-close').addEventListener('click', function(){
+            div.remove();
+        });
+        setTimeout(function(){
+            if(div && div.parentNode) div.remove();
+        }, 18000);
+    }
+
+    function parseIntSafe(v){
+        v = parseInt(v || '0', 10);
+        return isNaN(v) ? 0 : v;
+    }
+
+    function notifyOrder(order){
+        markNew();
+        playNotifySound();
+        showToast('order', order || null);
+    }
+
+    function notifyContact(contact){
+        markNew();
+        playNotifySound();
+        showToast('contact', contact || null);
+    }
+
+    function baselineCurrent(data){
+        localStorage.setItem(lastOrderKey, String(parseIntSafe(data && data.latest_order_id)));
+        localStorage.setItem(lastContactKey, String(parseIntSafe(data && data.latest_contact_id)));
+    }
+
+    function check(options){
+        options = options || {};
+        if(checking) return;
+        checking = true;
+
+        fetch(statusUrl + '?_=' + Date.now(), {cache:'no-store', credentials:'same-origin'})
             .then(function(r){ return r.json(); })
             .then(function(data){
                 if(!data || !data.ok) return;
+
                 var latestOrder = parseIntSafe(data.latest_order_id);
                 var latestContact = parseIntSafe(data.latest_contact_id);
-                var oldOrder = parseIntSafe(localStorage.getItem(lastOrderKey));
-                var oldContact = parseIntSafe(localStorage.getItem(lastContactKey));
-                var firstDone = localStorage.getItem(firstRunKey) === '1';
+                var oldOrderRaw = localStorage.getItem(lastOrderKey);
+                var oldContactRaw = localStorage.getItem(lastContactKey);
+                var oldOrder = parseIntSafe(oldOrderRaw);
+                var oldContact = parseIntSafe(oldContactRaw);
 
-                if(!firstDone){
-                    localStorage.setItem(lastOrderKey, String(latestOrder));
-                    localStorage.setItem(lastContactKey, String(latestContact));
-                    localStorage.setItem(firstRunKey, '1');
+                // Lần đầu mở admin: chỉ lấy mốc hiện tại, không kêu với đơn cũ.
+                // Sau đó khách đặt đơn mới ID lớn hơn mốc này thì sẽ tự kêu.
+                if(options.baselineOnly || oldOrderRaw === null || oldContactRaw === null){
+                    baselineCurrent(data);
                     return;
                 }
 
                 if(latestOrder > oldOrder){
                     localStorage.setItem(lastOrderKey, String(latestOrder));
-                    markNew();
-                    speak('Bạn có 1 đơn hàng mới cần xử lý.');
+                    notifyOrder(data.latest_order || {id: latestOrder});
                 }
+
                 if(latestContact > oldContact){
                     localStorage.setItem(lastContactKey, String(latestContact));
-                    markNew();
-                    speak('Bạn có 1 yêu cầu tư vấn mới từ khách hàng.');
+                    notifyContact(data.latest_contact || null);
                 }
             })
-            .catch(function(){});
+            .catch(function(){})
+            .finally(function(){ checking = false; });
     }
 
     if(toggle){
         updateToggle();
+
         toggle.addEventListener('click', function(){
-            var next = isVoiceEnabled() ? '0' : '1';
-            localStorage.setItem(voiceEnabledKey, next);
+            unlockAudio();
+
+            var next = isNotifyEnabled() ? '0' : '1';
+            localStorage.setItem(notifyEnabledKey, next);
             toggle.classList.remove('has-new');
             updateToggle();
-            if(next === '1') speak('Đã bật báo giọng nói cho GlowBeauty.');
+
+            if(next === '1'){
+                // Khi bật chuông: phát thử 1 lần để Chrome mở quyền âm thanh,
+                // đồng thời lấy mốc đơn hiện tại để đơn cũ không báo lại.
+                playNotifySound();
+                check({baselineOnly:true});
+            }
         });
     }
-    check();
-    setInterval(check, pollMs);
+
+    // Bất kỳ click đầu tiên trong admin cũng mở khóa âm thanh cho Chrome.
+    document.addEventListener('click', unlockAudio, {once:true});
+
+    // Lấy mốc hiện tại khi mới vào trang, sau đó tự kiểm tra đơn mới mỗi 3 giây.
+    check({baselineOnly:false});
+    setInterval(function(){
+        if(isNotifyEnabled()) check();
+    }, pollMs);
 })();
-</script></script>
+</script>
 
 </body></html>
