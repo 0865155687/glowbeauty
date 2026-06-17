@@ -2178,3 +2178,27 @@ input[type="submit"], input[type="button"] {
   .cart-item,.wishlist-item{padding:14px!important;border-radius:18px!important;}
   .cart-item img,.wishlist-item img{width:72px!important;height:72px!important;}
 }
+
+
+/* FIX: giữ phần gợi ý sản phẩm ở cột bên phải trang chi tiết */
+.product-bottom-new{
+    display:grid !important;
+    grid-template-columns:minmax(0,1fr) 360px !important;
+    gap:28px !important;
+    align-items:start !important;
+}
+.product-desc-new{min-width:0 !important;}
+.suggest-box-new{
+    position:sticky;
+    top:110px;
+    max-height:520px;
+    overflow-y:auto;
+}
+.review-summary-new{display:grid;grid-template-columns:240px 1fr;gap:24px;align-items:center;}
+.review-summary-new strong{font-size:36px;color:#d94c16;}
+.review-summary-new span,.review-item-new span{color:#f6a400;letter-spacing:2px;}
+.review-item-new{display:flex;gap:16px;align-items:flex-start;}
+@media(max-width:1050px){
+    .product-bottom-new{grid-template-columns:1fr !important;}
+    .suggest-box-new{position:static;max-height:none;}
+}
