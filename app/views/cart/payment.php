@@ -1,9 +1,9 @@
 <?php
 $orderCode = '#GB' . date('Ymd', strtotime($order['created_at'])) . str_pad((string)$order['id'], 4, '0', STR_PAD_LEFT);
 $payCode = $order['payment_code'] ?? ('GBPAY' . date('Ymd', strtotime($order['created_at'])) . str_pad((string)$order['id'], 4, '0', STR_PAD_LEFT));
-$shippingFee = 0;
-$subTotal = (int)$order['total'];
-$grandTotal = $subTotal + $shippingFee;
+$shippingFee = (int)($order['shipping_fee'] ?? 0);
+$grandTotal = (int)($order['total'] ?? 0);
+$subTotal = max(0, $grandTotal - $shippingFee);
 $qrFile = __DIR__ . '/../../../public/assets/images/qr-thanh-toan.png';
 $qrUrl = BASE_URL . 'public/assets/images/qr-thanh-toan.png';
 ?>
@@ -91,8 +91,14 @@ $qrUrl = BASE_URL . 'public/assets/images/qr-thanh-toan.png';
 
             <div class="gb-bill-bottom-grid">
                 <div class="gb-note-box">
-                    <h4>Ghi chú đơn hàng</h4>
-                    <p><?= htmlspecialchars($order['note'] ?? 'Không có ghi chú') ?></p>
+                    <h4>Ghi chú giao hàng</h4>
+                    <?php
+                    $deliveryNoteText = trim((string)($order['note'] ?? ''));
+                    if ($deliveryNoteText === '' && !empty($_SESSION['order_delivery_notes'][(int)($order['id'] ?? 0)])) {
+                        $deliveryNoteText = trim((string)$_SESSION['order_delivery_notes'][(int)$order['id']]);
+                    }
+                    ?>
+                    <p><?= htmlspecialchars($deliveryNoteText !== '' ? $deliveryNoteText : 'Không có ghi chú giao hàng') ?></p>
                     <small>Vui lòng chuyển đúng số tiền và nội dung để shop xác nhận nhanh hơn.</small>
                 </div>
                 <div class="gb-total-box">
