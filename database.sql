@@ -1,3 +1,8 @@
+-- =========================================================
+-- GlowBeauty - 1 FILE SQL DUY NHẤT
+-- Import file này trong phpMyAdmin là đủ.
+-- =========================================================
+
 CREATE DATABASE IF NOT EXISTS beauty_makeup_shop CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE beauty_makeup_shop;
 SET FOREIGN_KEY_CHECKS=0;
@@ -5,8 +10,8 @@ DROP TABLE IF EXISTS order_items; DROP TABLE IF EXISTS orders; DROP TABLE IF EXI
 SET FOREIGN_KEY_CHECKS=1;
 CREATE TABLE users (id INT AUTO_INCREMENT PRIMARY KEY,name VARCHAR(120) NOT NULL,email VARCHAR(160) NOT NULL UNIQUE,password VARCHAR(255) NOT NULL,role ENUM('admin','customer') DEFAULT 'customer',created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 CREATE TABLE products (id INT AUTO_INCREMENT PRIMARY KEY,product_code VARCHAR(50) NULL,name VARCHAR(255) NOT NULL,brand VARCHAR(120) NOT NULL,category VARCHAR(100) NOT NULL,price INT NOT NULL,stock INT NOT NULL DEFAULT 10,image VARCHAR(255) NOT NULL,description TEXT NOT NULL,benefit TEXT NOT NULL,ingredients TEXT NOT NULL,usage_text TEXT NOT NULL,status TINYINT(1) DEFAULT 1,sort_order INT DEFAULT 99,created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-CREATE TABLE orders (id INT AUTO_INCREMENT PRIMARY KEY,customer_name VARCHAR(160) NOT NULL,phone VARCHAR(20) NOT NULL,address TEXT NOT NULL,note TEXT NULL,total INT NOT NULL DEFAULT 0,status VARCHAR(50) NOT NULL DEFAULT 'Chờ xác nhận',payment_status VARCHAR(50) NOT NULL DEFAULT 'Chưa thanh toán',payment_code VARCHAR(80) NULL,created_at DATETIME NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-CREATE TABLE order_items (id INT AUTO_INCREMENT PRIMARY KEY,order_id INT NOT NULL,product_id INT NOT NULL,product_code VARCHAR(50) NULL,product_name VARCHAR(255) NOT NULL,price INT NOT NULL,quantity INT NOT NULL,FOREIGN KEY(order_id) REFERENCES orders(id) ON DELETE CASCADE,FOREIGN KEY(product_id) REFERENCES products(id) ON DELETE CASCADE) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE orders (id INT AUTO_INCREMENT PRIMARY KEY,user_id INT NULL,customer_name VARCHAR(160) NOT NULL,phone VARCHAR(20) NOT NULL,address TEXT NOT NULL,note TEXT NULL,total INT NOT NULL DEFAULT 0,shipping_fee INT NOT NULL DEFAULT 0,warranty_note TEXT NULL,status VARCHAR(50) NOT NULL DEFAULT 'Chờ xác nhận',payment_status VARCHAR(50) NOT NULL DEFAULT 'Chưa thanh toán',payment_code VARCHAR(80) NULL,created_at DATETIME NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE order_items (id INT AUTO_INCREMENT PRIMARY KEY,order_id INT NOT NULL,product_id INT NOT NULL,product_code VARCHAR(50) NULL,product_name VARCHAR(255) NOT NULL,price INT NOT NULL,quantity INT NOT NULL,FOREIGN KEY(order_id) REFERENCES orders(id) ON DELETE CASCADE,FOREIGN KEY(product_id) REFERENCES products(id) ON DELETE RESTRICT) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 INSERT INTO users(name,email,password,role) VALUES ('Quản trị viên','admin@gmail.com','$2y$12$osim3.pR9yKQReEenQmV/.LCinnNcGLmNPxpSGpnixN7e2azPkaOu','admin');
 INSERT INTO products(name,brand,category,price,stock,image,description,benefit,ingredients,usage_text,status,sort_order) VALUES ('GlowBeauty 4 Colors Eyeshadow','GlowBeauty','Phấn mắt',349000,10,'5d9f1105-752c-4481-97f4-6f676c7c684e.png','Bảng phấn mắt 4 ô tông hồng đào, ánh nhũ nhẹ và chất phấn mịn, phù hợp trang điểm hằng ngày hoặc dự tiệc.','Giúp đôi mắt sáng hơn, dễ phối màu, lên màu chuẩn và tạo hiệu ứng mắt có chiều sâu.','4 tông màu gồm lì, nhũ mịn, nhũ ánh kim và nhũ glitter; hạt phấn mịn, dễ tán.','Dùng cọ lấy lượng phấn vừa đủ, tán từ màu nhạt đến màu đậm ở bầu mắt và đuôi mắt.',1,1);
 INSERT INTO products(name,brand,category,price,stock,image,description,benefit,ingredients,usage_text,status,sort_order) VALUES ('GlowBeauty Soft Rose Blush','GlowBeauty','Phấn má',259000,10,'186f6edf-cd4a-4993-ae3b-fd382410e02a.png','Phấn má GlowBeauty tông hồng tự nhiên, thiết kế nữ tính, giúp gương mặt tươi tắn và mềm mại.','Tạo má hồng rạng rỡ, làm khuôn mặt có sức sống, phù hợp makeup tự nhiên.','Bột phấn mịn, sắc hồng đào dễ dùng, độ bám ổn định.','Dùng cọ tán nhẹ lên gò má, có thể chồng nhiều lớp để tăng sắc độ.',1,2);
@@ -23,25 +28,25 @@ INSERT INTO products(name,brand,category,price,stock,image,description,benefit,i
 INSERT INTO products(name,brand,category,price,stock,image,description,benefit,ingredients,usage_text,status,sort_order) VALUES ('Proactiv Revitalizing Toner','Proactiv','Toner & Essence',320000,10,'61545kOb3bL._SL1500_.jpg','Toner Proactiv hỗ trợ chăm sóc da dầu mụn, giúp da thông thoáng hơn sau bước rửa mặt.','Hỗ trợ cân bằng da, làm sạch cặn thừa và tạo cảm giác tươi mát.','Công thức toner dành cho da dễ nổi mụn.','Dùng bông tẩy trang lau nhẹ sau khi rửa mặt, tránh vùng mắt.',1,13);
 INSERT INTO products(name,brand,category,price,stock,image,description,benefit,ingredients,usage_text,status,sort_order) VALUES ('Su:m37 Skin Saver Essential Cleansing Foam','Su:m37','Sữa rửa mặt',260000,10,'62575e2ebc921ca7dd4b49efd9e67e01.jpg','Sữa rửa mặt Su:m37 Skin Saver tạo bọt mịn, phù hợp làm sạch dịu nhẹ.','Loại bỏ bụi bẩn, giúp da mềm và sạch thoáng sau khi dùng.','Công thức bọt mịn, cảm giác dịu trên da.','Tạo bọt với nước, massage nhẹ rồi rửa sạch.',1,14);
 INSERT INTO products(name,brand,category,price,stock,image,description,benefit,ingredients,usage_text,status,sort_order) VALUES ('Quiym Aqua Vitalize Skincare Set','Quiym','Skincare',499000,10,'a97d766d-62a5-420b-b225-68e695629534.__CR0-0-970-600_PT0_SX970_V1___.jpg','Bộ chăm sóc da cấp nước gồm serum, toner, kem dưỡng và sữa rửa mặt tông xanh aqua.','Cấp ẩm, hỗ trợ da căng mướt, phù hợp da thiếu nước.','Hyaluronic Acid, chiết xuất biển và thành phần cấp ẩm.','Dùng theo routine: rửa mặt, toner, serum, kem dưỡng.',1,15);
-INSERT INTO products(name,brand,category,price,stock,image,description,benefit,ingredients,usage_text,status,sort_order) VALUES ('CNP Laboratory Propolis Treatment Essence','CNP Laboratory','Toner & Essence',420000,10,'vn-11134207-7ras8-m2vwo5c0s3ra9e.jfif','Tinh chất CNP Propolis Treatment Ampule Essence hỗ trợ làm dịu và phục hồi da.','Giúp da mềm, sáng khỏe và có độ bóng tự nhiên.','Chiết xuất keo ong, thành phần cấp ẩm và làm dịu.','Dùng sau toner, vỗ nhẹ đến khi thấm.',1,16);
+INSERT INTO products(name,brand,category,price,stock,image,description,benefit,ingredients,usage_text,status,sort_order) VALUES ('CNP Laboratory Propolis Treatment Essence','CNP Laboratory','Toner & Essence',420000,10,'vn-11134207-7ras8-m2vwo5c0s3ra9e.jpg','Tinh chất CNP Propolis Treatment Ampule Essence hỗ trợ làm dịu và phục hồi da.','Giúp da mềm, sáng khỏe và có độ bóng tự nhiên.','Chiết xuất keo ong, thành phần cấp ẩm và làm dịu.','Dùng sau toner, vỗ nhẹ đến khi thấm.',1,16);
 INSERT INTO products(name,brand,category,price,stock,image,description,benefit,ingredients,usage_text,status,sort_order) VALUES ('Rare Beauty Soft Pinch Tinted Lip Oil','Rare Beauty','Son môi',395000,10,'son-duong-rare-beauty-soft-pinch-tinted-lip-oil-mau-hong-kho-2-jpg-1680486361-03042023084601.webp','Son dầu Rare Beauty tạo sắc môi hồng nhẹ, bóng khỏe và mềm mại.','Dưỡng môi, tạo màu tự nhiên, phù hợp makeup nhẹ.','Kết cấu lip oil mỏng nhẹ, sắc hồng khô dễ dùng.','Thoa trực tiếp lên môi, dặm lại khi cần.',1,17);
 INSERT INTO products(name,brand,category,price,stock,image,description,benefit,ingredients,usage_text,status,sort_order) VALUES ('Merzy The Watery Dew Tint V6 Siren','Merzy','Son môi',179000,10,'f7973ec129c17238ddfc48d109b88448.png','Son tint Merzy V6 Siren màu đỏ nổi bật, hiệu ứng môi căng mọng.','Lên màu rõ, tạo hiệu ứng full môi hoặc lòng môi quyến rũ.','Chất tint bóng nhẹ, màu đỏ cam dễ nổi bật.','Thoa một lớp mỏng và tán đều, có thể chồng lớp để đậm hơn.',1,18);
 INSERT INTO products(name,brand,category,price,stock,image,description,benefit,ingredients,usage_text,status,sort_order) VALUES ('Merzy New Watery Dew Tint WD21','Merzy','Son môi',169000,10,'website_nd-10_db148e2cda6c4858af668121aebc5230_master.png','Son Merzy WD21 tông đỏ hồng khô, chất tint nước bóng nhẹ.','Tạo môi tươi tắn, mọng nhẹ, phù hợp đi học đi làm.','Kết cấu watery tint, sắc đỏ hồng dễ dùng.','Thoa lòng môi hoặc full môi tùy phong cách.',1,19);
 INSERT INTO products(name,brand,category,price,stock,image,description,benefit,ingredients,usage_text,status,sort_order) VALUES ('Glamrr Q Long Wear Lip Cream','Glamrr Q','Son môi',199000,10,'bang-mau-son-glamrr-q-moi-nhat-glamrr-q-long-wear-lip-cream-1-fa5f7a0e.jpg','Son kem Glamrr Q Long Wear Lip Cream có độ bám màu tốt và finish hiện đại.','Lên màu đậm, giúp môi sắc nét, phù hợp makeup cá tính.','Chất son kem lì, công thức bền màu.','Gạt bớt son trên cọ, thoa từ lòng môi ra viền môi.',1,20);
 INSERT INTO products(name,brand,category,price,stock,image,description,benefit,ingredients,usage_text,status,sort_order) VALUES ('Romand Better Than Cheek Blush','Romand','Phấn má',235000,10,'18w401_-_2024-01-17t163224.025_279a2f7231824c3cbcb25e25009bf52d_large.png','Phấn má Romand tông tự nhiên, chất phấn mịn dễ tán.','Tạo hiệu ứng má hồng nhẹ nhàng, giúp gương mặt tươi sáng.','Bột phấn mịn, tông màu nude hồng dễ phối.','Dùng cọ lấy phấn, tán nhẹ lên vùng gò má.',1,21);
 INSERT INTO products(name,brand,category,price,stock,image,description,benefit,ingredients,usage_text,status,sort_order) VALUES ('YSL Make Me Blush Bold Blurring Blush','YSL','Phấn má',950000,10,'phan-ma-hong-yves-saint-laurent-ysl-make-me-blush-bold-blurring-blush-87-pink-voltage-mau-hong-dao-6g-68e389735f282-06102025161843.webp','Phấn má YSL tông hồng đào cao cấp, thiết kế sang trọng.','Tạo hiệu ứng ửng hồng nổi bật, làm mềm đường nét khuôn mặt.','Chất phấn mịn, màu hồng đào dễ nổi bật.','Tán nhẹ từng lớp để đạt độ hồng mong muốn.',1,22);
-INSERT INTO products(name,brand,category,price,stock,image,description,benefit,ingredients,usage_text,status,sort_order) VALUES ('Dasique Blending Mood Cheek Palette','Dasique','Phấn má',315000,10,'vn-11134207-7r98o-lw1fkikj774pc0.jfif','Bảng phấn má Dasique 4 màu tông hồng dễ thương, phù hợp makeup Hàn Quốc.','Tạo má hồng nhiều sắc độ, dễ phối màu theo phong cách.','4 ô màu hồng đào, hồng sữa và hồng tươi.','Dùng riêng từng màu hoặc phối các ô để tạo màu má hài hòa.',1,23);
+INSERT INTO products(name,brand,category,price,stock,image,description,benefit,ingredients,usage_text,status,sort_order) VALUES ('Dasique Blending Mood Cheek Palette','Dasique','Phấn má',315000,10,'vn-11134207-7r98o-lw1fkikj774pc0.jpg','Bảng phấn má Dasique 4 màu tông hồng dễ thương, phù hợp makeup Hàn Quốc.','Tạo má hồng nhiều sắc độ, dễ phối màu theo phong cách.','4 ô màu hồng đào, hồng sữa và hồng tươi.','Dùng riêng từng màu hoặc phối các ô để tạo màu má hài hòa.',1,23);
 INSERT INTO products(name,brand,category,price,stock,image,description,benefit,ingredients,usage_text,status,sort_order) VALUES ('3CE Face Blush Nude Peach','3CE','Phấn má',295000,10,'phan-ma-hong-3ce-face-blush-5g-nude-peach_2c394fba64e14cb7b11074ede798e806_large.jpg','Phấn má 3CE màu nude peach cho hiệu ứng má tự nhiên.','Giúp khuôn mặt tươi hơn mà vẫn giữ phong cách nhẹ nhàng.','Phấn nén mịn, tông nude đào dễ dùng.','Tán lên gò má bằng cọ mềm.',1,24);
 INSERT INTO products(name,brand,category,price,stock,image,description,benefit,ingredients,usage_text,status,sort_order) VALUES ('Veecci 4 ô Blush & Highlight','Veecci','Phấn mắt',189000,10,'bang_phan_ma___highlight_4_o_veecci__4__608fc3d99ce44793a75e3ddd53f74fc0.jpg','Bảng Veecci 4 ô kết hợp phấn má và highlight tông hồng đào.','Tạo điểm nhấn bắt sáng, làm gương mặt rạng rỡ hơn.','Gồm màu lì, nhũ nhẹ và highlight.','Dùng cọ nhỏ tán lên mắt, má hoặc vùng cần bắt sáng.',1,25);
-INSERT INTO products(name,brand,category,price,stock,image,description,benefit,ingredients,usage_text,status,sort_order) VALUES ('Makeup By Mario SurrealSkin Foundation','Makeup By Mario','Kem nền',620000,10,'vn-11134207-7r98o-luvji4fa7imq9b.jfif','Kem nền Makeup By Mario cho lớp nền mỏng mịn, phù hợp phong cách da tự nhiên.','Giúp da đều màu, tạo hiệu ứng mềm mịn và dễ chồng lớp ở vùng cần che phủ.','Kết cấu liquid foundation, finish tự nhiên, dễ tán.','Lắc đều, lấy lượng nhỏ và tán từ trung tâm gương mặt ra ngoài.',1,26);
-INSERT INTO products(name,brand,category,price,stock,image,description,benefit,ingredients,usage_text,status,sort_order) VALUES ('Make Up For Ever HD Skin Foundation','Make Up For Ever','Kem nền',890000,10,'vn-11134207-7ras8-mc08sotjs22a9d.jfif','Kem nền HD Skin tạo lớp nền chuyên nghiệp, phù hợp chụp ảnh và makeup lâu giờ.','Che phủ ổn, giữ nền mịn và tự nhiên trên da.','Kết cấu liquid foundation, nhiều tông màu.','Tán đều bằng bông mút ẩm hoặc cọ nền.',1,27);
+INSERT INTO products(name,brand,category,price,stock,image,description,benefit,ingredients,usage_text,status,sort_order) VALUES ('Makeup By Mario SurrealSkin Foundation','Makeup By Mario','Kem nền',620000,10,'vn-11134207-7r98o-luvji4fa7imq9b.jpg','Kem nền Makeup By Mario cho lớp nền mỏng mịn, phù hợp phong cách da tự nhiên.','Giúp da đều màu, tạo hiệu ứng mềm mịn và dễ chồng lớp ở vùng cần che phủ.','Kết cấu liquid foundation, finish tự nhiên, dễ tán.','Lắc đều, lấy lượng nhỏ và tán từ trung tâm gương mặt ra ngoài.',1,26);
+INSERT INTO products(name,brand,category,price,stock,image,description,benefit,ingredients,usage_text,status,sort_order) VALUES ('Make Up For Ever HD Skin Foundation','Make Up For Ever','Kem nền',890000,10,'vn-11134207-7ras8-mc08sotjs22a9d.jpg','Kem nền HD Skin tạo lớp nền chuyên nghiệp, phù hợp chụp ảnh và makeup lâu giờ.','Che phủ ổn, giữ nền mịn và tự nhiên trên da.','Kết cấu liquid foundation, nhiều tông màu.','Tán đều bằng bông mút ẩm hoặc cọ nền.',1,27);
 INSERT INTO products(name,brand,category,price,stock,image,description,benefit,ingredients,usage_text,status,sort_order) VALUES ('Maybelline Super Stay Lumi Matte Foundation','Maybelline','Kem nền',298000,10,'kem-nen-maybelline-super-stay-up-to-30h-lumi-matte-foundation-spf16-pa35ml-5.jpg','Kem nền Maybelline Super Stay Lumi Matte hỗ trợ nền lâu trôi và sáng mịn.','Giúp da đều màu, che phủ khuyết điểm nhẹ đến vừa.','Kết cấu nền mỏng nhẹ, SPF16 PA+++.','Lắc đều trước khi dùng, tán từng lớp mỏng.',1,28);
 INSERT INTO products(name,brand,category,price,stock,image,description,benefit,ingredients,usage_text,status,sort_order) VALUES ('Carslan Lasting Moisture Foundation','Carslan','Kem nền',250000,10,'kem_nen_carslan_lasting_moisture_foundation__5__776a71f9d377405c85df5d4e7861343e.jpg','Kem nền Carslan Lasting Moisture tạo lớp nền ẩm mịn, phù hợp makeup tự nhiên.','Che phủ nhẹ, hỗ trợ da căng bóng và đều màu.','Kết cấu dưỡng ẩm, finish tự nhiên.','Tán đều sau bước dưỡng và kem lót.',1,29);
 INSERT INTO products(name,brand,category,price,stock,image,description,benefit,ingredients,usage_text,status,sort_order) VALUES ('ColorKey Airy Longwear Foundation','ColorKey','Kem nền',269000,10,'combo-colorkey-kem-nen-w2-30g-xit-co-dinh-lop-trang-diem-nam-cham-den-100ml-2-1708597625_img_800x800_eb97c5_fit_center.jpg','Kem nền ColorKey Airy Longwear có lớp nền thoáng khí, mềm mại và lâu trôi.','Tạo nền mỏng nhẹ, hỗ trợ đều màu và bền lớp trang điểm.','Kết cấu lỏng nhẹ, độ cấp ẩm ổn, phù hợp da hỗn hợp.','Lấy lượng nhỏ, tán đều và chồng lớp ở vùng cần che phủ.',1,30);
 INSERT INTO products(name,brand,category,price,stock,image,description,benefit,ingredients,usage_text,status,sort_order) VALUES ('3CE Stylenanda Waterful Foundation','3CE','Kem nền',420000,10,'figure-1651051253314.png','Kem nền 3CE Waterful Foundation tạo lớp nền mềm mịn và hiệu ứng da trong trẻo.','Che khuyết điểm nhẹ, cải thiện vẻ ngoài nền da và nếp nhăn nhỏ.','Kết cấu waterful foundation, finish mỏng nhẹ.','Tán bằng mút ẩm để lớp nền tự nhiên hơn.',1,31);
 INSERT INTO products(name,brand,category,price,stock,image,description,benefit,ingredients,usage_text,status,sort_order) VALUES ('NARS Radiant Creamy Concealer','NARS','Che khuyết điểm',720000,10,'z4985812587158_338a830ffecc2773109521584ea295a8_8c6fcb18c4a84156a620a335763f49af_master.jpg','Che khuyết điểm NARS nổi tiếng với độ che phủ tốt và finish tự nhiên.','Che quầng thâm, vết mụn, vùng da không đều màu mà không quá dày.','Kết cấu creamy, nhiều tông màu, dễ tán.','Chấm lượng nhỏ lên vùng cần che, vỗ nhẹ bằng tay hoặc mút.',1,32);
 INSERT INTO products(name,brand,category,price,stock,image,description,benefit,ingredients,usage_text,status,sort_order) VALUES ('The Saem Cover Perfection Tip Concealer','The Saem','Che khuyết điểm',89000,10,'9dfe421af7c9119748d8_2dbb5be78ad643ea852c39241508b15a_master.jpg','Che khuyết điểm The Saem có giá tốt, phù hợp che mụn và thâm nhẹ.','Giúp vùng da đều màu hơn, dễ dùng cho makeup hằng ngày.','Kết cấu lỏng, đầu cọ tiện lợi.','Chấm lên vùng cần che, tán viền để hòa vào nền.',1,33);
-INSERT INTO products(name,brand,category,price,stock,image,description,benefit,ingredients,usage_text,status,sort_order) VALUES ('SVMY FT Color Concealer Palette','SVMY','Che khuyết điểm',139000,10,'cn-11134207-7r98o-lxwj3rmd7gatac.jfif','Bảng che khuyết điểm SVMY 3 màu hỗ trợ hiệu chỉnh nhiều vùng trên khuôn mặt.','Che quầng thâm, vùng xỉn màu, làm sáng sống mũi và vùng dưới mắt.','3 tông hiệu chỉnh: natural, lifting và salmon.','Dùng cọ nhỏ lấy màu phù hợp, tán trước hoặc sau nền tùy nhu cầu.',1,34);
+INSERT INTO products(name,brand,category,price,stock,image,description,benefit,ingredients,usage_text,status,sort_order) VALUES ('SVMY FT Color Concealer Palette','SVMY','Che khuyết điểm',139000,10,'cn-11134207-7r98o-lxwj3rmd7gatac.jpg','Bảng che khuyết điểm SVMY 3 màu hỗ trợ hiệu chỉnh nhiều vùng trên khuôn mặt.','Che quầng thâm, vùng xỉn màu, làm sáng sống mũi và vùng dưới mắt.','3 tông hiệu chỉnh: natural, lifting và salmon.','Dùng cọ nhỏ lấy màu phù hợp, tán trước hoặc sau nền tùy nhu cầu.',1,34);
 INSERT INTO products(name,brand,category,price,stock,image,description,benefit,ingredients,usage_text,status,sort_order) VALUES ('Merzy Volume Curl Mascara','Merzy','Mascara',169000,10,'458386683_931178342387753_2192065793230772382_n_f8729475db074a35a004d6fa342d739a_1024x1024.jpg','Mascara Merzy giúp hàng mi rõ nét, phù hợp makeup mắt tự nhiên lẫn cá tính.','Tạo hiệu ứng mi cong, dày hơn và nổi bật hơn.','Đầu cọ dễ chải, chất mascara bám mi tốt.','Chải từ chân mi lên ngọn theo chuyển động ziczac nhẹ.',1,35);
 
 -- V57 update product codes
@@ -90,3 +95,71 @@ CREATE TABLE IF NOT EXISTS contact_requests (
   status VARCHAR(50) NOT NULL DEFAULT 'Mới gửi',
   created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+-- Update 2026-06-11: chống xoá sản phẩm đã phát sinh đơn, phí ship, bảo hành, tự hủy đơn chờ xác nhận quá 24h
+USE beauty_makeup_shop;
+
+ALTER TABLE orders ADD COLUMN IF NOT EXISTS user_id INT NULL AFTER id;
+ALTER TABLE orders ADD COLUMN IF NOT EXISTS shipping_fee INT NOT NULL DEFAULT 0 AFTER total;
+ALTER TABLE orders ADD COLUMN IF NOT EXISTS warranty_note TEXT NULL AFTER shipping_fee;
+ALTER TABLE orders ADD INDEX IF NOT EXISTS idx_orders_status_created(status, created_at);
+
+ALTER TABLE order_items DROP FOREIGN KEY IF EXISTS order_items_ibfk_2;
+ALTER TABLE order_items ADD CONSTRAINT order_items_ibfk_2 FOREIGN KEY(product_id) REFERENCES products(id) ON DELETE RESTRICT;
+
+UPDATE orders
+SET status='Đã hủy'
+WHERE status='Chờ xác nhận' AND created_at < DATE_SUB(NOW(), INTERVAL 1 DAY);
+
+UPDATE products SET status=1 WHERE status IS NULL;
+
+-- =========================================================
+-- FIX: Cộng phí ship vào tổng tiền cho đơn mẫu tháng 5 và tháng 6
+-- =========================================================
+-- Sửa các đơn mẫu tháng 5 và tháng 6: total phải là tổng khách trả, đã cộng phí ship.
+-- Chỉ cộng thêm phí ship khi payment_code thuộc bộ dữ liệu mẫu MAY2026_/JUN2026_ và chưa được cộng trước đó.
+UPDATE orders
+SET total = total + COALESCE(shipping_fee, 0)
+WHERE (payment_code LIKE 'MAY2026\_%' OR payment_code LIKE 'JUN2026\_%')
+  AND COALESCE(shipping_fee, 0) > 0
+  AND COALESCE(total, 0) IN (1250000,1680000,940000,1320000,1450000,2100000,1750000,1890000);
+
+-- =========================================================
+-- FIX: Bổ sung chi tiết sản phẩm cho đơn thiếu item và chuẩn hóa tổng tiền
+-- =========================================================
+USE beauty_makeup_shop;
+
+-- Sửa các đơn đặt trực tiếp bằng SQL chưa có sản phẩm chi tiết.
+-- Sau khi chạy, Lịch sử mua hàng sẽ hiện ảnh sản phẩm, tên sản phẩm, số lượng, tiền sản phẩm và phí ship.
+
+INSERT INTO order_items(order_id, product_id, product_code, product_name, price, quantity)
+SELECT o.id,
+       p.id,
+       COALESCE(p.product_code, CONCAT('SP', p.id)),
+       p.name,
+       GREATEST(COALESCE(o.total,0) - COALESCE(o.shipping_fee,0), COALESCE(p.price,0)),
+       1
+FROM orders o
+JOIN products p ON p.id = (
+    SELECT p2.id
+    FROM products p2
+    ORDER BY p2.id ASC
+    LIMIT 1 OFFSET 0
+)
+LEFT JOIN order_items oi ON oi.order_id = o.id
+WHERE oi.id IS NULL
+  AND o.status <> 'Đã hủy'
+  AND o.payment_status = 'Đã thanh toán';
+
+-- Chuẩn hóa tổng tiền cuối cùng khách trả = tiền sản phẩm + phí ship.
+UPDATE orders o
+JOIN (
+    SELECT order_id, SUM(price * quantity) AS item_subtotal
+    FROM order_items
+    GROUP BY order_id
+) x ON x.order_id = o.id
+SET o.total = x.item_subtotal + COALESCE(o.shipping_fee,0)
+WHERE o.status <> 'Đã hủy'
+  AND o.payment_status = 'Đã thanh toán'
+  AND COALESCE(o.total,0) <> x.item_subtotal + COALESCE(o.shipping_fee,0);
