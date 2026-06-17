@@ -39,6 +39,7 @@ class Router
 
             'account/wishlist' => ['AccountController', 'wishlist'],
             'account/orders' => ['AccountController', 'orders'],
+            'account/review' => ['AccountController', 'review'],
             'wishlist/add' => ['AccountController', 'addWishlist'],
             'wishlist/remove' => ['AccountController', 'removeWishlist'],
             'wishlist/checkout' => ['AccountController', 'checkoutWishlist'],
@@ -66,6 +67,14 @@ class Router
             'admin/contacts' => ['AdminController', 'contacts'],
             'admin/contact-update' => ['AdminController', 'contactUpdate'],
             'admin/contact-delete' => ['AdminController', 'contactDelete'],
+
+            'admin/purchase-history' => ['AdminController', 'purchaseHistory'],
+            'admin/reviews' => ['AdminController', 'reviews'],
+            'admin/review-status' => ['AdminController', 'reviewStatus'],
+            'admin/review-delete' => ['AdminController', 'reviewDelete'],
+            'admin/chats' => ['AdminController', 'chats'],
+            'admin/chat-reply' => ['AdminController', 'chatReply'],
+            'admin/chat-delete' => ['AdminController', 'chatDelete'],
 
             'admin/customers' => ['AdminController', 'customers'],
             'admin/customer-form' => ['AdminController', 'customerForm'],

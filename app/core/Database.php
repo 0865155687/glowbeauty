@@ -9,8 +9,13 @@ class Database  {
             try {
                 self::$pdo = new PDO($dsn, $config['username'], $config['password'], [
                     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+                    PDO::ATTR_EMULATE_PREPARES => false
                 ]);
+                // Đồng bộ giờ Việt Nam cho mọi lệnh NOW(), CURDATE(), TIMESTAMP trên hosting.
+                // Nếu không set, host có thể lưu theo UTC khiến giờ đặt hàng bị lệch.
+                try { self::$pdo->exec("SET time_zone = '+07:00'"); } catch (Exception $tzError) {}
+                try { self::$pdo->exec("SET NAMES utf8mb4 COLLATE utf8mb4_general_ci"); } catch (Exception $charsetError) {}
             } catch (PDOException $e) {
                 // Prevent fatal crashes and show a clean, branded error page
                 http_response_code(503);

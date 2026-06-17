@@ -20,6 +20,9 @@ class Controller  {
             $sep = (strpos($target, '?') === false) ? '?' : '&';
             $target .= $sep . '_scroll_y=' . urlencode((string)(int)$scrollY);
         }
+        if (session_status() === PHP_SESSION_ACTIVE) {
+            session_write_close();
+        }
         header('Location: ' . $target);
         exit;
     }
