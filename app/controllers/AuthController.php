@@ -8,14 +8,25 @@ class AuthController extends Controller  {
         if($_SERVER['REQUEST_METHOD']==='POST') {
             $u=User::findByEmail($_POST['email']);
             if($u && password_verify($_POST['password'],$u['password'])) {
-                $_SESSION['user']=$u;
+                if (session_status() === PHP_SESSION_ACTIVE) {
+                    session_regenerate_id(true);
+                }
+                $role = strtolower(trim($u['role'] ?? 'customer'));
+                $_SESSION['user'] = [
+                    'id' => (int)($u['id'] ?? 0),
+                    'name' => $u['name'] ?? '',
+                    'email' => $u['email'] ?? '',
+                    'role' => $role,
+                    'admin_seen' => $u['admin_seen'] ?? 0,
+                    'created_at' => $u['created_at'] ?? null,
+                ];
                 if (!empty($_SESSION['guest_wishlist']) && is_array($_SESSION['guest_wishlist'])) {
                     foreach (array_unique(array_map('intval', $_SESSION['guest_wishlist'])) as $productId) {
                         if ($productId > 0) { Wishlist::add((int)$u['id'], $productId); }
                     }
                     unset($_SESSION['guest_wishlist']);
                 }
-                $redirect = $_SESSION['redirect_after_login'] ?? ($u['role']==='admin'?'admin/dashboard':'home');
+                $redirect = $_SESSION['redirect_after_login'] ?? ($role === 'admin' ? 'admin/dashboard' : 'home');
                 unset($_SESSION['redirect_after_login']);
                 $this->redirect($redirect);
             }

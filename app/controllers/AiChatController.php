@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/../core/Database.php';
+require_once __DIR__ . '/../models/ChatMessage.php';
 
 class AiChatController extends Controller
 {
@@ -23,10 +24,19 @@ class AiChatController extends Controller
         }
 
         try {
+            $userId = !empty($_SESSION['user']['id']) ? (int)$_SESSION['user']['id'] : null;
+            $customerName = $_SESSION['user']['name'] ?? ($_SESSION['user']['email'] ?? 'Khách chưa đăng nhập');
+            $guestKey = $userId ? null : ChatMessage::guestKey();
+            ChatMessage::add($message, 'customer', $userId, $guestKey, $customerName);
             $reply = $this->buildReply($message);
         } catch (Exception $e) {
             $reply = 'Mình đang lỗi kết nối dữ liệu. Bạn thử lại sau vài giây hoặc gọi/Zalo 0865155687 để shop kiểm tra ngay nhé.';
         }
+        try {
+            $userId = !empty($_SESSION['user']['id']) ? (int)$_SESSION['user']['id'] : null;
+            $guestKey = $userId ? null : ChatMessage::guestKey();
+            ChatMessage::add($reply, 'ai', $userId, $guestKey, 'AI GlowBeauty');
+        } catch(Exception $e) {}
 
         echo json_encode(['ok' => true, 'reply' => $reply], JSON_UNESCAPED_UNICODE);
     }
@@ -36,7 +46,15 @@ class AiChatController extends Controller
         $text = $this->normalize($message);
 
         if ($this->isGreeting($text)) {
-            return "GlowBeauty xin chào bạn 👋\nMình là trợ lý của GlowBeauty. Mình có thể giúp gì được cho bạn?";
+            return "Hellooo bạn đẹp ơi 👋 Mình là AI GlowBeauty nè. Bạn cần chọn son, nền, phấn má, skincare hay muốn kiểm tra đơn hàng thì cứ quăng câu hỏi cho mình nha — mình tư vấn thật lòng, không nói vòng vo đâu ✨";
+        }
+
+        if ($this->hasAny($text, ['yeu ban','thich ban','iu ban','yeu shop','shop de thuong','cute','de thuong'])) {
+            return 'Ui nghe câu này shop muốn xỉu ngang vì vui luôn á 😄💗 Cảm ơn bạn nha. Giờ để mình làm “quân sư sắc đẹp” cho bạn: bạn muốn xem son, kem nền, phấn má hay routine skincare nè?';
+        }
+
+        if ($this->hasAny($text, ['toi xau','em xau','mat toi xau','tu ti','khong tu tin'])) {
+            return 'Không nha, bạn không xấu đâu. Chỉ là mình chọn layout makeup/skincare chưa đúng thôi á 🌷 Bạn nói giúp mình da dầu/da khô/da ngăm/da sáng và bạn muốn cải thiện gì, mình gợi ý kiểu dễ áp dụng nhất cho bạn.';
         }
 
         if ($this->isThanks($text)) {
@@ -60,7 +78,11 @@ class AiChatController extends Controller
             return $this->answerSkincare($text);
         }
 
-        if ($this->hasAny($text, ['son','kem nen','foundation','phan ma','blush','phan phu','sua rua mat','toner','serum','mascara','che khuyet diem','combo','san pham','gia','bao nhieu','con hang','loai nao','nen chon','mua gi'])) {
+        if ($this->hasAny($text, ['da den','da ngam','da toi mau','da nau','tone ngam','ngam den'])) {
+            return $this->answerDarkSkin($message, $text);
+        }
+
+        if ($this->hasAny($text, ['son','kem nen','foundation','phan ma','blush','phan phu','sua rua mat','toner','serum','mascara','che khuyet diem','combo','san pham','gia','bao nhieu','con hang','loai nao','nen chon','mua gi','hop da','tone da','da trang','da vang'])) {
             return $this->answerProduct($message, $text);
         }
 
@@ -141,6 +163,38 @@ class AiChatController extends Controller
         return $reply;
     }
 
+    private function answerDarkSkin($message, $text)
+    {
+        $tips = [];
+        if ($this->hasAny($text, ['kem nen','foundation','nen'])) {
+            $tips[] = "Kem nền: chọn tông tự nhiên cùng màu da hoặc ấm hơn nửa tông, tránh nền quá trắng vì dễ bị xám mặt.";
+        }
+        if ($this->hasAny($text, ['son','moi'])) {
+            $tips[] = "Son: da ngăm/da tối màu hợp đỏ nâu, cam đất, hồng đất, nâu gạch, đỏ rượu.";
+        }
+        if ($this->hasAny($text, ['phan ma','blush','ma'])) {
+            $tips[] = "Phấn má: chọn cam đào, hồng đất, nâu cam để mặt khỏe và không bị lệch tông.";
+        }
+        if ($this->hasAny($text, ['phan phu','phu'])) {
+            $tips[] = "Phấn phủ: chọn loại kiềm dầu trong suốt hoặc cùng undertone, không chọn phấn quá sáng.";
+        }
+        if (empty($tips)) {
+            $tips[] = "Da ngăm/da tối màu nên chọn layout makeup tông ấm: nền tự nhiên, má cam đào/hồng đất, son đỏ nâu hoặc cam đất.";
+        }
+
+        $products = $this->findProducts($message, $text);
+        if ($products) {
+            $lines = [];
+            foreach ($products as $p) {
+                $lines[] = "- ".$p['name']." — ".number_format((int)$p['price'],0,',','.')."đ";
+            }
+            return implode("\n", $tips)."\n\nMột số sản phẩm shop đang có:\n".implode("\n", $lines)."\nBạn muốn mình chọn theo son, kem nền hay phấn má?";
+        }
+
+        return implode("\n", $tips)."\n\nBạn nhắn thêm bạn cần son, kem nền hay phấn má, mình sẽ gợi ý đúng sản phẩm trong shop nhé.";
+    }
+
+
     private function answerProduct($message, $text)
     {
         $products = $this->findProducts($message, $text);
@@ -164,7 +218,7 @@ class AiChatController extends Controller
             return 'Che khuyết điểm nên chọn đúng tông da để che mụn/thâm, còn che quầng mắt thì chọn sáng hơn da nửa tông.';
         }
 
-        return 'Bạn muốn tìm son, kem nền, che khuyết điểm, phấn phủ hay skincare? Nhắn tên loại sản phẩm, mình gợi ý nhanh cho.';
+        return 'Bạn muốn tìm son, kem nền, che khuyết điểm, phấn phủ hay skincare nè? Nhắn thêm loại da/tone da hoặc dịp dùng, mình chọn kiểu hợp hơn cho bạn nha ✨';
     }
 
     private function findProducts($message, $text)
@@ -207,18 +261,34 @@ class AiChatController extends Controller
     private function shortFriendlyAnswer($message, $text)
     {
         if ($this->hasAny($text, ['ok','oke','uh','um','vang','da','duoc'])) {
-            return 'Oki bạn nha ❤️';
+            return 'Oki nè 😄 Bạn cần mình chọn món nào hợp nhất thì nhắn loại da/tone da của bạn nha.';
         }
 
-        if ($this->hasAny($text, ['dep khong','tot khong','nen mua khong'])) {
-            return 'Mình cần tên sản phẩm hoặc loại da của bạn để trả lời chuẩn hơn nha.';
+        if ($this->hasAny($text, ['dep khong','tot khong','nen mua khong','co nen mua'])) {
+            return 'Có thể đáng mua đó, nhưng mình cần tên sản phẩm hoặc nhu cầu của bạn để chốt chuẩn hơn nha. Ví dụ: da dầu cần nền lâu trôi, da ngăm cần son tôn da, hay đi học cần makeup nhẹ ✨';
         }
 
         if ($this->hasAny($text, ['khuyen mai','giam gia','sale','ma giam'])) {
-            return 'Bạn xem giá đang hiển thị trên website nhé. Nếu có mã giảm giá, shop sẽ áp dụng ở bước thanh toán.';
+            return 'Bạn canh giá đang hiện trên web nha. Đơn từ 1.000.000đ được freeship, đơn lớn shop còn có cam kết đổi trả/bảo hành theo chính sách GlowBeauty nữa đó 🎁';
         }
 
-        return 'Mình chưa hiểu đúng ý bạn. Bạn nhắn rõ hơn một chút, ví dụ: “da dầu nên dùng kem nền nào” hoặc “kiểm tra đơn 0865...” nhé.';
+        if ($this->hasAny($text, ['di hoc','di lam','di tiec','makeup nhe','trang diem nhe'])) {
+            return "Gợi ý nhanh nè:\n- Đi học/đi làm: nền mỏng nhẹ + phấn phủ + son hồng đất/cam đất.\n- Đi tiệc: nền che phủ tốt hơn + phấn má rõ nhẹ + son đỏ nâu/đỏ cam.\nBạn nói mình tone da và loại da, mình chọn sản phẩm cụ thể trong shop cho nha.";
+        }
+
+        if ($this->hasAny($text, ['da dau','da nhon'])) {
+            return 'Da dầu thì ưu tiên kem nền kiềm dầu, phấn phủ mỏng và tránh nền quá bóng. Mẹo nhỏ: dưỡng ẩm nhẹ trước makeup để nền không bị mốc nhưng vẫn bền nha.';
+        }
+
+        if ($this->hasAny($text, ['da kho'])) {
+            return 'Da khô thì chọn nền ẩm mịn, dưỡng kỹ trước makeup, hạn chế phủ phấn quá nhiều. Son thì nên chọn chất mềm để môi không lộ vân nha 💄';
+        }
+
+        if ($this->hasAny($text, ['da ngam','da den','da toi','da nau'])) {
+            return 'Da ngăm cực hợp tông ấm nha: son đỏ nâu, cam đất, nâu gạch; phấn má cam đào/hồng đất; nền chọn đúng màu da hoặc ấm hơn nửa tông để không bị xám mặt.';
+        }
+
+        return 'Mình hiểu ý bạn rồi nha 😄 Để trả lời đúng hơn, bạn nhắn theo kiểu này giúp mình: “da dầu dùng kem nền nào”, “da ngăm hợp son màu gì”, “muốn phấn má tự nhiên”, hoặc gửi mã đơn/số điện thoại để mình tra đơn cho bạn nhé.';
     }
 
     private function orderItems($orderId)

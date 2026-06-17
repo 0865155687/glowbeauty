@@ -2,6 +2,7 @@
 require_once __DIR__ . '/../models/Wishlist.php';
 require_once __DIR__ . '/../models/Product.php';
 require_once __DIR__ . '/../models/Order.php';
+require_once __DIR__ . '/../models/Review.php';
 
 class AccountController extends Controller {
     private function guard() {
@@ -42,7 +43,70 @@ class AccountController extends Controller {
     public function orders() {
         $this->guard();
         $orders = Order::byUser($_SESSION['user']['id']);
-        $this->view('account/orders', ['orders'=>$orders, 'title'=>'Lịch sử mua hàng - GlowBeauty']);
+        $updatedOrders = [];
+        foreach ($orders as $o) {
+            if ((int)($o['status_seen'] ?? 1) === 0) {
+                $updatedOrders[] = $o;
+            }
+        }
+        // Không đánh dấu đã xem ở controller vì header cần hiện badge trước.
+        // Sẽ đánh dấu đã xem ở cuối view sau khi người dùng mở trang Đơn hàng của tôi.
+        $orderIds = array_map(function($o){ return (int)$o['id']; }, $orders);
+        $itemsByOrder = Order::itemsByOrderIds($orderIds);
+        $reviewsByOrder = [];
+        foreach ($orderIds as $oid) { $reviewsByOrder[$oid] = Review::byOrder($oid); }
+        $this->view('account/orders', [
+            'orders'=>$orders,
+            'updatedOrders'=>$updatedOrders,
+            'itemsByOrder'=>$itemsByOrder,
+            'reviewsByOrder'=>$reviewsByOrder,
+            'title'=>'Đơn hàng của tôi - GlowBeauty'
+        ]);
+    }
+
+
+    public function review() {
+        $this->guard();
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') $this->redirect('account/orders');
+        $orderId = (int)($_POST['order_id'] ?? 0);
+        $productId = (int)($_POST['product_id'] ?? 0);
+        $order = Order::find($orderId);
+        if (!$order || (int)($order['user_id'] ?? 0) !== (int)$_SESSION['user']['id']) {
+            $_SESSION['success'] = 'Không tìm thấy đơn hàng của bạn.';
+            $this->redirect('account/orders');
+        }
+        if (($order['status'] ?? '') !== 'Hoàn thành') {
+            $_SESSION['success'] = 'Chỉ có thể đánh giá khi đơn hàng đã hoàn thành.';
+            $this->redirect('account/orders');
+        }
+        try {
+            $imageName = trim((string)($_POST['old_image'] ?? ''));
+            if (!empty($_FILES['review_image']['name']) && is_uploaded_file($_FILES['review_image']['tmp_name'])) {
+                $ext = strtolower(pathinfo($_FILES['review_image']['name'], PATHINFO_EXTENSION));
+                if (in_array($ext, ['jpg','jpeg','png','webp','gif'], true)) {
+                    $dir = __DIR__ . '/../../public/uploads/reviews';
+                    if (!is_dir($dir)) @mkdir($dir, 0777, true);
+                    $imageName = 'review_' . time() . '_' . mt_rand(1000,9999) . '.' . $ext;
+                    @move_uploaded_file($_FILES['review_image']['tmp_name'], $dir . '/' . $imageName);
+                }
+            }
+            Review::create([
+                'order_id'=>$orderId,
+                'product_id'=>$productId,
+                'user_id'=>(int)$_SESSION['user']['id'],
+                'rating'=>(int)($_POST['rating'] ?? 5),
+                'seller_service'=>(int)($_POST['seller_service'] ?? 5),
+                'shipping_service'=>(int)($_POST['shipping_service'] ?? 5),
+                'package_service'=>(int)($_POST['package_service'] ?? 5),
+                'comment'=>$_POST['comment'] ?? '',
+                'image'=>$imageName
+            ]);
+            $_SESSION['success'] = 'Đánh giá thành công. Cảm ơn bạn đã phản hồi cho GlowBeauty.';
+            $_SESSION['review_success'] = 'Đánh giá thành công. Đánh giá của bạn đã được cập nhật lên sản phẩm và trang admin.';
+        } catch(Exception $e) {
+            $_SESSION['success'] = $e->getMessage();
+        }
+        $this->redirect('account/orders?reviewed=1#review-success');
     }
 
     private function isAjax() {
@@ -59,9 +123,17 @@ class AccountController extends Controller {
 
     public function addWishlist() {
         $productId = (int)($_GET['id'] ?? 0);
-        if ($productId <= 0 || !Product::find($productId)) {
+        $product = Product::find($productId);
+        if ($productId <= 0 || !$product) {
             if ($this->isAjax()) $this->json(['ok'=>false, 'message'=>'Sản phẩm không hợp lệ.']);
+            $_SESSION['success'] = 'Sản phẩm không hợp lệ.';
             $this->redirect('products');
+        }
+        if ((int)($product['stock'] ?? 0) <= 0 || (int)($product['status'] ?? 1) !== 1) {
+            if ($this->isAjax()) $this->json(['ok'=>false, 'message'=>'Sản phẩm đã hết hàng, không thể lưu yêu thích.']);
+            $_SESSION['success'] = 'Sản phẩm đã hết hàng, không thể lưu yêu thích.';
+            $back = $_SERVER['HTTP_REFERER'] ?? BASE_URL.'products';
+            header('Location: '.$back); exit;
         }
 
         if (!empty($_SESSION['user']['id'])) {
@@ -109,16 +181,19 @@ class AccountController extends Controller {
             $_SESSION['success'] = 'Danh sách yêu thích của bạn chưa có sản phẩm.';
             $this->redirect('account/wishlist');
         }
-        if (!isset($_SESSION['cart']) || !is_array($_SESSION['cart'])) {
-            $_SESSION['cart'] = [];
-        }
+        $checkout = [];
         foreach ($items as $p) {
             $id = (int)($p['id'] ?? 0);
             $stock = (int)($p['stock'] ?? 0);
             if ($id > 0 && $stock > 0) {
-                $_SESSION['cart'][$id] = min(max(($_SESSION['cart'][$id] ?? 0), 1), $stock);
+                $checkout[$id] = 1;
             }
         }
+        if (empty($checkout)) {
+            $_SESSION['success'] = 'Các sản phẩm đã lưu hiện đã hết hàng nên không thể thanh toán.';
+            $this->redirect('account/wishlist');
+        }
+        $_SESSION['direct_checkout'] = $checkout;
         $this->redirect('checkout');
     }
 

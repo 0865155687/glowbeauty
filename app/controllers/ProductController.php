@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . '/../models/Product.php';
 require_once __DIR__ . '/../models/Wishlist.php';
+require_once __DIR__ . '/../models/Review.php';
 
 class ProductController extends Controller  {
 
@@ -29,6 +30,13 @@ class ProductController extends Controller  {
             echo 'Không tìm thấy sản phẩm';
             return;
         }
-        $this->view('products/detail',['p'=>$p,'title'=>$p['name']]);
+        $productReviews = Review::byProduct((int)$p['id'], 20);
+        $reviewSummary = Review::summaryByProduct((int)$p['id']);
+        $this->view('products/detail',[
+            'p'=>$p,
+            'productReviews'=>$productReviews,
+            'reviewSummary'=>$reviewSummary,
+            'title'=>$p['name']
+        ]);
     }
 }

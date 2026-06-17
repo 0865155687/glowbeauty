@@ -3,6 +3,8 @@ require_once __DIR__ . '/../models/Product.php';
 require_once __DIR__ . '/../models/Order.php';
 require_once __DIR__ . '/../models/User.php';
 require_once __DIR__ . '/../models/ContactRequest.php';
+require_once __DIR__ . '/../models/Review.php';
+require_once __DIR__ . '/../models/ChatMessage.php';
 
 class AdminController extends Controller  {
     private function guard() {
@@ -31,17 +33,25 @@ class AdminController extends Controller  {
 
     public function productDelete() {
         $this->guard();
-        Product::delete($_GET['id']??0);
+        $id = (int)($_GET['id'] ?? 0);
+        $hadOrders = Product::hasOrders($id);
+        Product::delete($id);
+        $_SESSION['success'] = $hadOrders
+            ? 'Sản phẩm đã có trong đơn hàng nên không xoá khỏi dữ liệu. Hệ thống đã chuyển sang trạng thái ngừng bán.'
+            : 'Đã xoá sản phẩm.';
         $this->redirect('admin/products');
     }
 
     public function orders() {
         $this->guard();
+        Order::markAdminSeen();
+        $_SESSION['seen_order_id'] = Order::latestId();
         $this->adminView('admin/orders',['orders'=>Order::all(),'statuses'=>Order::$statuses,'paymentStatuses'=>Order::$paymentStatuses,'title'=>'Quản lý đơn hàng']);
     }
 
     public function orderDetail() {
         $this->guard();
+        $_SESSION['seen_order_id'] = Order::latestId();
         $order=Order::find($_GET['id']??0);
         if(!$order) {
             $this->redirect('admin/orders');
@@ -199,6 +209,7 @@ class AdminController extends Controller  {
 
     public function contacts() {
         $this->guard();
+        $_SESSION['seen_contact_id'] = ContactRequest::latestId();
         $this->adminView('admin/contacts',['contacts'=>ContactRequest::all(),'statuses'=>ContactRequest::$statuses,'title'=>'Khách hàng tư vấn']);
     }
 
@@ -216,6 +227,8 @@ class AdminController extends Controller  {
 
     public function customers() {
         $this->guard();
+        User::markAdminSeen();
+        $_SESSION['seen_customer_id'] = User::latestCustomerId();
         $this->adminView('admin/customers',['customers'=>User::allCustomers(),'title'=>'Quản lý khách hàng']);
     }
 
@@ -242,14 +255,78 @@ class AdminController extends Controller  {
     }
 
 
+    public function purchaseHistory() {
+        $this->guard();
+        $this->adminView('admin/purchase_history', ['customers'=>Order::purchaseHistory(), 'title'=>'Lịch sử mua hàng']);
+    }
+
+    public function reviews() {
+        $this->guard();
+        Review::markAdminSeen();
+        $_SESSION['seen_review_id'] = Review::latestId();
+        $this->adminView('admin/reviews', ['reviews'=>Review::all(), 'title'=>'Đánh giá khách hàng']);
+    }
+
+    public function reviewStatus() {
+        $this->guard();
+        Review::setStatus($_GET['id'] ?? 0, $_GET['status'] ?? 1);
+        $_SESSION['success'] = 'Đã cập nhật trạng thái đánh giá.';
+        $this->redirect('admin/reviews');
+    }
+
+    public function reviewDelete() {
+        $this->guard();
+        Review::delete($_GET['id'] ?? 0);
+        $_SESSION['success'] = 'Đã xoá đánh giá.';
+        $this->redirect('admin/reviews');
+    }
+
+    public function chats() {
+        $this->guard();
+        $conv = $_GET['conv'] ?? '';
+        $conversations = ChatMessage::conversations();
+        if ($conv === '' && !empty($conversations)) $conv = $conversations[0]['conv_key'];
+        $messages = $conv !== '' ? ChatMessage::messages($conv) : [];
+        $conversationInfo = $conv !== '' ? ChatMessage::conversationInfo($conv) : null;
+        $this->adminView('admin/chats', [
+            'conversations'=>$conversations,
+            'messages'=>$messages,
+            'conv'=>$conv,
+            'conversationInfo'=>$conversationInfo,
+            'title'=>'Chat khách hàng'
+        ]);
+    }
+
+    public function chatReply() {
+        $this->guard();
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            ChatMessage::adminReply($_POST['conv'] ?? '', $_POST['message'] ?? '');
+            $_SESSION['success'] = 'Đã gửi tin nhắn cho khách hàng.';
+            $this->redirect('admin/chats?conv='.urlencode($_POST['conv'] ?? ''));
+        }
+        $this->redirect('admin/chats');
+    }
+
+    public function chatDelete() {
+        $this->guard();
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            ChatMessage::deleteConversation($_POST['conv'] ?? '');
+            $_SESSION['success'] = 'Đã xoá cuộc trò chuyện.';
+        }
+        $this->redirect('admin/chats');
+    }
+
+
     public function notificationStatus() {
         $this->guard();
         header('Content-Type: application/json; charset=utf-8');
         echo json_encode([
             'ok' => true,
             'latest_order_id' => Order::latestId(),
+            'latest_order' => Order::latestNotification(),
             'pending_orders' => Order::countPending(),
             'latest_contact_id' => ContactRequest::latestId(),
+            'latest_contact' => ContactRequest::latestNotification(),
             'new_contacts' => ContactRequest::countNew(),
             'time' => date('Y-m-d H:i:s')
         ], JSON_UNESCAPED_UNICODE);
