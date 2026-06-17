@@ -20,13 +20,17 @@
   </thead>
   <tbody>
     <?php foreach($products as $p): ?>
-      <tr data-search="<?= htmlspecialchars(mb_strtolower($p['name'].' '.$p['category'].' '.$p['brand'].' '.$p['benefit'], 'UTF-8')) ?>">
-        <td><img src="<?= BASE_URL ?>public/assets/images/<?= htmlspecialchars($p['image']) ?>"></td>
+      <?php
+        $stock = (int)$p['stock'];
+        $stockRowClass = $stock <= 0 ? 'stock-row-out-v40' : ($stock <= 3 ? 'stock-row-low-v40' : '');
+      ?>
+      <tr class="<?= $stockRowClass ?>" data-search="<?= htmlspecialchars(mb_strtolower($p['name'].' '.$p['category'].' '.$p['brand'].' '.$p['benefit'], 'UTF-8')) ?>">
+        <td><img src="<?= gb_image_url($p['image'] ?? '') ?>" alt="<?= htmlspecialchars($p['name'] ?? 'Sản phẩm') ?>" onerror="this.style.display='none'"></td>
         <td><b><?= htmlspecialchars($p['name']) ?></b><small><?= htmlspecialchars(excerpt($p['benefit'],70)) ?></small></td>
         <td><?= htmlspecialchars($p['brand']) ?></td>
         <td><?= htmlspecialchars($p['category']) ?></td>
         <td class="price-cell"><?= number_format((float)$p['price'],0,',','.') ?>đ</td>
-        <td><?= $p['stock'] ?></td>
+        <td><span class="stock-number-v40">Kho: <?= $stock ?></span></td>
         <td><?= $p['status']?'Hiển thị':'Ẩn' ?></td>
         <td class="actions"><a class="edit" href="<?= BASE_URL ?>admin/product-form?id=<?= $p['id'] ?>">Sửa</a><a class="delete" onclick="return confirm('Xóa sản phẩm này?')" href="<?= BASE_URL ?>admin/product-delete?id=<?= $p['id'] ?>">Xóa</a></td>
       </tr>

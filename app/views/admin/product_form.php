@@ -9,6 +9,16 @@
     <a class="btn admin-secondary-v34 admin-link-fix" href="<?= BASE_URL ?>admin/products">← Quay lại</a>
 </div>
 
+<?php
+$imageFiles = [];
+$imageDir = __DIR__ . '/../../../public/assets/images';
+if (is_dir($imageDir)) {
+    foreach (scandir($imageDir) as $file) {
+        if (preg_match('/\.(jpg|jpeg|png|gif|webp|jfif)$/i', $file)) $imageFiles[] = $file;
+    }
+    sort($imageFiles, SORT_NATURAL | SORT_FLAG_CASE);
+}
+?>
 <form method="post" class="admin-form">
     <input type="hidden" name="id" value="<?= $p['id'] ?? '' ?>">
 
@@ -94,18 +104,33 @@
             <label>File ảnh sản phẩm</label>
             <input
                 name="image"
+                id="productImageInput"
                 required
+                list="product-image-list"
                 value="<?= htmlspecialchars($p['image'] ?? '') ?>"
-                placeholder="ten-anh.jpg"
+                placeholder="Gõ vài chữ đầu để gợi ý ảnh"
+                autocomplete="off"
             >
-            <div class="helper">Nhập đúng tên file ảnh sản phẩm.</div>
-
-            <?php if (!empty($p['image'])): ?>
-                <img
-                    src="<?= BASE_URL ?>public/assets/images/<?= htmlspecialchars($p['image']) ?>"
-                    alt="preview"
-                >
-            <?php endif; ?>
+            <datalist id="product-image-list">
+                <?php foreach ($imageFiles as $img): ?>
+                    <option value="<?= htmlspecialchars($img) ?>">
+                <?php endforeach; ?>
+            </datalist>
+            <div class="helper">Gõ vài chữ như <b>phan</b>, <b>kem</b>, <b>son</b> để trình duyệt gợi ý các ảnh liên quan trong thư mục.</div>
+            <img id="productImagePreview" src="<?= !empty($p['image']) ? BASE_URL.'public/assets/images/'.htmlspecialchars($p['image']) : '' ?>" alt="preview" style="<?= empty($p['image']) ? 'display:none;' : '' ?>max-width:160px;border-radius:18px;margin-top:12px;">
+            <script>
+            document.addEventListener('DOMContentLoaded', function(){
+              var input=document.getElementById('productImageInput');
+              var preview=document.getElementById('productImagePreview');
+              if(!input || !preview) return;
+              input.addEventListener('input', function(){
+                var v=input.value.trim();
+                if(!v){ preview.style.display='none'; return; }
+                preview.src='<?= BASE_URL ?>public/assets/images/'+v;
+                preview.style.display='block';
+              });
+            });
+            </script>
         </div>
 
         <div class="field full">

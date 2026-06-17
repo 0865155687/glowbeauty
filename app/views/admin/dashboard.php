@@ -19,7 +19,7 @@ function gbDashStatusClass($status) {
   <a class="stat-card-v35" href="<?= BASE_URL ?>admin/orders"><i>🧾</i><span>Đơn hàng</span><b><?= $stats['orders'] ?></b><em>Xem chi tiết →</em></a>
   <a class="stat-card-v35" href="<?= BASE_URL ?>admin/revenue-today"><i>💰</i><span>Doanh thu hôm nay</span><b><?= number_format($stats['today'],0,',','.') ?>đ</b><em>Xem chi tiết →</em></a>
   <a class="stat-card-v35" href="<?= BASE_URL ?>admin/revenue-month"><i>📈</i><span>Doanh thu tháng</span><b><?= number_format($stats['month'],0,',','.') ?>đ</b><em>Xem biểu đồ →</em></a>
-  <a class="stat-card-v35" href="<?= BASE_URL ?>admin/low-stock"><i>⚠️</i><span>Sắp hết hàng</span><b><?= $stats['low'] ?></b><em>Xem chi tiết →</em></a>
+  <a class="stat-card-v35" href="<?= BASE_URL ?>admin/low-stock"><i>⚠️</i><span>Sắp hết / Hết hàng</span><b><?= $stats['low'] ?></b><em><?= (int)($stats['out_stock'] ?? 0) ?> hết · <?= (int)($stats['low_stock_only'] ?? 0) ?> sắp hết →</em></a>
   <a class="stat-card-v35" href="<?= BASE_URL ?>admin/contacts"><i>💬</i><span>Tư vấn mới</span><b><?= (int)$contactNew ?></b><em>Xem chi tiết →</em></a>
 </div>
 

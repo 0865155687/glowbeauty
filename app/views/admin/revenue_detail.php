@@ -53,7 +53,7 @@ function gbRevenueStatusClass($status) {
 <?php endif; ?>
 
 <div class="revenue-summary-box-v35"><span>Doanh thu đã thanh toán</span><b><?= number_format($total,0,',','.') ?>đ</b><small><?= count($orders) ?> đơn đã ghi nhận</small></div>
-<table class="admin-table admin-table-v35 order-admin-table">
+<div class="revenue-table-panel-final"><table class="admin-table admin-table-v35 order-admin-table revenue-table-final">
   <tr><th>Mã</th><th>Khách hàng</th><th>Địa chỉ</th><th>Tổng tiền</th><th>Trạng thái</th><th>Thanh toán</th><th>Ngày tạo</th><th>Chi tiết</th></tr>
   <?php if(empty($orders)): ?><tr><td colspan="8" class="empty-admin">Chưa có đơn hàng phù hợp.</td></tr><?php endif; ?>
   <?php foreach($orders as $o): ?>
@@ -64,8 +64,8 @@ function gbRevenueStatusClass($status) {
     <td><b><?= number_format($o['total'],0,',','.') ?>đ</b></td>
     <td><span class="status-pill <?= gbRevenueStatusClass($o['status'] ?? 'Chờ xác nhận') ?>"><?= htmlspecialchars($o['status']) ?></span></td>
     <td><span class="payment-pill <?= (($o['payment_status'] ?? '') === 'Đã thanh toán') ? 'paid' : 'unpaid' ?>"><?= htmlspecialchars(in_array(($o['payment_status'] ?? ''), ['Chưa thanh toán','Đã thanh toán'], true) ? $o['payment_status'] : 'Chưa thanh toán') ?></span></td>
-    <td><?= $o['created_at'] ?></td>
+    <td class="revenue-date-cell"><?php $dt = !empty($o['created_at']) ? strtotime($o['created_at']) : false; ?><?php if($dt): ?><span><?= date('Y-m-d', $dt) ?></span><small><?= date('H:i:s', $dt) ?></small><?php else: ?>-<?php endif; ?></td>
     <td><a class="order-detail-btn" href="<?= BASE_URL ?>admin/order-detail?id=<?= $o['id'] ?>">Xem chi tiết</a></td>
   </tr>
   <?php endforeach; ?>
-</table>
+</table></div>

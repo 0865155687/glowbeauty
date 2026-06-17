@@ -37,12 +37,11 @@ $paymentLabels = ['Chưa thanh toán'=>'Chưa thanh toán','Đã thanh toán'=>'
     <div class="admin-panel-v34 order-filter-card-sample">
         <h3>Trạng thái đơn hàng</h3>
         <div class="status-filter-list-sample">
-            <button type="button" class="status-filter-btn all active" data-filter="">Tất cả</button>
-            <button type="button" class="status-filter-btn pending" data-filter="chờ xác nhận">Chờ xác nhận</button>
-            <button type="button" class="status-filter-btn confirmed" data-filter="đã xác nhận">Đã xác nhận</button>
-            <button type="button" class="status-filter-btn blue" data-filter="đang giao">Đang giao</button>
-            <button type="button" class="status-filter-btn green" data-filter="hoàn thành">Hoàn thành</button>
-            <button type="button" class="status-filter-btn red" data-filter="đã hủy">Đã hủy</button>
+            <button type="button" class="status-filter-btn all active" data-filter="">▣ Tất cả</button>
+            <button type="button" class="status-filter-btn pending" data-filter="chờ xác nhận">☆ Chờ xác nhận</button>
+            <button type="button" class="status-filter-btn blue" data-filter="đang giao">☆ Đang giao</button>
+            <button type="button" class="status-filter-btn green" data-filter="hoàn thành">✓ Hoàn thành</button>
+            <button type="button" class="status-filter-btn red" data-filter="đã hủy">✕ Đã hủy</button>
         </div>
     </div>
 </div>
